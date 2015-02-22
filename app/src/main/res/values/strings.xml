@@ -1,0 +1,20 @@
+<resources>
+    <!-- App settings -->
+    <string name="app_name">ProGram</string>
+
+
+    <!-- Toolbar settings -->
+    <string name="toolbar_text_home">Home</string>
+    <string name="toolbar_text_schemes">Schemes</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <!-- Drawer settings -->
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <!-- Useless -->
+    <string name="exampleString">Example</string>
+
+</resources>
