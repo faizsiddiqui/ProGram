@@ -17,4 +17,13 @@
 
     <color name="colorBackground">#f9f9f9</color>
 
+    <!-- Toolbar settings -->
+    <color name="colorToolbarTitle">#959ba3</color>
+    <color name="colorToolbarNavigationIcon">#959ba3</color>
+    <color name="colorToolbarBorder">#e2e3ea</color>
+
+    <color name="colorCardTitle">#767b86</color>
+    <color name="colorCardText">#959ba3</color>
+    <color name="colorCardImage">#e2e3ea</color>
+
 </resources>

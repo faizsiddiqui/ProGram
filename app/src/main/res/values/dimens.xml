@@ -19,6 +19,7 @@
     <!-- cardView settings -->
     <dimen name="cardView_outer_margin">16dp</dimen>
     <dimen name="cardView_inner_margin">16dp</dimen>
+    <dimen name="cardView_inner_margin_top">8dp</dimen>
     <dimen name="cardView_outer_radius">2dp</dimen>
     <dimen name="cardView_image_height">150dp</dimen>
 

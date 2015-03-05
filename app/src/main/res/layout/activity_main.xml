@@ -12,6 +12,12 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/toolbar_border_bottom" >
+    </View>
+
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer"
         android:layout_width="match_parent"
