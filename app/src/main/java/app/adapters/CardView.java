@@ -4,10 +4,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 
 import app.fragments.Schemes;
+import app.library.VolleySingleton;
 import app.program.R;
 import app.widgets.ImageURLLoadTask;
 
@@ -19,6 +27,8 @@ public class CardView extends RecyclerView.Adapter<CardView.ViewHolder> {
 
     public String[] titles, descriptions, images;
     OnItemClickListener mItemClickListener;
+    ImageLoader mImageLoader;
+    private int mLastPosition  = -1;
 
     public CardView(String[] titles, String[] descriptions, String[] images){
         this.titles = titles;
@@ -29,6 +39,7 @@ public class CardView extends RecyclerView.Adapter<CardView.ViewHolder> {
     @Override
     public CardView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view, parent, false);
+        mImageLoader = VolleySingleton.getInstance(parent.getContext()).getImageLoader();
         return new ViewHolder(view);
     }
 
@@ -36,10 +47,7 @@ public class CardView extends RecyclerView.Adapter<CardView.ViewHolder> {
     public void onBindViewHolder(CardView.ViewHolder holder, int position) {
         holder.cardViewTitle.setText(titles[position]);
         holder.cardViewText.setText(descriptions[position]);
-        try {
-            new ImageURLLoadTask(images[position], holder.cardViewImage).execute();
-        } catch (Exception ignored){}
-
+        holder.cardNetworkImageView.setImageUrl(images[position], mImageLoader);
     }
 
     @Override
@@ -49,12 +57,12 @@ public class CardView extends RecyclerView.Adapter<CardView.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView cardViewImage;
+        NetworkImageView cardNetworkImageView;
         TextView cardViewTitle, cardViewText;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            cardViewImage = (ImageView) itemView.findViewById(R.id.cardViewImage);
+            cardNetworkImageView = (NetworkImageView) itemView.findViewById(R.id.cardViewImage);
             cardViewTitle = (TextView) itemView.findViewById(R.id.cardViewTitle);
             cardViewText = (TextView) itemView.findViewById(R.id.cardViewText);
             itemView.setOnClickListener(this);

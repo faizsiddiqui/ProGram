@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/cardView_outer_margin"
+    android:layout_marginRight="@dimen/cardView_outer_margin"
     android:layout_marginTop="@dimen/cardView_outer_margin"
     card_view:cardCornerRadius="@dimen/cardView_outer_radius">
 
@@ -11,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
+        <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/cardViewImage"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/cardView_image_height"

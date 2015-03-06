@@ -2,8 +2,10 @@ package app.fragments;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,6 +28,9 @@ import app.adapters.CardView;
 import app.library.VolleySingleton;
 import app.program.MainActivity;
 import app.program.R;
+import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.adapters.SlideInBottomAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.adapters.SlideInLeftAnimationAdapter;
 
 /**
  * Not for public use
@@ -36,8 +41,8 @@ public class Schemes extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private CardView mAdapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    String[] titles, descriptions, images;
     String[] name, intro, icon;
 
     private static String KEY_ERROR = "error";
@@ -64,14 +69,32 @@ public class Schemes extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.recycler_view, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_schemes);
+        mRecyclerView = (RecyclerView) layout.findViewById(R.id.recycler_view);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) layout.findViewById(R.id.swipe_container);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView = (RecyclerView) layout.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        setupAdapter();
 
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setupAdapter();
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 5000);
+            }
+        });
+        return layout;
+    }
+
+    private void setupAdapter() {
         String URL = "http://buykerz.com/program/v1/api/schemes";
-
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET, URL, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -103,7 +126,9 @@ public class Schemes extends Fragment {
                                     icon = images.toArray(new String[images.size()]);
 
                                     mAdapter = new CardView(name, intro, icon);
-                                    mRecyclerView.setAdapter(mAdapter);
+                                    AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
+                                    alphaAdapter.setDuration(1000);
+                                    mRecyclerView.setAdapter(alphaAdapter);
                                     mAdapter.SetOnItemClickListener(new CardView.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(View view, int position) {
@@ -122,8 +147,6 @@ public class Schemes extends Fragment {
                 Toast.makeText(getActivity(), "Error fetching Schemes.", Toast.LENGTH_SHORT).show();
             }
         });
-
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjReq);
-        return layout;
     }
 }

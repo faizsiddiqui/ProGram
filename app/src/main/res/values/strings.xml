@@ -6,6 +6,7 @@
     <!-- Toolbar settings -->
     <string name="toolbar_text_home">Home</string>
     <string name="toolbar_text_schemes">Schemes</string>
+    <string name="toolbar_text_question">Question</string>
 
     <string name="action_settings">Settings</string>
 
@@ -16,5 +17,8 @@
 
     <!-- Useless -->
     <string name="exampleString">Example</string>
+    <string name="question_title">Title (question)</string>
+    <string name="question_description">Description</string>
+    <string name="question_post">Post</string>
 
 </resources>
