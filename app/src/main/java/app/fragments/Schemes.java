@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.volley.Cache;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -22,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import app.adapters.CardView;
@@ -29,8 +31,6 @@ import app.library.VolleySingleton;
 import app.program.MainActivity;
 import app.program.R;
 import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
-import jp.wasabeef.recyclerview.animators.adapters.SlideInBottomAnimationAdapter;
-import jp.wasabeef.recyclerview.animators.adapters.SlideInLeftAnimationAdapter;
 
 /**
  * Not for public use
@@ -45,6 +45,7 @@ public class Schemes extends Fragment {
 
     String[] name, intro, icon;
 
+    private static String URL = "http://buykerz.com/program/v1/api/schemes";
     private static String KEY_ERROR = "error";
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
@@ -75,7 +76,8 @@ public class Schemes extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        setupAdapter();
+
+        setAdapter();
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -84,7 +86,7 @@ public class Schemes extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        setupAdapter();
+                        setAdapter();
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }, 5000);
@@ -93,60 +95,80 @@ public class Schemes extends Fragment {
         return layout;
     }
 
-    private void setupAdapter() {
-        String URL = "http://buykerz.com/program/v1/api/schemes";
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET, URL, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String KEY_SUCCESS = "success";
-                            String KEY_MSG = "message";
-                            if (response.getString(KEY_SUCCESS) != null) {
-                                Boolean res = response.getBoolean(KEY_SUCCESS);
-                                if (res) {
-                                    final ArrayList<String> titles = new ArrayList<String>();
-                                    final ArrayList<String> description = new ArrayList<String>();
-                                    final ArrayList<String> images = new ArrayList<String>();
-
-                                    JSONArray schemes = response.getJSONArray("schemes");
-
-                                    for (Integer i = 0; i <= schemes.length() - 1; i++) {
-                                        JSONObject scheme = schemes.getJSONObject(i);
-                                        String name = scheme.getString(KEY_NAME);
-                                        String intro = scheme.getString(KEY_INTRODUCTION);
-                                        String img = scheme.getString(KEY_IMAGE);
-                                        titles.add(name);
-                                        description.add(intro);
-                                        images.add(img);
-                                    }
-
-                                    name = titles.toArray(new String[titles.size()]);
-                                    intro = description.toArray(new String[description.size()]);
-                                    icon = images.toArray(new String[images.size()]);
-
-                                    mAdapter = new CardView(name, intro, icon);
-                                    AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
-                                    alphaAdapter.setDuration(1000);
-                                    mRecyclerView.setAdapter(alphaAdapter);
-                                    mAdapter.SetOnItemClickListener(new CardView.OnItemClickListener() {
-                                        @Override
-                                        public void onItemClick(View view, int position) {
-                                            Toast.makeText(getActivity(), "Card clicked.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "Error fetching Schemes.", Toast.LENGTH_SHORT).show();
+    private void setAdapter() {
+        Cache cache = VolleySingleton.getInstance().getRequestQueue().getCache();
+        Cache.Entry entry = cache.get(URL);
+        if (entry != null) {
+            try {
+                String data = new String(entry.data, "UTF-8");
+                try {
+                    parseJsonFeed(new JSONObject(data));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
             }
-        });
-        VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjReq);
+        } else {
+            JsonObjectRequest jsonReq = new JsonObjectRequest(Method.GET,
+                    URL, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    if (response != null) {
+                        parseJsonFeed(response);
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getActivity(), "Error fetching Schemes.", Toast.LENGTH_SHORT).show();
+                }
+            });
+            VolleySingleton.getInstance().addToRequestQueue(jsonReq);
+        }
+    }
+
+    private void parseJsonFeed(JSONObject response) {
+        try {
+            String KEY_SUCCESS = "success";
+            String KEY_MSG = "message";
+            if (response.getString(KEY_SUCCESS) != null) {
+                Boolean res = response.getBoolean(KEY_SUCCESS);
+                if (res) {
+                    final ArrayList<String> titles = new ArrayList<String>();
+                    final ArrayList<String> description = new ArrayList<String>();
+                    final ArrayList<String> images = new ArrayList<String>();
+
+                    JSONArray schemes = response.getJSONArray("schemes");
+
+                    for (Integer i = 0; i <= schemes.length() - 1; i++) {
+                        JSONObject scheme = schemes.getJSONObject(i);
+                        String name = scheme.getString(KEY_NAME);
+                        String intro = scheme.getString(KEY_INTRODUCTION);
+                        String img = scheme.getString(KEY_IMAGE);
+                        titles.add(name);
+                        description.add(intro);
+                        images.add(img);
+                    }
+
+                    name = titles.toArray(new String[titles.size()]);
+                    intro = description.toArray(new String[description.size()]);
+                    icon = images.toArray(new String[images.size()]);
+
+                    mAdapter = new CardView(name, intro, icon);
+                    AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
+                    alphaAdapter.setDuration(1000);
+                    mRecyclerView.setAdapter(alphaAdapter);
+                    mAdapter.SetOnItemClickListener(new CardView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            Toast.makeText(getActivity(), "Card clicked.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,8 +1,7 @@
 package app.library;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.v4.util.LruCache;
+import android.app.Application;
+import android.text.TextUtils;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -11,55 +10,56 @@ import com.android.volley.toolbox.Volley;
 
 /**
  * Not for public use
- * Created by FAIZ on 05-03-2015.
+ * Created by FAIZ on 07-03-2015.
  */
-public class VolleySingleton {
+public class VolleySingleton extends Application {
+
+    public static final String TAG = VolleySingleton.class.getSimpleName();
 
     private static VolleySingleton instance;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-    private static Context mCtx;
 
-    private VolleySingleton(Context context){
-        mCtx = context;
-        mRequestQueue = getRequestQueue();
-        mImageLoader = new ImageLoader(mRequestQueue,
-            new ImageLoader.ImageCache() {
-                private final LruCache<String, Bitmap>
-                    cache = new LruCache<String, Bitmap>(20);
-
-                @Override
-                public Bitmap getBitmap(String url) {
-                    return cache.get(url);
-                }
-
-                @Override
-                public void putBitmap(String url, Bitmap bitmap) {
-                    cache.put(url, bitmap);
-                }
-            });
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        instance = this;
     }
 
-    public static synchronized VolleySingleton getInstance(Context context){
-        if (instance == null){
-            instance = new VolleySingleton(context);
-        }
+    public static synchronized VolleySingleton getInstance() {
         return instance;
     }
 
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
-            mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
+            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }
         return mRequestQueue;
     }
 
-    public <T> void addToRequestQueue(Request<T> req) {
+    public ImageLoader getImageLoader() {
+        getRequestQueue();
+        if (mImageLoader == null) {
+            mImageLoader = new ImageLoader(this.mRequestQueue,
+                    new LruBitmapCache());
+        }
+        return this.mImageLoader;
+    }
+
+    public <T> void addToRequestQueue(Request<T> req, String tag) {
+        // set the default tag if tag is empty
+        req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
         getRequestQueue().add(req);
     }
 
-    public ImageLoader getImageLoader() {
-        return mImageLoader;
+    public <T> void addToRequestQueue(Request<T> req) {
+        req.setTag(TAG);
+        getRequestQueue().add(req);
     }
 
+    public void cancelPendingRequests(Object tag) {
+        if (mRequestQueue != null) {
+            mRequestQueue.cancelAll(tag);
+        }
+    }
 }
