@@ -15,12 +15,9 @@ import app.fragments.NavigationDrawer;
 
 public class MainActivity extends BaseActivity {
 
-    private FrameLayout mainFrame;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (findViewById(R.id.MainFrame) != null) {
             if (savedInstanceState != null) {
                 Home fragmentHome = (Home) getSupportFragmentManager().findFragmentByTag("FRAGMENT_HOME");
@@ -37,9 +34,9 @@ public class MainActivity extends BaseActivity {
         NavigationDrawer drawerFragment = (NavigationDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer_fragment);
         DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        mDrawerLayout.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
+        //mDrawerLayout.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
         drawerFragment.setup(R.id.navigation_drawer_fragment, mDrawerLayout, toolbar);
-        mDrawerLayout.closeDrawer(Gravity.LEFT);
+        mDrawerLayout.closeDrawer(Gravity.START);
     }
 
     @Override

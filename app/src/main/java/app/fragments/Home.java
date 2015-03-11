@@ -1,5 +1,6 @@
 package app.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -56,6 +57,12 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
             case "Calendar":
                 break;
             case "Forum":
+                AskQuestion askQuestion = new AskQuestion();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.MainFrame, askQuestion)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case "Schemes":
                 Schemes schemes = new Schemes();

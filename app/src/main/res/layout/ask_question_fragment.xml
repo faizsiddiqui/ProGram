@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/keyLine1">
+    android:padding="@dimen/keyLine1">
 
     <android.support.v7.internal.widget.TintEditText
         android:id="@+id/questionTitle"
@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/cardView_inner_margin"
         android:hint="@string/question_title"
-        android:textColorHint="@color/colorCardText"/>
+        android:textColorHint="@color/colorCardText"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
 
     <android.support.v7.internal.widget.TintEditText
         android:id="@+id/questionDescription"
@@ -23,6 +25,7 @@
         android:ems="10"/>
 
     <Button
+        android:id="@+id/questionPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
