@@ -31,8 +31,8 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
     };
 
     int[] image = {
-            R.mipmap.profile,
-            R.mipmap.profile
+            R.mipmap.home_calendar,
+            R.mipmap.home_forum
     };
 
     @Override

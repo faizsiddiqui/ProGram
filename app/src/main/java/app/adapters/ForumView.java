@@ -33,6 +33,7 @@ public class ForumView extends RecyclerView.Adapter<ForumView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.forumTopTitle.setText("Latest");
         holder.forumTitle.setText(forumTitle[position]);
         holder.forumText.setText(forumText[position]);
         holder.forumIcon.setImageResource(forumIcon[position]);
@@ -44,10 +45,11 @@ public class ForumView extends RecyclerView.Adapter<ForumView.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView forumTitle, forumText;
+        TextView forumTitle, forumText, forumTopTitle;
         ImageView forumIcon;
         public ViewHolder(View itemView) {
             super(itemView);
+            forumTopTitle = (TextView) itemView.findViewById(R.id.forumTopTitle);
             forumTitle = (TextView) itemView.findViewById(R.id.forumTitle);
             forumText = (TextView) itemView.findViewById(R.id.forumText);
             forumIcon = (ImageView) itemView.findViewById(R.id.forumIcon);

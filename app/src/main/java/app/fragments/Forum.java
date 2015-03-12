@@ -35,7 +35,7 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
     String[] forumText = {
             "IN PROGRESS",
             "COMPLETED",
-            "NOT STARTED"
+            "COMPLETED"
     };
 
     int[] image = {
@@ -55,20 +55,7 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-
-        final FloatingActionButton askQuestion = (FloatingActionButton) view.findViewById(R.id.float_askQuestion);
-        askQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AskQuestion askQuestion = new AskQuestion();
-                getFragmentManager().beginTransaction()
-                    .replace(R.id.MainFrame, askQuestion)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(null)
-                    .commit();
-            }
-        });
-
+        getFloatingActionButtonView(view);
         return view;
     }
 
@@ -92,7 +79,28 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
                     .commit();
                 break;
             case "Awards":
+                Awards awards = new Awards();
+                getFragmentManager().beginTransaction()
+                    .replace(R.id.MainFrame, awards)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
                 break;
         }
-    }
+    } //onItemClick
+
+    private void getFloatingActionButtonView(View view) {
+        final FloatingActionButton askQuestion = (FloatingActionButton) view.findViewById(R.id.float_askQuestion);
+        askQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AskQuestion askQuestion = new AskQuestion();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.MainFrame, askQuestion)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    } //getFloatingActionButtonView
 }
