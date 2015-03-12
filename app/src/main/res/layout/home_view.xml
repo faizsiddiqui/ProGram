@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
     android:layout_gravity="center"
@@ -11,7 +12,7 @@
     <ImageView
         android:id="@+id/homeIcon"
         android:layout_width="55dp"
-        android:layout_height="55dp"/>
+        android:layout_height="55dp" />
 
     <TextView
         android:id="@+id/homeText"
@@ -23,6 +24,6 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:gravity="center_horizontal"
-        android:textColor="@color/colorText"/>
+        android:textColor="@color/colorText" />
 
 </LinearLayout>

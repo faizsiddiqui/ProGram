@@ -24,7 +24,7 @@ public class AskQuestion extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View layout = inflater.inflate(R.layout.ask_question_fragment, container, false);
+        View layout = inflater.inflate(R.layout.ask_question_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_question);
         questionTitle = (TintEditText) layout.findViewById(R.id.questionTitle);
         questionDescription = (TintEditText) layout.findViewById(R.id.questionDescription);

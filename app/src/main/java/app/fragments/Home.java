@@ -27,12 +27,10 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
 
     String[] home_text = {
             "Calendar",
-            "Forum",
-            "Schemes"
+            "Forum"
     };
 
     int[] image = {
-            R.mipmap.profile,
             R.mipmap.profile,
             R.mipmap.profile
     };
@@ -57,17 +55,9 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
             case "Calendar":
                 break;
             case "Forum":
-                AskQuestion askQuestion = new AskQuestion();
+                Forum forum = new Forum();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, askQuestion)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
-                break;
-            case "Schemes":
-                Schemes schemes = new Schemes();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, schemes)
+                        .replace(R.id.MainFrame, forum)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();

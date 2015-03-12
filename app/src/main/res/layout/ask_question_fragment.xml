@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/keyLine1">
 
@@ -12,7 +13,7 @@
         android:hint="@string/question_title"
         android:textColorHint="@color/colorCardText"
         android:focusable="true"
-        android:focusableInTouchMode="true"/>
+        android:focusableInTouchMode="true" />
 
     <android.support.v7.internal.widget.TintEditText
         android:id="@+id/questionDescription"
@@ -22,7 +23,7 @@
         android:hint="@string/question_description"
         android:textColorHint="@color/colorCardText"
         android:inputType="textMultiLine"
-        android:ems="10"/>
+        android:ems="10" />
 
     <Button
         android:id="@+id/questionPost"
@@ -31,6 +32,6 @@
         android:background="@color/colorPrimary"
         android:layout_marginTop="@dimen/cardView_inner_margin"
         android:textColor="@color/colorWhite"
-        android:text="@string/question_post"/>
+        android:text="@string/question_post" />
 
 </LinearLayout>

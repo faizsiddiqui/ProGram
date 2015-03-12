@@ -63,10 +63,11 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
                 "Tutorials", "Update",
                 "Settings", "Help",
                 "About"};
+
         navigationRowImage = new Integer[]{
-                R.drawable.ic_ab_nav, R.drawable.ic_ab_nav,
-                R.drawable.ic_ab_nav, R.drawable.ic_ab_nav,
-                R.drawable.ic_ab_nav};
+                R.mipmap.drawer_tutorial, R.mipmap.drawer_update,
+                R.mipmap.drawer_settings, R.mipmap.drawer_help,
+                R.mipmap.drawer_about};
 
         NavigationView navigationAdapter = new NavigationView(getActivity(), navigationRowText, navigationRowImage);
         RecyclerView navigationRecyclerView = (RecyclerView) layout.findViewById(R.id.navigationRecyclerView);

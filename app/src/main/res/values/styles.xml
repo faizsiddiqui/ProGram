@@ -34,4 +34,9 @@
         <item name="android:textSize">@dimen/toolbar_text_size</item>
     </style>
 
+    <style name="menu_labels_style">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
 </resources>

@@ -7,9 +7,11 @@
     android:id="@+id/navdrawer"
     android:background="@color/colorWhite"
     android:fitsSystemWindows="true"
+    android:scrollbarSize="@dimen/keyLine3"
     tools:context="app.fragments.NavigationDrawer">
 
-    <LinearLayout android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -32,7 +34,7 @@
                     android:layout_height="@dimen/navigation_drawer_profile_image_size"
                     android:src="@mipmap/profile"
                     android:scaleType="centerCrop"
-                    app:maskDrawable="@drawable/circle_mask"/>
+                    app:maskDrawable="@drawable/circle_mask" />
 
                 <TextView
                     android:id="@+id/navigation_profile_email_text"
@@ -45,7 +47,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:ellipsize="end"
-                    android:text="@string/exampleString"/>
+                    android:text="@string/exampleString" />
 
                 <TextView
                     android:id="@+id/navigation_profile_name_text"
@@ -57,18 +59,18 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:ellipsize="end"
-                    android:text="@string/exampleString"/>
+                    android:text="@string/exampleString" />
 
             </RelativeLayout>
 
         </FrameLayout>
 
-       <android.support.v7.widget.RecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/navigationRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="@dimen/navigation_drawer_height"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp" />
 
     </LinearLayout>
 

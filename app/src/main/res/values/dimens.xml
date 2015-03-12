@@ -5,16 +5,24 @@
 
     <!-- margins settings -->
     <dimen name="keyLine1">16dp</dimen>
-    <dimen name="keyLine2">72dp</dimen>
+    <dimen name="keyLine2">32dp</dimen>
+    <dimen name="keyLine3">48dp</dimen>
+    <dimen name="keyLine4">64dp</dimen>
+    <dimen name="keyLine5">72dp</dimen>
 
     <!-- Toolbar settings -->
     <dimen name="toolbar_text_size">20sp</dimen>
 
     <!-- navigation settings -->
+    <dimen name="navigation_drawer_height">360dp</dimen> <!-- navigation_row_height x number of icons -->
     <dimen name="navigation_drawer_width">260dp</dimen>
     <dimen name="navigation_drawer_profile_height">116dp</dimen>
     <dimen name="navigation_drawer_profile_image_size">40dp</dimen>
 
+    <!-- navigation row settings -->
+    <dimen name="navigation_row_height">72dp</dimen>
+    <dimen name="navigation_row_icon_size">48dp</dimen>
+    <dimen name="navigation_row_text_size">15sp</dimen>
 
     <!-- cardView settings -->
     <dimen name="cardView_outer_margin">16dp</dimen>

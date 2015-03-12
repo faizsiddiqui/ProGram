@@ -31,4 +31,15 @@
     <color name="blue">#000099</color>
     <color name="orange">#FF9900</color>
 
+    <!-- Floating action button -->
+    <color name="float_black_semi_transparent">#B2000000</color>
+    <color name="float_background">#e5e5e5</color>
+    <color name="float_half_black">#808080</color>
+    <color name="float_white">#fafafa</color>
+    <color name="float_white_pressed">#f1f1f1</color>
+    <color name="float_pink">#e91e63</color>
+    <color name="float_pink_pressed">#ec407a</color>
+    <color name="float_blue_semi_transparent">#805677fc</color>
+    <color name="float_blue_semi_transparent_pressed">#80738ffe</color>
+
 </resources>
