@@ -51,7 +51,8 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
         mLayoutManager = new GridLayoutManager(getActivity(), 1);
         mAdapter = new ForumView(forumTitle, forumText, image);
         mAdapter.SetOnItemClickListener(this);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.forumGrid);
+
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.forumRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -63,33 +64,33 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
     public void onItemClick(View view, int position) {
         switch (forumTitle[position]) {
             case "Question/Answers":
-                AskQuestion askQuestion = new AskQuestion();
+                QuestionAnswer questionAnswer = new QuestionAnswer();
                 getFragmentManager().beginTransaction()
-                    .replace(R.id.MainFrame, askQuestion)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(null)
-                    .commit();
+                        .replace(R.id.MainFrame, questionAnswer)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case "Schemes":
                 Schemes schemes = new Schemes();
                 getFragmentManager().beginTransaction()
-                    .replace(R.id.MainFrame, schemes)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(null)
-                    .commit();
+                        .replace(R.id.MainFrame, schemes)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case "Awards":
                 Awards awards = new Awards();
                 getFragmentManager().beginTransaction()
-                    .replace(R.id.MainFrame, awards)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(null)
-                    .commit();
+                        .replace(R.id.MainFrame, awards)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
                 break;
         }
     } //onItemClick
 
-    private void getFloatingActionButtonView(View view) {
+    public void getFloatingActionButtonView(View view) {
         final FloatingActionButton askQuestion = (FloatingActionButton) view.findViewById(R.id.float_askQuestion);
         askQuestion.setOnClickListener(new View.OnClickListener() {
             @Override

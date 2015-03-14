@@ -61,22 +61,19 @@ public class Schemes extends Fragment {
     private static final String KEY_RELEASED = "released";
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.recycler_view, container, false);
+        View layout = inflater.inflate(R.layout.forum_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_schemes);
-        mRecyclerView = (RecyclerView) layout.findViewById(R.id.recycler_view);
+        mLayoutManager = new LinearLayoutManager(getActivity());
         mSwipeRefreshLayout = (SwipeRefreshLayout) layout.findViewById(R.id.swipe_container);
 
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView = (RecyclerView) layout.findViewById(R.id.forumRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         setAdapter();
+        Forum forum = new Forum();
+        forum.getFloatingActionButtonView(layout);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

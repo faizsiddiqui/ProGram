@@ -114,16 +114,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int rowCount = cursor.getCount();
         db.close();
         cursor.close();
-
         // return row count
         return rowCount;
     }
 
     public void resetTables(){
-
         SQLiteDatabase db = this.getWritableDatabase();
-        // Delete All Rows
-        db.delete(TABLE_LOGIN, null, null);
+        db.delete(TABLE_LOGIN, null, null); // Delete All Rows
         db.close();
     }
 

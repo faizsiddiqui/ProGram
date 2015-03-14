@@ -6,6 +6,7 @@
     <!-- Toolbar settings -->
     <string name="toolbar_text_home">Home</string>
     <string name="toolbar_text_schemes">Schemes</string>
+    <string name="toolbar_text_ask_question">Ask Question</string>
     <string name="toolbar_text_question">Question</string>
     <string name="toolbar_text_forum">Forum</string>
     <string name="toolbar_text_awards">Awards</string>

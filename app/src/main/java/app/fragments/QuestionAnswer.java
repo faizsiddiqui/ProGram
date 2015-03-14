@@ -33,9 +33,9 @@ import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
 
 /**
  * Not for public use
- * Created by FAIZ on 12-03-2015.
+ * Created by FAIZ on 14-03-2015.
  */
-public class Awards extends Fragment {
+public class QuestionAnswer extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -43,29 +43,25 @@ public class Awards extends Fragment {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     String[] titles, descriptions, images;
 
-    private static String URL = "http://buykerz.com/program/v1/api/awards";
-    private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
+    private static String URL = "http://buykerz.com/program/v1/api/question";
+    private static final String KEY_TITLE = "title";
+    private static final String KEY_QUESTION = "question";
     private static final String KEY_IMAGE = "image";
-    private static final String KEY_PRIZE = "prize";
-    private static final String KEY_STATE = "state";
-    private static final String KEY_DESCRIPTION = "description";
-    private static final String KEY_PUBLISHED = "published";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.forum_fragment, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_awards);
+        View view = inflater.inflate(R.layout.forum_fragment, container, false);
+        ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_question);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mSwipeRefreshLayout = (SwipeRefreshLayout) layout.findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
 
-        mRecyclerView = (RecyclerView) layout.findViewById(R.id.forumRecyclerView);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.forumRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         setAdapter();
         Forum forum = new Forum();
-        forum.getFloatingActionButtonView(layout);
+        forum.getFloatingActionButtonView(view);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -80,7 +76,7 @@ public class Awards extends Fragment {
                 }, 5000);
             }
         });
-        return layout;
+        return view;
     }
 
     private void setAdapter() {
@@ -109,7 +105,7 @@ public class Awards extends Fragment {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getActivity(), "Error fetching Awards.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Error fetching Questions.", Toast.LENGTH_SHORT).show();
                 }
             });
             VolleySingleton.getInstance().addToRequestQueue(jsonReq);
@@ -127,13 +123,13 @@ public class Awards extends Fragment {
                     final ArrayList<String> intro = new ArrayList<String>();
                     final ArrayList<String> icon = new ArrayList<String>();
 
-                    JSONArray awards = response.getJSONArray("awards");
+                    JSONArray questions = response.getJSONArray("questions");
 
-                    for (Integer i = 0; i <= awards.length() - 1; i++) {
-                        JSONObject award = awards.getJSONObject(i);
-                        String title = award.getString(KEY_NAME);
-                        String description = award.getString(KEY_DESCRIPTION);
-                        String image = award.getString(KEY_IMAGE);
+                    for (Integer i = 0; i <= questions.length() - 1; i++) {
+                        JSONObject question = questions.getJSONObject(i);
+                        String title = question.getString(KEY_TITLE);
+                        String description = question.getString(KEY_QUESTION);
+                        String image = question.getString(KEY_IMAGE);
                         names.add(title);
                         intro.add(description);
                         icon.add(image);
