@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,8 +62,7 @@ public class QuestionAnswer extends Fragment implements CardView.OnItemClickList
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         setAdapter();
-        Forum forum = new Forum();
-        forum.getFloatingActionButtonView(view);
+        getFloatingActionButtonView(view);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -160,5 +160,20 @@ public class QuestionAnswer extends Fragment implements CardView.OnItemClickList
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    public void getFloatingActionButtonView(View view) {
+        final FloatingActionButton askQuestion = (FloatingActionButton) view.findViewById(R.id.float_askQuestion);
+        askQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AskQuestion askQuestion = new AskQuestion();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.MainFrame, askQuestion)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 }

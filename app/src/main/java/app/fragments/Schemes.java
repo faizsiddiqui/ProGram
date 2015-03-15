@@ -1,6 +1,7 @@
 package app.fragments;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,18 +65,17 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.forum_fragment, container, false);
+        View view = inflater.inflate(R.layout.forum_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_schemes);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mSwipeRefreshLayout = (SwipeRefreshLayout) layout.findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
 
-        mRecyclerView = (RecyclerView) layout.findViewById(R.id.forumRecyclerView);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.forumRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         setAdapter();
-        Forum forum = new Forum();
-        forum.getFloatingActionButtonView(layout);
+        getFloatingActionButtonView(view);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -89,7 +90,7 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
                 }, 5000);
             }
         });
-        return layout;
+        return view;
     }
 
     private void setAdapter() {
@@ -172,5 +173,28 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .addToBackStack(null)
             .commit();
+    }
+
+    public void getFloatingActionButtonView(View view) {
+        final FloatingActionButton askQuestion = (FloatingActionButton) view.findViewById(R.id.float_askQuestion);
+        askQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AskQuestion askQuestion = new AskQuestion();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.MainFrame, askQuestion)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
+    public class GetSchemes extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            return null;
+        }
     }
 }
