@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,7 +37,7 @@ import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
  * Not for public use
  * Created by FAIZ on 22-02-2015.
  */
-public class Schemes extends Fragment {
+public class Schemes extends Fragment implements CardView.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -155,16 +156,21 @@ public class Schemes extends Fragment {
                     AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
                     alphaAdapter.setDuration(1000);
                     mRecyclerView.setAdapter(alphaAdapter);
-                    mAdapter.SetOnItemClickListener(new CardView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, int position) {
-                            Toast.makeText(getActivity(), "Card clicked.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    mAdapter.SetOnItemClickListener(this);
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Post schemePost = Post.newInstance(name[position], intro[position], icon[position]);
+        getFragmentManager().beginTransaction()
+            .replace(R.id.MainFrame, schemePost)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .addToBackStack(null)
+            .commit();
     }
 }

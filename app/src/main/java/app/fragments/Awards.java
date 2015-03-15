@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,7 +36,7 @@ import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
  * Not for public use
  * Created by FAIZ on 12-03-2015.
  */
-public class Awards extends Fragment {
+public class Awards extends Fragment implements CardView.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -147,16 +148,21 @@ public class Awards extends Fragment {
                     AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
                     alphaAdapter.setDuration(1000);
                     mRecyclerView.setAdapter(alphaAdapter);
-                    mAdapter.SetOnItemClickListener(new CardView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, int position) {
-                            Toast.makeText(getActivity(), "Card clicked.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    mAdapter.SetOnItemClickListener(this);
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Post postAward = Post.newInstance(titles[position], descriptions[position], images[position]);
+        getFragmentManager().beginTransaction()
+                .replace(R.id.MainFrame, postAward)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit();
     }
 }
