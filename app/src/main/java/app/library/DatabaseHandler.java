@@ -26,6 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_EMAIL = "email";
     private static final String KEY_LOCATION = "location";
     private static final String KEY_LANGUAGE = "language";
+    private static final String KEY_IMAGE = "image";
     private static final String KEY_AGE = "age";
     private static final String KEY_STATE = "state";
     private static final String KEY_API = "api_key";
@@ -43,6 +44,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_MOBILE + " TEXT UNIQUE,"
                 + KEY_EMAIL + " TEXT UNIQUE,"
                 + KEY_LOCATION +  " TEXT,"
+                + KEY_IMAGE + " TEXT,"
                 + KEY_API + " TEXT,"
                 + KEY_ID + " TEXT,"
                 + KEY_JOINED + " TEXT" + ")";
@@ -58,8 +60,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void addUser(String name, String mobile, String email, String location , String id,
-                        String api_key, String joined) {
+    public void addUser(String name, String mobile, String email, String location , String image,
+                        String id, String api_key, String joined) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -67,6 +69,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_MOBILE, mobile); // Mobile
         values.put(KEY_EMAIL, email); // Email
         values.put(KEY_LOCATION, location); // Location
+        values.put(KEY_IMAGE, image);
         values.put(KEY_ID, id); // id
         values.put(KEY_API, api_key); // api_key
         values.put(KEY_JOINED, joined); // joined At
@@ -97,9 +100,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             user.put("mobile", cursor.getString(2));
             user.put("email", cursor.getString(3));
             user.put("location", cursor.getString(4));
-            user.put("id", cursor.getString(5));
-            user.put("api_key", cursor.getString(6));
-            user.put("joined", cursor.getString(7));
+            user.put("image", cursor.getString(5));
+            user.put("id", cursor.getString(6));
+            user.put("api_key", cursor.getString(7));
+            user.put("joined", cursor.getString(8));
         }
         cursor.close();
         db.close();

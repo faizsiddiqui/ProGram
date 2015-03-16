@@ -28,13 +28,14 @@
                 android:paddingRight="@dimen/keyLine1"
                 android:paddingTop="@dimen/keyLine1">
 
-                <app.widgets.BezelImageView
+                <com.android.volley.toolbox.NetworkImageView
                     android:id="@+id/navigation_profile_image"
                     android:layout_width="@dimen/navigation_drawer_profile_image_size"
                     android:layout_height="@dimen/navigation_drawer_profile_image_size"
+                    android:background="@color/colorCardImage"
                     android:src="@mipmap/profile"
                     android:scaleType="centerCrop"
-                    app:maskDrawable="@drawable/circle_mask" />
+                    app:maskDrawable="@drawable/circle_mask"/>
 
                 <TextView
                     android:id="@+id/navigation_profile_email_text"

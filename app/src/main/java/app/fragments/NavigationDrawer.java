@@ -10,12 +10,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+
+import java.util.HashMap;
 
 import app.adapters.NavigationView;
 import app.library.DatabaseHandler;
 import app.library.Preferences;
+import app.library.VolleySingleton;
 import app.program.R;
 import app.widgets.BezelImageView;
 import app.widgets.LinearLayoutManagerRecyclerView;
@@ -36,6 +43,7 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
     DatabaseHandler db;
     String[] navigationRowText;
     Integer[] navigationRowImage;
+    ImageLoader mImageLoader;
 
     public NavigationDrawer() {
 
@@ -44,6 +52,7 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mImageLoader = VolleySingleton.getInstance().getImageLoader();
         mUserLearnedDrawer = Boolean.valueOf(Preferences.readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, "false"));
         if (savedInstanceState != null) {
             mFromSavedInstanceState = true;
@@ -52,12 +61,23 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.navigation_drawer_fragment, container, false);
+        View view = inflater.inflate(R.layout.navigation_drawer_fragment, container, false);
+        db = new DatabaseHandler(getActivity());
 
-        // set these from db when user logged in
-        BezelImageView user_profile_image = (BezelImageView) getActivity().findViewById(R.id.navigation_profile_image);
-        TextView user_name = (TextView) getActivity().findViewById(R.id.navigation_profile_name_text);
-        TextView user_mail = (TextView) getActivity().findViewById(R.id.navigation_profile_email_text);
+        NetworkImageView user_image = (NetworkImageView) view.findViewById(R.id.navigation_profile_image);
+        TextView user_name = (TextView) view.findViewById(R.id.navigation_profile_name_text);
+        TextView user_mail = (TextView) view.findViewById(R.id.navigation_profile_email_text);
+
+        if(db.isUserLoggedIn()){
+            final HashMap<String, String> user = db.getUserDetails();
+            user_image.setImageUrl(user.get("image"), mImageLoader);
+            user_name.setText(user.get("name"));
+            user_mail.setText(user.get("email"));
+        } else {
+            FrameLayout navLogin = (FrameLayout) view.findViewById(R.id.navbar_login);
+            navLogin.getLayoutParams().height = 0;
+            navLogin.setVisibility(View.INVISIBLE);
+        }
 
         navigationRowText = new String[]{
                 "Tutorials", "Update",
@@ -70,12 +90,12 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
                 R.mipmap.drawer_about};
 
         NavigationView navigationAdapter = new NavigationView(getActivity(), navigationRowText, navigationRowImage);
-        RecyclerView navigationRecyclerView = (RecyclerView) layout.findViewById(R.id.navigationRecyclerView);
+        RecyclerView navigationRecyclerView = (RecyclerView) view.findViewById(R.id.navigationRecyclerView);
         navigationRecyclerView.setHasFixedSize(false);
         navigationAdapter.SetOnItemClickListener(this);
         navigationRecyclerView.setAdapter(navigationAdapter);
         navigationRecyclerView.setLayoutManager(new LinearLayoutManagerRecyclerView(getActivity()));
-        return layout;
+        return view;
     }
 
     @Override

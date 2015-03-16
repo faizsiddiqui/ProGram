@@ -24,5 +24,9 @@
     <string name="question_description">Description</string>
     <string name="question_post">Post</string>
     <string name="expand"><![CDATA[>]]></string>
+    <string name="login_password">Password</string>
+    <string name="login_id">Mobile or Email</string>
+    <string name="login_button">Login</string>
+    <string name="toolbar_login">Login</string>
 
 </resources>

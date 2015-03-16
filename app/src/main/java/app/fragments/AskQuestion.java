@@ -38,7 +38,6 @@ public class AskQuestion extends Fragment {
     private String Title, Description;
 
     DatabaseHandler db;
-    private ProgressDialog pDialog;
 
     private static String URL = "http://buykerz.com/program/v1/api/question";
 
