@@ -89,10 +89,10 @@ public class Login extends Fragment {
                     db = new DatabaseHandler(getActivity());
                     db.logoutUser();
                     JSONObject json_user = response.getJSONObject("user");
-                    db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_MOBILE),
+                    /*db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_MOBILE),
                             json_user.getString(KEY_EMAIL), json_user.getString(KEY_LOCATION),
                             response.getString(KEY_ID), json_user.getString(KEY_API),
-                            json_user.getString(KEY_JOINED));
+                            json_user.getString(KEY_JOINED)); */
                     Toast.makeText(getActivity(), response.getString(KEY_MSG), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), response.getString(KEY_MSG), Toast.LENGTH_SHORT).show();

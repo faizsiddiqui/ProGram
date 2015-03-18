@@ -28,5 +28,6 @@
     <string name="login_id">Mobile or Email</string>
     <string name="login_button">Login</string>
     <string name="toolbar_login">Login</string>
+    <string name="toolbar_jobs">Jobs</string>
 
 </resources>

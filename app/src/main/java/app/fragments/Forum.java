@@ -30,18 +30,21 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
     String[] forumTitle = {
             "Question/Answers",
             "Schemes",
-            "Awards"
+            "Awards",
+            "Jobs"
     };
 
     String[] forumText = {
-            "IN PROGRESS",
             "COMPLETED",
-            "COMPLETED"
+            "COMPLETED",
+            "COMPLETED",
+            "IN PROGRESS"
     };
 
     int[] image = {
             R.mipmap.drawer_tutorial,
             R.mipmap.drawer_settings,
+            R.mipmap.drawer_about,
             R.mipmap.drawer_about
     };
 
@@ -84,6 +87,14 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
                 Awards awards = new Awards();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.MainFrame, awards)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case "Jobs":
+                Jobs jobs = new Jobs();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.MainFrame, jobs)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();
