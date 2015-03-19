@@ -1,38 +1,42 @@
-package app.fragments;
+package app.fragments.Calendar;
 
-import android.animation.Animator;
-import android.app.Fragment;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import app.fragments.Recommendedcrop;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import app.adapters.CardView;
+import app.adapters.ForumView;
 import app.program.MainActivity;
 import app.program.R;
+
 /**
  * Created by apple on 3/17/2015.
  */
-public class Calendar extends Fragment implements CardView.OnItemClickListener {
+public class Calendar extends Fragment implements ForumView.OnItemClickListener {
 
-
-    RecyclerView mRecyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
-    CardView mAdapter;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ForumView mAdapter;
 
     String[] calendarTitle = {
-            "Recommended crop",
-            "Select crop"
+            "Recommended Crop",
+            "Select Crop"
     };
+
     String[] calendarText = {
             "In progress",
             "In progress"
+    };
+
+    int[] image = {
+            R.mipmap.drawer_tutorial,
+            R.mipmap.drawer_settings
     };
 
 
@@ -42,34 +46,29 @@ public class Calendar extends Fragment implements CardView.OnItemClickListener {
         View view = inflater.inflate(R.layout.calendar_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle("Calendar");
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.calendarRecyclerView);
+        mAdapter = new ForumView(calendarTitle, calendarText, image);
+        mAdapter.SetOnItemClickListener(this);
 
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.CalendarRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        setAdapter();
-
+        mRecyclerView.setAdapter(mAdapter);
         return view;
-
-
-    }
-
-    private void setAdapter() {
     }
 
     @Override
     public void onItemClick(View view, int position) {
         switch (calendarTitle[position]) {
-            case "Recommended crops":
-                Recommendedcrop recommendedcrop = new Recommendedcrop();
+            case "Recommended Crops":
+                RecommendedCrop recommendedCrop = new RecommendedCrop();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, recommendedcrop)
+                        .replace(R.id.MainFrame, recommendedCrop)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();
                 break;
-            case "Select crop":
-                Selectcrop selectcrop = new Selectcrop();
+            case "Select Crop":
+                SelectCrop selectcrop = new SelectCrop();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.MainFrame, selectcrop)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

@@ -1,4 +1,4 @@
-package app.fragments;
+package app.fragments.Forum;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;

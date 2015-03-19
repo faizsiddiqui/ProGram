@@ -1,10 +1,11 @@
-package app.fragments;
+package app.fragments.Base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -24,7 +25,6 @@ import app.library.DatabaseHandler;
 import app.library.Preferences;
 import app.library.VolleySingleton;
 import app.program.R;
-import app.widgets.BezelImageView;
 import app.widgets.LinearLayoutManagerRecyclerView;
 
 /**
@@ -44,6 +44,10 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
     String[] navigationRowText;
     Integer[] navigationRowImage;
     ImageLoader mImageLoader;
+
+    RecyclerView navigationRecyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
+    NavigationView navigationAdapter;
 
     public NavigationDrawer() {
 
@@ -68,7 +72,7 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
         TextView user_name = (TextView) view.findViewById(R.id.navigation_profile_name_text);
         TextView user_mail = (TextView) view.findViewById(R.id.navigation_profile_email_text);
 
-        if(db.isUserLoggedIn()){
+        if (db.isUserLoggedIn()) {
             final HashMap<String, String> user = db.getUserDetails();
             user_image.setImageUrl(user.get("image"), mImageLoader);
             user_name.setText(user.get("name"));
@@ -89,12 +93,15 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
                 R.mipmap.drawer_settings, R.mipmap.drawer_help,
                 R.mipmap.drawer_about};
 
-        NavigationView navigationAdapter = new NavigationView(getActivity(), navigationRowText, navigationRowImage);
-        RecyclerView navigationRecyclerView = (RecyclerView) view.findViewById(R.id.navigationRecyclerView);
+        navigationAdapter = new NavigationView(getActivity(), navigationRowText, navigationRowImage);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+
+        navigationRecyclerView = (RecyclerView) view.findViewById(R.id.navigationRecyclerView);
         navigationRecyclerView.setHasFixedSize(false);
+        navigationRecyclerView.setLayoutManager(mLayoutManager);
         navigationAdapter.SetOnItemClickListener(this);
         navigationRecyclerView.setAdapter(navigationAdapter);
-        navigationRecyclerView.setLayoutManager(new LinearLayoutManagerRecyclerView(getActivity()));
+
         return view;
     }
 

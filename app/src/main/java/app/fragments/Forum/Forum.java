@@ -1,6 +1,5 @@
-package app.fragments;
+package app.fragments.Forum;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,15 +29,15 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
     String[] forumTitle = {
             "Question/Answers",
             "Schemes",
-            "Awards",
-            "Jobs"
+            "Jobs",
+            "Awards"
     };
 
     String[] forumText = {
             "COMPLETED",
             "COMPLETED",
-            "COMPLETED",
-            "IN PROGRESS"
+            "IN PROGRESS",
+            "COMPLETED"
     };
 
     int[] image = {

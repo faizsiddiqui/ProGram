@@ -1,6 +1,5 @@
-package app.fragments;
+package app.fragments.Base;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import app.adapters.HomeView;
+import app.fragments.Calendar.Calendar;
+import app.fragments.Calendar.SelectCrop;
+import app.fragments.Forum.Forum;
 import app.program.MainActivity;
 import app.program.R;
 
@@ -53,6 +55,12 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
     public void onItemClick(View view, int position) {
         switch (home_text[position]) {
             case "Calendar":
+                Calendar calendar = new Calendar();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.MainFrame, calendar)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case "Forum":
                 Forum forum = new Forum();

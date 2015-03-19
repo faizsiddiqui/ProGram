@@ -1,4 +1,4 @@
-package app.fragments;
+package app.fragments.Forum;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

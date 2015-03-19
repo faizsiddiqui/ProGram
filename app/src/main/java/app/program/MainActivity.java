@@ -6,11 +6,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
-import app.fragments.Home;
-import app.fragments.NavigationDrawer;
+import app.fragments.Base.Home;
+import app.fragments.Base.NavigationDrawer;
 
 
 public class MainActivity extends BaseActivity {

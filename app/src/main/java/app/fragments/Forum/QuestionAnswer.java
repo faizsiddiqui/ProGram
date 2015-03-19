@@ -1,4 +1,4 @@
-package app.fragments;
+package app.fragments.Forum;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +28,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import app.adapters.CardView;
+import app.fragments.Forum.Forum;
+import app.fragments.Forum.Post;
 import app.library.VolleySingleton;
 import app.program.MainActivity;
 import app.program.R;

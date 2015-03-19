@@ -2,7 +2,6 @@
     <!-- App settings -->
     <string name="app_name">ProGram</string>
 
-
     <!-- Toolbar settings -->
     <string name="toolbar_text_home">Home</string>
     <string name="toolbar_text_schemes">Schemes</string>
@@ -10,9 +9,11 @@
     <string name="toolbar_text_question">Question</string>
     <string name="toolbar_text_forum">Forum</string>
     <string name="toolbar_text_awards">Awards</string>
+    <string name="toolbar_login">Login</string>
+    <string name="toolbar_jobs">Jobs</string>
 
+    <!-- Action settings -->
     <string name="action_settings">Settings</string>
-
 
     <!-- Drawer settings -->
     <string name="drawer_open">Open</string>
@@ -20,14 +21,33 @@
 
     <!-- Useless -->
     <string name="exampleString">Example</string>
+    <string name="expand"><![CDATA[>]]></string>
+
+    <!-- Question Post Settings -->
     <string name="question_title">Title (question)</string>
     <string name="question_description">Description</string>
     <string name="question_post">Post</string>
-    <string name="expand"><![CDATA[>]]></string>
+
+    <!-- Login settings -->
     <string name="login_password">Password</string>
     <string name="login_id">Mobile or Email</string>
     <string name="login_button">Login</string>
-    <string name="toolbar_login">Login</string>
-    <string name="toolbar_jobs">Jobs</string>
+
+    <!-- Sign Up settings -->
+    <string name="sign_up_mobile">Mobile</string>
+    <string name="sign_up_name">Name</string>
+    <string name="sign_up_password">Password</string>
+    <string name="sign_up_location">Location</string>
+    <string name="sign_up_button">Sign Up</string>
+
+    <!-- location settings -->
+    <string name="state_prompt">Choose a State</string>
+    <string-array name="india_states">
+        <item>Delhi</item>
+        <item>Punjab</item>
+        <item>Madhya Pradesh</item>
+        <item>Uttar Pradesh</item>
+        <item>Uttar Pradesh</item>
+    </string-array>
 
 </resources>

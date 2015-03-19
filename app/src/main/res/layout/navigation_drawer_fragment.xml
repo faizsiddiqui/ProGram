@@ -8,7 +8,7 @@
     android:background="@color/colorWhite"
     android:fitsSystemWindows="true"
     android:scrollbarSize="@dimen/keyLine3"
-    tools:context="app.fragments.NavigationDrawer">
+    tools:context="app.fragments.Base.NavigationDrawer">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,8 +34,7 @@
                     android:layout_height="@dimen/navigation_drawer_profile_image_size"
                     android:background="@color/colorCardImage"
                     android:src="@mipmap/profile"
-                    android:scaleType="centerCrop"
-                    app:maskDrawable="@drawable/circle_mask"/>
+                    android:scaleType="centerCrop"/>
 
                 <TextView
                     android:id="@+id/navigation_profile_email_text"

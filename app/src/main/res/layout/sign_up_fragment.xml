@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app.widgets.ScrimInsetsScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:fitsSystemWindows="true"
+    android:scrollbarSize="@dimen/keyLine3">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/keyLine1"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/login_image"/>
+
+        <android.support.v7.internal.widget.TintEditText
+            android:id="@+id/sign_up_name"
+            android:inputType="textPersonName"
+            android:hint="@string/sign_up_name"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/keyLine4"
+            android:textColorHint="@color/colorCardText"/>
+
+        <android.support.v7.internal.widget.TintEditText
+            android:id="@+id/sign_up_mobile"
+            android:inputType="phone"
+            android:hint="@string/sign_up_mobile"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/keyLine1"
+            android:textColorHint="@color/colorCardText"/>
+
+        <android.support.v7.internal.widget.TintEditText
+            android:id="@+id/sign_up_password"
+            android:inputType="textPassword"
+            android:hint="@string/sign_up_password"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/keyLine1"
+            android:textColorHint="@color/colorCardText"/>
+
+        <android.support.v7.internal.widget.TintEditText
+            android:id="@+id/sign_up_email"
+            android:inputType="textEmailAddress"
+            android:hint="@string/sign_up_password"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/keyLine1"
+            android:textColorHint="@color/colorCardText"/>
+
+        <android.support.v7.internal.widget.TintEditText
+            android:id="@+id/sign_up_location"
+            android:hint="@string/sign_up_location"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/keyLine1"
+            android:textColorHint="@color/colorCardText"/>
+
+        <Button
+            android:id="@+id/sign_up_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="@dimen/keyLine3"
+            android:textColor="@color/colorWhite"
+            android:text="@string/sign_up_button" />
+
+    </LinearLayout>
+
+</app.widgets.ScrimInsetsScrollView>

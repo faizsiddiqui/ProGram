@@ -1,8 +1,12 @@
-package app.fragments;
+package app.fragments.Forum;
 
-import android.support.v4.app.Fragment;
+
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +19,7 @@ import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,19 +29,23 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import app.adapters.CardView;
+import app.fragments.Forum.Forum;
+import app.fragments.Forum.Post;
 import app.library.VolleySingleton;
 import app.program.MainActivity;
 import app.program.R;
 import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
 
 /**
- * Created by apple on 3/17/2015.
+ * Not for public use
+ * Created by FAIZ on 22-02-2015.
  */
-public class Jobs extends Fragment implements CardView.OnItemClickListener {
+public class Schemes extends Fragment implements CardView.OnItemClickListener {
 
-    RecyclerView mRecyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
-    CardView mAdapter;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private CardView mAdapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     String[] name, intro, icon;
 
@@ -55,20 +64,33 @@ public class Jobs extends Fragment implements CardView.OnItemClickListener {
     private static final String KEY_PUBLISHED = "published";
     private static final String KEY_RELEASED = "released";
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.forum_fragment, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_jobs);
-
+        ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_schemes);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.forumRecyclerView);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
 
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.forumRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         setAdapter();
+        getFloatingActionButtonView(view);
 
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setAdapter();
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 5000);
+            }
+        });
         return view;
     }
 
@@ -87,17 +109,21 @@ public class Jobs extends Fragment implements CardView.OnItemClickListener {
                 e.printStackTrace();
             }
         } else {
-            JsonObjectRequest request = new JsonObjectRequest(Method.GET, URL, null, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsonReq = new JsonObjectRequest(Method.GET,
+                    URL, null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    parseJsonFeed(response);
+                    if (response != null) {
+                        parseJsonFeed(response);
+                    }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getActivity(), "Error fetching jobs", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Error fetching Schemes.", Toast.LENGTH_SHORT).show();
                 }
             });
+            VolleySingleton.getInstance().addToRequestQueue(jsonReq);
         }
     }
 
@@ -112,13 +138,13 @@ public class Jobs extends Fragment implements CardView.OnItemClickListener {
                     final ArrayList<String> description = new ArrayList<String>();
                     final ArrayList<String> images = new ArrayList<String>();
 
-                    JSONArray jobs = response.getJSONArray("schemes");
+                    JSONArray schemes = response.getJSONArray("schemes");
 
-                    for (Integer i = 0; i <= jobs.length() - 1; i++) {
-                        JSONObject job = jobs.getJSONObject(i);
-                        String name = job.getString(KEY_NAME);
-                        String intro = job.getString(KEY_INTRODUCTION);
-                        String img = job.getString(KEY_IMAGE);
+                    for (Integer i = 0; i <= schemes.length() - 1; i++) {
+                        JSONObject scheme = schemes.getJSONObject(i);
+                        String name = scheme.getString(KEY_NAME);
+                        String intro = scheme.getString(KEY_INTRODUCTION);
+                        String img = scheme.getString(KEY_IMAGE);
                         titles.add(name);
                         description.add(intro);
                         images.add(img);
@@ -142,6 +168,26 @@ public class Jobs extends Fragment implements CardView.OnItemClickListener {
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getActivity(), "clicked", Toast.LENGTH_SHORT).show();
+        Post schemePost = Post.newInstance(name[position], intro[position], icon[position]);
+        getFragmentManager().beginTransaction()
+            .replace(R.id.MainFrame, schemePost)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .addToBackStack(null)
+            .commit();
+    }
+
+    public void getFloatingActionButtonView(View view) {
+        final FloatingActionButton askQuestion = (FloatingActionButton) view.findViewById(R.id.float_askQuestion);
+        askQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AskQuestion askQuestion = new AskQuestion();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.MainFrame, askQuestion)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 }
