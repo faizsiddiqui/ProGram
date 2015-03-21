@@ -32,7 +32,7 @@ public class NavigationView extends RecyclerView.Adapter<NavigationView.ViewHold
 
     @Override
     public NavigationView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.navigation_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.base_navigation_row, parent, false);
         return new ViewHolder(view);
     }
 

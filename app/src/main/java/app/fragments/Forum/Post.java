@@ -53,7 +53,7 @@ public class Post extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.post_fragment, container, false);
+        View view = inflater.inflate(R.layout.forum_post_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(title);
 
         titleView = (TextView) view.findViewById(R.id.postTitle);

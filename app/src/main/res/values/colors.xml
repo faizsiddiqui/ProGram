@@ -22,10 +22,16 @@
     <color name="colorToolbarNavigationIcon">#959ba3</color>
     <color name="colorToolbarBorder">#e2e3ea</color>
 
+    <!-- Card settings -->
     <color name="colorCardTitle">#767b86</color>
     <color name="colorCardText">#959ba3</color>
     <color name="colorCardImage">#e2e3ea</color>
 
+
+    <!-- Splash settings -->
+    <color name="splash_background">#a7a7a7</color>
+
+    <!-- Spinner color settings -->
     <color name="red">#990000</color>
     <color name="green">#009900</color>
     <color name="blue">#000099</color>

@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import app.adapters.HomeView;
 import app.fragments.Calendar.Calendar;
-import app.fragments.Calendar.SelectCrop;
 import app.fragments.Forum.Forum;
 import app.program.MainActivity;
 import app.program.R;
@@ -39,7 +38,7 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.home_fragment, container, false);
+        View layout = inflater.inflate(R.layout.base_home_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_home);
         mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mAdapter = new HomeView(home_text, image);

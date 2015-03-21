@@ -44,7 +44,7 @@ public class Login extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.login_fragment, container, false);
+        View view = inflater.inflate(R.layout.base_login_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_login);
         loginId = (TintEditText) view.findViewById(R.id.login_id);
         loginPassword = (TintEditText) view.findViewById(R.id.login_password);

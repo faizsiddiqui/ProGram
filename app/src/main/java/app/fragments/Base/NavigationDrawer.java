@@ -25,7 +25,6 @@ import app.library.DatabaseHandler;
 import app.library.Preferences;
 import app.library.VolleySingleton;
 import app.program.R;
-import app.widgets.LinearLayoutManagerRecyclerView;
 
 /**
  * Not for public use
@@ -65,7 +64,7 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.navigation_drawer_fragment, container, false);
+        View view = inflater.inflate(R.layout.base_navigation_drawer_fragment, container, false);
         db = new DatabaseHandler(getActivity());
 
         NetworkImageView user_image = (NetworkImageView) view.findViewById(R.id.navigation_profile_image);
