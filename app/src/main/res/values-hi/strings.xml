@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Proग्राम</string>
+
+    <!-- Toolbar settings -->
+    <string name="toolbar_text_home">होम</string>
+    <string name="toolbar_text_schemes">योजनाएं</string>
+    <string name="toolbar_text_ask_question">प्रश्न पूछो</string>
+    <string name="toolbar_text_question">सवाल</string>
+    <string name="toolbar_text_forum">मंच</string>
+    <string name="toolbar_text_awards">पुरस्कार</string>
+    <string name="toolbar_login">लॉग इन करें</string>
+    <string name="toolbar_jobs">नौकरी</string>
+
+    <!-- Action settings -->
+    <string name="action_settings">सेटिंग्स</string>
+
+    <!-- Drawer settings -->
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <!-- Useless -->
+    <string name="exampleString">उदाहरण</string>
+    <string name="expand"><![CDATA[>]]></string>
+
+    <!-- Question Post Settings -->
+    <string name="question_title">प्रश्न शीर्षक</string>
+    <string name="question_description">विवरण</string>
+    <string name="question_post">पोस्ट</string>
+
+    <!-- Login settings -->
+    <string name="login_password">Password</string>
+    <string name="login_id">मोबाइल या ईमेल</string>
+    <string name="login_button">लॉग इन करें</string>
+
+    <!-- Sign Up settings -->
+    <string name="sign_up_mobile">मोबाइल</string>
+    <string name="sign_up_name">नाम</string>
+    <string name="sign_up_password">पासवर्ड</string>
+    <string name="sign_up_location">स्थान</string>
+    <string name="sign_up_button">साइन अप करें</string>
+
+    <!-- location settings -->
+    <string name="state_prompt">एक राज्य चुनें</string>
+    <string-array name="india_states">
+        <item>दिल्ली</item>
+        <item>पंजाब</item>
+        <item>मध्य प्रदेश</item>
+        <item>उत्तर प्रदेश</item>
+    </string-array>
+
+    <!-- Language selector settings -->
+    <string name="language_lang">भाषा</string>
+    <string name="language_description">अपने पसंदीदा भाषा का चयन करके बेहतर समझें</string>
+    <string-array name="app_language">
+        <item>हिंदी</item>
+        <item>अंग्रेजी</item>
+    </string-array>
+
+
+    <!-- Splash settings -->
+    <string name="splash_app_description">Proग्राम में स्वागत,\nहर पहलू में एक किसान का दोस्त.</string>
+    <string name="next">अगली</string>
+    <string name="splash_continue">जारी रखें</string>
+
+</resources>

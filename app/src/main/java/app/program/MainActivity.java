@@ -14,8 +14,15 @@ import app.fragments.Base.NavigationDrawer;
 public class MainActivity extends BaseActivity {
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        overridePendingTransition(R.anim.buttom_to_up, R.anim.top_to_buttom);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.buttom_to_up, R.anim.top_to_buttom);
         if (findViewById(R.id.MainFrame) != null) {
             if (savedInstanceState != null) {
                 Home fragmentHome = (Home) getSupportFragmentManager().findFragmentByTag("FRAGMENT_HOME");

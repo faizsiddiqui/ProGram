@@ -52,22 +52,20 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
 
     @Override
     public void onItemClick(View view, int position) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.left_to_right, R.anim.right_to_left);
         switch (home_text[position]) {
             case "Calendar":
                 Calendar calendar = new Calendar();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, calendar)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                transaction.replace(R.id.MainFrame, calendar)
                         .addToBackStack(null)
                         .commit();
                 break;
             case "Forum":
                 Forum forum = new Forum();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, forum)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
+                transaction.replace(R.id.MainFrame, forum)
+                            .addToBackStack(null)
+                            .commit();
                 break;
         }
     }
