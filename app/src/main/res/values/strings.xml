@@ -31,14 +31,17 @@
     <!-- Login settings -->
     <string name="login_password">Password</string>
     <string name="login_id">Mobile or Email</string>
-    <string name="login_button">Login</string>
+    <string name="login_login">Login</string>
+    <string name="login_sign_up">Don\'t have a account?</string>
 
     <!-- Sign Up settings -->
     <string name="sign_up_mobile">Mobile</string>
     <string name="sign_up_name">Name</string>
     <string name="sign_up_password">Password</string>
     <string name="sign_up_location">Location</string>
-    <string name="sign_up_button">Sign Up</string>
+    <string name="sign_up_email">Email</string>
+    <string name="sign_up_sign_up">Sign Up</string>
+    <string name="sign_up_login">Do you have an account?</string>
 
     <!-- location settings -->
     <string name="state_prompt">Choose a State</string>

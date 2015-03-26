@@ -3,6 +3,7 @@ package app.fragments.Base;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +19,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import java.util.Locale;
 
 import app.program.R;
+import app.program.SplashActivity;
 
 /**
  * Not for public use
@@ -68,11 +70,23 @@ public class LanguageSelector extends Fragment {
         Configuration configuration = res.getConfiguration();
         configuration.locale = mLocale;
         res.updateConfiguration(configuration, dm);
-        Splash splash = new Splash();
-        getFragmentManager().beginTransaction()
-                .replace(R.id.FullScreenFrame, splash)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null)
-                .commit();
+
+        Fragment languageSelector = getFragmentManager().findFragmentByTag("FRAGMENT_LANGUAGE_SELECTOR");
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.detach(languageSelector);
+        transaction.attach(languageSelector);
+        transaction.commit();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Splash splash = new Splash();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.FullScreenFrame, splash)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        }, SplashActivity.SPLASH_TIME_OUT);
     }
 }

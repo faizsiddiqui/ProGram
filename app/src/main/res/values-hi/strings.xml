@@ -30,16 +30,19 @@
     <string name="question_post">पोस्ट</string>
 
     <!-- Login settings -->
-    <string name="login_password">Password</string>
+    <string name="login_password">पासवर्ड</string>
     <string name="login_id">मोबाइल या ईमेल</string>
-    <string name="login_button">लॉग इन करें</string>
+    <string name="login_login">लॉग इन करें</string>
+    <string name="login_sign_up">एक खाता नहीं है ?</string>
 
     <!-- Sign Up settings -->
     <string name="sign_up_mobile">मोबाइल</string>
     <string name="sign_up_name">नाम</string>
     <string name="sign_up_password">पासवर्ड</string>
     <string name="sign_up_location">स्थान</string>
-    <string name="sign_up_button">साइन अप करें</string>
+    <string name="sign_up_email">ईमेल</string>
+    <string name="sign_up_sign_up">साइन अप करें</string>
+    <string name="sign_up_login">क्या आपका अकाउंट है?</string>
 
     <!-- location settings -->
     <string name="state_prompt">एक राज्य चुनें</string>
@@ -57,7 +60,6 @@
         <item>हिंदी</item>
         <item>अंग्रेजी</item>
     </string-array>
-
 
     <!-- Splash settings -->
     <string name="splash_app_description">Proग्राम में स्वागत,\nहर पहलू में एक किसान का दोस्त.</string>

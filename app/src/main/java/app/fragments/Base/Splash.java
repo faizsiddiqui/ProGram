@@ -1,29 +1,19 @@
 package app.fragments.Base;
 
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.DisplayMetrics;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
-import java.util.Locale;
-
 import app.library.VolleySingleton;
-import app.program.MainActivity;
 import app.program.R;
-import app.program.SplashActivity;
 
 /**
  * Not for public use
@@ -34,7 +24,6 @@ public class Splash extends Fragment {
     NetworkImageView mBackgroundImage;
     Button mContinue;
     ImageLoader mImageLoader;
-
 
     String imageURL = ""; //http://i.imgur.com/4RxBcn5.jpg
 
@@ -53,9 +42,12 @@ public class Splash extends Fragment {
         mContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                Login login = new Login();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.FullScreenFrame, login)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         return view;

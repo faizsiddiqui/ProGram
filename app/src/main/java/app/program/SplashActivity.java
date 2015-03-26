@@ -1,14 +1,12 @@
 package app.program;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
 import app.fragments.Base.LanguageSelector;
-import app.fragments.Base.Splash;
 
 /**
  * Not for public use
@@ -26,7 +24,19 @@ public class SplashActivity extends FragmentActivity {
         setContentView(R.layout.activity_splash);
         sharedpreferences = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
 
-        if (sharedpreferences.getBoolean("first_time", true)) {
+        if (findViewById(R.id.FullScreenFrame) != null) {
+            if (savedInstanceState != null) {
+                LanguageSelector languageSelector = (LanguageSelector) getSupportFragmentManager().findFragmentByTag("FRAGMENT_LANGUAGE_SELECTOR");
+            } else {
+                LanguageSelector languageSelector = new LanguageSelector();
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.FullScreenFrame, languageSelector, "FRAGMENT_LANGUAGE_SELECTOR")
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+            }
+        }
+
+        /*if (sharedpreferences.getBoolean("first_time", true)) {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean("first_time", false);
             editor.commit();
@@ -45,6 +55,6 @@ public class SplashActivity extends FragmentActivity {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
-        }
+        } */
     }
 }
