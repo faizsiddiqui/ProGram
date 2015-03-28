@@ -1,6 +1,5 @@
 package app.fragments.Base;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,7 +21,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import app.library.DatabaseHandler;
-import app.program.MainActivity;
 import app.program.R;
 
 /**
@@ -57,9 +55,12 @@ public class Login extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent home = new Intent(getActivity(), MainActivity.class);
-                startActivity(home);
-                getActivity().finish();
+                Tutorial tutorial = new Tutorial();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.FullScreenFrame, tutorial)
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
                 /* id = loginId.getText().toString();
                 password = loginPassword.getText().toString();
                 if(id.isEmpty() || password.isEmpty()){
@@ -103,9 +104,9 @@ public class Login extends Fragment {
         try {
             String KEY_SUCCESS = "success";
             String KEY_MSG = "message";
-            if(response.getString(KEY_SUCCESS) != null){
+            if (response.getString(KEY_SUCCESS) != null) {
                 Boolean res = response.getBoolean(KEY_SUCCESS);
-                if(res){
+                if (res) {
                     db = new DatabaseHandler(getActivity());
                     db.logoutUser();
                     JSONObject json_user = response.getJSONObject("user");

@@ -87,6 +87,6 @@ public class LanguageSelector extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
-        }, SplashActivity.SPLASH_TIME_OUT);
+        }, 1000 ); //SplashActivity.SPLASH_TIME_OUT
     }
 }

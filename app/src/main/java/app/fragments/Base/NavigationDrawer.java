@@ -3,6 +3,7 @@ package app.fragments.Base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +26,7 @@ import app.library.DatabaseHandler;
 import app.library.Preferences;
 import app.library.VolleySingleton;
 import app.program.R;
+import app.program.Settings;
 
 /**
  * Not for public use
@@ -106,7 +108,18 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT).show();
+        switch (navigationRowText[position]){
+            case "Tutorials":
+                Tutorial tutorial = new Tutorial();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.MainFrame, tutorial)
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+                break;
+            case "Settings":
+                break;
+        }
     }
 
     public void setup(int fragmentID, DrawerLayout drawerLayout, final Toolbar toolbar) {

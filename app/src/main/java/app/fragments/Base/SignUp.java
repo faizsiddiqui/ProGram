@@ -1,6 +1,5 @@
 package app.fragments.Base;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,7 +21,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import app.library.DatabaseHandler;
-import app.program.MainActivity;
 import app.program.R;
 
 /**
@@ -55,16 +53,19 @@ public class SignUp extends Fragment {
         signUpPassword = (TintEditText) view.findViewById(R.id.sign_up_password);
         signUpEmail = (TintEditText) view.findViewById(R.id.sign_up_email);
         signUpLocation = (TintEditText) view.findViewById(R.id.sign_up_location);
-        
+
         signUp = (Button) view.findViewById(R.id.sign_up_button);
         signUpLogin = (TextView) view.findViewById(R.id.sign_up_login);
-        
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent home = new Intent(getActivity(), MainActivity.class);
-                startActivity(home);
-                getActivity().finish();
+                Tutorial tutorial = new Tutorial();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.FullScreenFrame, tutorial)
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
                /*name = signUpName.getText().toString();
                 mobile = signUpMobile.getText().toString();
                 password = signUpPassword.getText().toString();
@@ -90,7 +91,7 @@ public class SignUp extends Fragment {
                         .commit();
             }
         });
-        
+
         return view;
     }
 
@@ -105,16 +106,16 @@ public class SignUp extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getActivity(), "Error Signing in.", Toast.LENGTH_SHORT).show();
             }
-        });    
+        });
     }
 
     private void parseJsonFeed(JSONObject response) {
         try {
             String KEY_SUCCESS = "success";
             String KEY_MSG = "message";
-            if(response.getString(KEY_SUCCESS) != null){
+            if (response.getString(KEY_SUCCESS) != null) {
                 Boolean res = response.getBoolean(KEY_SUCCESS);
-                if(res){
+                if (res) {
                     db = new DatabaseHandler(getActivity());
                     db.logoutUser();
                     JSONObject json_user = response.getJSONObject("user");

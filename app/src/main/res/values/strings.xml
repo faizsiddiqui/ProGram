@@ -66,4 +66,11 @@
     <string name="next">Next</string>
     <string name="splash_continue">Continue</string>
 
+    <!-- Tutorial Settings -->
+    <string name="tutorial_title_learn">Learn</string>
+    <string name="tutorial_title_employment">Employment</string>
+    <string name="tutorial_description_learn">Learn Description</string>
+    <string name="tutorial_description_employment">Learn Description</string>
+    <string name="tutorial_next">NEXT</string>
+
 </resources>
