@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-<PreferenceCategory
-    android:title="Category 1">
+    <PreferenceCategory
+        android:title="Basic">
 
-    <CheckBoxPreference
-        android:key="checkbox_preference"
-        android:title="Checkbox Title 1"
-        android:summary="Checkbox Description 1" />
+        <app.widgets.MaterialListPreference
+            android:key="pref_language"
+            android:title="@string/language_lang"
+            android:summary="@string/language_description"
+            android:entries="@array/app_language"
+            android:entryValues="@array/app_language_alias"
+            android:positiveButtonText="@string/next"/>
 
-</PreferenceCategory>
-
-<PreferenceCategory
-    android:title="Dialog Category">
-
-    <EditTextPreference
-        android:key="edittext_preference"
-        android:title="Edit text title"
-        android:summary="Edit text Description"
-        android:dialogTitle="Edit text title" />
-
-    <!--
-    <ListPreference
-        android:key="list_preference"
-        android:title="List preference"
-        android:summary="@string/summary_list_preference"
-        android:entries="@array/entries_list_preference"
-        android:entryValues="@array/entryvalues_list_preference"
-        android:dialogTitle="@string/dialog_title_list_preference" /> -->
-
-</PreferenceCategory>
-
+    </PreferenceCategory>
 <!--
+ <PreferenceCategory
+     android:title="Dialog Category">
+
+     <EditTextPreference
+         android:key="edittext_preference"
+         android:title="Edit text title"
+         android:summary="Edit text Description"
+         android:dialogTitle="Edit text title" />
+
+
+     <ListPreference
+         android:key="list_preference"
+         android:title="List preference"
+         android:summary="@string/summary_list_preference"
+         android:entries="@array/entries_list_preference"
+         android:entryValues="@array/entryvalues_list_preference"
+         android:dialogTitle="@string/dialog_title_list_preference" />
+
+</PreferenceCategory>
+
 <PreferenceCategory
     android:title="@string/launch_preferences">
 

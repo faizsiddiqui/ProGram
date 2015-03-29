@@ -48,14 +48,6 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    public void setActionBarTitle(int title) {
-        getSupportActionBar().setTitle(title);
-    }
-
-    public void setActionBarTitle(String title) {
-        getSupportActionBar().setTitle(title);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

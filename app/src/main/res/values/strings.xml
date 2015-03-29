@@ -56,9 +56,15 @@
     <!-- Language selector settings -->
     <string name="language_lang">Language</string>
     <string name="language_description">Understand better by \nSelecting your favourite Language</string>
+
     <string-array name="app_language">
         <item>Hindi</item>
         <item>English</item>
+    </string-array>
+
+    <string-array name="app_language_alias">
+        <item>hi</item>
+        <item>en</item>
     </string-array>
 
     <!-- Splash settings -->

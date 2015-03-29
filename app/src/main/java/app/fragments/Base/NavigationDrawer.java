@@ -1,5 +1,6 @@
 package app.fragments.Base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
@@ -26,7 +26,7 @@ import app.library.DatabaseHandler;
 import app.library.Preferences;
 import app.library.VolleySingleton;
 import app.program.R;
-import app.program.Settings;
+import app.program.SettingsActivity;
 
 /**
  * Not for public use
@@ -118,6 +118,8 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
                         .commit();
                 break;
             case "Settings":
+                Intent settings = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(settings);
                 break;
         }
     }

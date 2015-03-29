@@ -1,8 +1,10 @@
 package app.program;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
@@ -36,7 +38,7 @@ public class SplashActivity extends FragmentActivity {
             }
         }
 
-        /*if (sharedpreferences.getBoolean("first_time", true)) {
+        if (sharedpreferences.getBoolean("first_time", true)) {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean("first_time", false);
             editor.commit();
@@ -55,6 +57,6 @@ public class SplashActivity extends FragmentActivity {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
-        } */
+        }
     }
 }

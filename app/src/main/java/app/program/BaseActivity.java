@@ -29,4 +29,12 @@ public abstract class BaseActivity extends ActionBarActivity {
     protected void setActionBarIcon(int iconRes) {
         toolbar.setNavigationIcon(iconRes);
     }
+
+    public void setActionBarTitle(int title) {
+        getSupportActionBar().setTitle(title);
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
 }
