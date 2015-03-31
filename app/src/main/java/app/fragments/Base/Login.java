@@ -65,7 +65,7 @@ public class Login extends Fragment {
         return view;
     }
 
-    private void login() {
+    private void login(){
         JsonObjectRequest request = new JsonObjectRequest(Method.POST, URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -79,7 +79,7 @@ public class Login extends Fragment {
         });
     }
 
-    private void parseJsonFeed(JSONObject response) {
+    private void parseJsonFeed(JSONObject response){
         try {
             String KEY_SUCCESS = "success";
             String KEY_MSG = "message";

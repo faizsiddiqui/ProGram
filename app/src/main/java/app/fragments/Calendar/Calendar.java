@@ -18,26 +18,31 @@ import app.program.R;
 /**
  * Created by apple on 3/17/2015.
  */
-public class Calendar extends Fragment implements ForumView.OnItemClickListener {
+public class Calendar extends Fragment implements app.adapters.ForumView.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ForumView mAdapter;
+    private app.adapters.ForumView mAdapter;
 
     String[] calendarTitle = {
-            "Recommended Crop",
+           // "Recommended Crop",
             "Select Crop"
+          //  "Enter Location",
+          //  "Enter Month"
     };
 
     String[] calendarText = {
-            "In progress",
             "In progress"
+        //    "In progress",
+         //   "Completed"
     };
 
     int[] image = {
             R.mipmap.drawer_tutorial,
-            R.mipmap.drawer_settings
+          //R.mipmap.drawer_settings,
+          //R.mipmap.drawer_about
     };
+    private RecyclerView.Adapter Adapter;
 
 
     @Nullable
@@ -46,27 +51,28 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
         View view = inflater.inflate(R.layout.calendar_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle("Calendar");
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new ForumView(calendarTitle, calendarText, image);
+        mAdapter = new ForumView( calendarTitle ,calendarText ,image);
         mAdapter.SetOnItemClickListener(this);
+
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.CalendarRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(Adapter);
         return view;
     }
 
     @Override
     public void onItemClick(View view, int position) {
         switch (calendarTitle[position]) {
-            case "Recommended Crops":
-                RecommendedCrop recommendedCrop = new RecommendedCrop();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, recommendedCrop)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
-                break;
+         //   case "Recommended Crops":
+              //  RecommendedCrop recommendedCrop = new RecommendedCrop();
+              //  getFragmentManager().beginTransaction()
+                     //   .replace(R.id.MainFrame, recommendedCrop)
+                     //   .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                     //   .addToBackStack(null)
+                     //   .commit();
+             //   break;
             case "Select Crop":
                 SelectCrop selectcrop = new SelectCrop();
                 getFragmentManager().beginTransaction()
@@ -75,6 +81,22 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
                         .addToBackStack(null)
                         .commit();
                 break;
+          //  case "Enter Location":
+             //   EnterLocation enterLocation = new EnterLocation();
+              //  getFragmentManager().beginTransaction()
+                   //     .replace(R.id.MainFrame, enterLocation)
+                    //    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                     //   .addToBackStack(null)
+                     //   .commit();
+              //  break;
+         //   case "Enter Month":
+              //  EnterMonth enterMonth = new EnterMonth();
+             //   getFragmentManager().beginTransaction()
+              //          .replace(R.id.MainFrame, enterMonth)
+               //         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                //        .addToBackStack(null)
+                //        .commit();
+             //   break;
         }
     }
 }

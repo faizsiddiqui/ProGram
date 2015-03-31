@@ -8,6 +8,7 @@
     <string name="toolbar_text_ask_question">Ask Question</string>
     <string name="toolbar_text_question">Question</string>
     <string name="toolbar_text_forum">Forum</string>
+    <string name="toolbar_text_calendar">Calendar</string>
     <string name="toolbar_text_awards">Awards</string>
     <string name="toolbar_login">Login</string>
     <string name="toolbar_jobs">Jobs</string>
@@ -40,14 +41,69 @@
     <string name="sign_up_location">Location</string>
     <string name="sign_up_button">Sign Up</string>
 
+    <!-- crop settings -->
+    <string name="crop_prompt">Choose a Crop</string>
+    <string name="toolbar_text_enter_location" />
+    <string name="calendar_enter_month" />
+    <string-array name="india_crops">
+        <item>wheat</item>
+        <item>rice</item>
+        <item>maize</item>
+        <item>soyabean</item>
+        <item>cotton</item>
+    </string-array>
+
     <!-- location settings -->
-    <string name="state_prompt">Choose a State</string>
-    <string-array name="india_states">
-        <item>Delhi</item>
-        <item>Punjab</item>
+
+    <string-array name="location_list">
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chhatisgarh</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu and Kashmir</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
         <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Odisha(Orissa)</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
         <item>Uttar Pradesh</item>
-        <item>Uttar Pradesh</item>
+        <item>Uttarakhand</item>
+        <item>West Bengal</item>
+    </string-array>
+
+    <!-- month settings -->
+    <string-array name="month_list">
+      <item>January</item>
+      <item>February</item>
+      <item>March</item>
+      <item>April</item>
+      <item>May</item>
+      <item>June</item>
+      <item>July</item>
+      <item>August</item>
+      <item>September</item>
+      <item>October</item>
+      <item>November</item>
+      <item>December</item>
     </string-array>
 
 </resources>
+
+
+

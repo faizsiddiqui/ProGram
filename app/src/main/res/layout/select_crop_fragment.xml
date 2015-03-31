@@ -7,8 +7,8 @@
         android:id="@+id/statePrompt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/india_states"
-        android:prompt="@string/state_prompt"
+        android:entries="@array/india_crops"
+        android:prompt="@string/crop_prompt"
         android:background="@android:drawable/btn_dropdown"/>
 
 </LinearLayout>
