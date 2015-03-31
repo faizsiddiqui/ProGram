@@ -1,7 +1,7 @@
 package app.program;
 
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.Menu;
@@ -14,15 +14,21 @@ import app.fragments.Base.NavigationDrawer;
 public class MainActivity extends BaseActivity {
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        overridePendingTransition(R.anim.buttom_to_up, R.anim.top_to_buttom);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (findViewById(R.id.MainFrame) != null) {
             if (savedInstanceState != null) {
-                Home fragmentHome = (Home) getSupportFragmentManager().findFragmentByTag("FRAGMENT_HOME");
+                Home home = (Home) getSupportFragmentManager().findFragmentByTag("FRAGMENT_HOME");
             } else {
-                Home fragmentHome = new Home();
+                Home home = new Home();
                 getSupportFragmentManager().beginTransaction()
-                        .add(R.id.MainFrame, fragmentHome, "FRAGMENT_HOME")
+                        .add(R.id.MainFrame, home, "FRAGMENT_HOME")
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
             }
@@ -40,14 +46,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected int getLayoutResource() {
         return R.layout.activity_main;
-    }
-
-    public void setActionBarTitle(int title) {
-        getSupportActionBar().setTitle(title);
-    }
-
-    public void setActionBarTitle(String title) {
-        getSupportActionBar().setTitle(title);
     }
 
     @Override

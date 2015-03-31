@@ -1,6 +1,5 @@
 package app.fragments.Forum;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -43,7 +42,7 @@ public class AskQuestion extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.ask_question_fragment, container, false);
+        View layout = inflater.inflate(R.layout.forum_ask_question_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_ask_question);
         db = new DatabaseHandler(getActivity());
         questionTitle = (TintEditText) layout.findViewById(R.id.questionTitle);

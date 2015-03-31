@@ -29,12 +29,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import app.adapters.CardView;
-import app.fragments.Forum.Forum;
-import app.fragments.Forum.Post;
 import app.library.VolleySingleton;
 import app.program.MainActivity;
 import app.program.R;
-import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.adapters.SlideInBottomAnimationAdapter;
 
 /**
  * Not for public use
@@ -155,7 +153,7 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
                     icon = images.toArray(new String[images.size()]);
 
                     mAdapter = new CardView(name, intro, icon);
-                    AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
+                    SlideInBottomAnimationAdapter alphaAdapter = new SlideInBottomAnimationAdapter(mAdapter);
                     alphaAdapter.setDuration(1000);
                     mRecyclerView.setAdapter(alphaAdapter);
                     mAdapter.SetOnItemClickListener(this);
@@ -170,10 +168,10 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
     public void onItemClick(View view, int position) {
         Post schemePost = Post.newInstance(name[position], intro[position], icon[position]);
         getFragmentManager().beginTransaction()
-            .replace(R.id.MainFrame, schemePost)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .addToBackStack(null)
-            .commit();
+                .replace(R.id.MainFrame, schemePost)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit();
     }
 
     public void getFloatingActionButtonView(View view) {

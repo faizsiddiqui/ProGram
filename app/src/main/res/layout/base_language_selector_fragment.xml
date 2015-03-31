@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/splash_background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/splash_background"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/keyLine3"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/language_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/login_image"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/language_lang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/language_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/keyLine2"
+            android:text="@string/language_lang"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:id="@+id/language_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/language_lang"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/keyLine1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/language_description"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/language_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/keyLine4"
+            android:layout_below="@+id/language_description"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorWhite"
+            android:text="@string/language_lang"
+            android:layout_gravity="center_horizontal|bottom" />
+
+    </RelativeLayout>
+
+</FrameLayout>

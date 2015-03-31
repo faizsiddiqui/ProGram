@@ -1,8 +1,10 @@
 package app.fragments.Base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
@@ -25,7 +26,7 @@ import app.library.DatabaseHandler;
 import app.library.Preferences;
 import app.library.VolleySingleton;
 import app.program.R;
-import app.widgets.LinearLayoutManagerRecyclerView;
+import app.program.SettingsActivity;
 
 /**
  * Not for public use
@@ -65,7 +66,7 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.navigation_drawer_fragment, container, false);
+        View view = inflater.inflate(R.layout.base_navigation_drawer_fragment, container, false);
         db = new DatabaseHandler(getActivity());
 
         NetworkImageView user_image = (NetworkImageView) view.findViewById(R.id.navigation_profile_image);
@@ -107,7 +108,20 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT).show();
+        switch (navigationRowText[position]){
+            case "Tutorials":
+                Tutorial tutorial = new Tutorial();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.MainFrame, tutorial)
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+                break;
+            case "Settings":
+                Intent settings = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(settings);
+                break;
+        }
     }
 
     public void setup(int fragmentID, DrawerLayout drawerLayout, final Toolbar toolbar) {

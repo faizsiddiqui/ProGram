@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 
 import app.adapters.HomeView;
 import app.fragments.Calendar.Calendar;
-import app.fragments.Calendar.SelectCrop;
 import app.fragments.Forum.Forum;
+import app.program.BaseActivity;
 import app.program.MainActivity;
 import app.program.R;
 
@@ -39,8 +39,8 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.home_fragment, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_home);
+        View layout = inflater.inflate(R.layout.base_home_fragment, container, false);
+        ((BaseActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_home);
         mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mAdapter = new HomeView(home_text, image);
         mAdapter.SetOnItemClickListener(this);
@@ -53,22 +53,20 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
 
     @Override
     public void onItemClick(View view, int position) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.left_to_right, R.anim.right_to_left);
         switch (home_text[position]) {
             case "Calendar":
                 Calendar calendar = new Calendar();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, calendar)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                transaction.replace(R.id.MainFrame, calendar)
                         .addToBackStack(null)
                         .commit();
                 break;
             case "Forum":
                 Forum forum = new Forum();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, forum)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
+                transaction.replace(R.id.MainFrame, forum)
+                            .addToBackStack(null)
+                            .commit();
                 break;
         }
     }
