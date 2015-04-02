@@ -32,14 +32,41 @@
     <!-- Login settings -->
     <string name="login_password">Password</string>
     <string name="login_id">Mobile or Email</string>
-    <string name="login_button">Login</string>
+    <string name="login_login">Login</string>
+    <string name="login_sign_up">Don\'t have a account?</string>
 
     <!-- Sign Up settings -->
     <string name="sign_up_mobile">Mobile</string>
     <string name="sign_up_name">Name</string>
     <string name="sign_up_password">Password</string>
     <string name="sign_up_location">Location</string>
-    <string name="sign_up_button">Sign Up</string>
+    <string name="sign_up_email">Email</string>
+    <string name="sign_up_sign_up">Sign Up</string>
+    <string name="sign_up_login">Do you have an account?</string>
+
+    <!-- Language selector settings -->
+    <string name="language_lang">Language</string>
+    <string name="language_description">Understand better by \nSelecting your favourite Language</string>
+    <string-array name="app_language">
+        <item>Hindi</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="app_language_alias">
+        <item>hi</item>
+        <item>en</item>
+    </string-array>
+
+    <!-- Splash settings -->
+    <string name="splash_app_description">Welcome to PROGRAM,\nA farmer\'s friend in every aspect.</string>
+    <string name="next">Next</string>
+    <string name="splash_continue">Continue</string>
+
+    <!-- Tutorial Settings -->
+    <string name="tutorial_title_learn">Learn</string>
+    <string name="tutorial_title_employment">Employment</string>
+    <string name="tutorial_description_learn">Learn Description</string>
+    <string name="tutorial_description_employment">Learn Description</string>
+    <string name="tutorial_next">NEXT</string>
 
     <!-- crop settings -->
     <string name="crop_prompt">Choose a Crop</string>
@@ -54,7 +81,6 @@
     </string-array>
 
     <!-- location settings -->
-
     <string-array name="location_list">
         <item>Andhra Pradesh</item>
         <item>Arunachal Pradesh</item>

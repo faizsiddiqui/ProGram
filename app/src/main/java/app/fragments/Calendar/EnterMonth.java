@@ -21,13 +21,11 @@ import static android.app.PendingIntent.getActivity;
 /**
  * Created by apple on 4/1/2015.
  */
-public class EnterMonth {
+public class EnterMonth extends Fragment {
 
     private Spinner spinner;
     private char months;
     private ImageView appImageView;
-
-
 
     @Nullable
     @Override
@@ -56,7 +54,5 @@ public class EnterMonth {
         });
         return view;
     }
-
-
 
 }

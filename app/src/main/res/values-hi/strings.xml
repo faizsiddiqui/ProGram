@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!-- App settings -->
     <string name="app_name">Proग्राम</string>
 
     <!-- Toolbar settings -->
@@ -9,6 +9,7 @@
     <string name="toolbar_text_ask_question">प्रश्न पूछो</string>
     <string name="toolbar_text_question">सवाल</string>
     <string name="toolbar_text_forum">मंच</string>
+    <string name="toolbar_text_calendar">Calendar</string>
     <string name="toolbar_text_awards">पुरस्कार</string>
     <string name="toolbar_login">लॉग इन करें</string>
     <string name="toolbar_jobs">नौकरी</string>
@@ -16,13 +17,8 @@
     <!-- Action settings -->
     <string name="action_settings">सेटिंग्स</string>
 
-    <!-- Drawer settings -->
-    <string name="drawer_open">Open</string>
-    <string name="drawer_close">Close</string>
-
     <!-- Useless -->
     <string name="exampleString">उदाहरण</string>
-    <string name="expand"><![CDATA[>]]></string>
 
     <!-- Question Post Settings -->
     <string name="question_title">प्रश्न शीर्षक</string>
@@ -43,15 +39,6 @@
     <string name="sign_up_email">ईमेल</string>
     <string name="sign_up_sign_up">साइन अप करें</string>
     <string name="sign_up_login">क्या आपका अकाउंट है?</string>
-
-    <!-- location settings -->
-    <string name="state_prompt">एक राज्य चुनें</string>
-    <string-array name="india_states">
-        <item>दिल्ली</item>
-        <item>पंजाब</item>
-        <item>मध्य प्रदेश</item>
-        <item>उत्तर प्रदेश</item>
-    </string-array>
 
     <!-- Language selector settings -->
     <string name="language_lang">भाषा</string>

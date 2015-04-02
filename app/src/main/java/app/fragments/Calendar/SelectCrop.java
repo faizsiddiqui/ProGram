@@ -31,10 +31,8 @@ public class SelectCrop extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
-       View view = inflater.inflate(R.layout.select_crop_fragment, container, false);
-        cropPrompt = (Spinner) view.findViewById(R.id.cropPrompt);
-
+        View view = inflater.inflate(R.layout.calendar_select_crop_fragment, container, false);
+        //cropPrompt = (Spinner) view.findViewById(R.id.cropPrompt);
         return view;
     }
 }

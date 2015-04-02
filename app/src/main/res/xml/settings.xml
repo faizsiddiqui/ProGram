@@ -9,7 +9,7 @@
             android:title="@string/language_lang"
             android:summary="@string/language_description"
             android:entries="@array/app_language"
-            android:entryValues="@/array_lang_alias"
+            android:entryValues="@array/app_language_alias"
             android:positiveButtonText="@string/next"/>
 
     </PreferenceCategory>
