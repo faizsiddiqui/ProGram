@@ -22,6 +22,7 @@ public class SelectCrop extends Fragment {
     private float contentView;
     String [] crop= {"wheat","rice","maize"};
 
+
     public Spinner getCropPrompt() {
         return cropPrompt;
     }
@@ -32,7 +33,7 @@ public class SelectCrop extends Fragment {
 
 
        View view = inflater.inflate(R.layout.select_crop_fragment, container, false);
-        cropPrompt = (Spinner) view.findViewById(R.id.statePrompt);
+        cropPrompt = (Spinner) view.findViewById(R.id.cropPrompt);
 
         return view;
     }
