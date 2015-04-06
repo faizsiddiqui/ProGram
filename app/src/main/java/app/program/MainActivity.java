@@ -16,7 +16,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        overridePendingTransition(R.anim.buttom_to_up, R.anim.top_to_buttom);
+        //overridePendingTransition(R.anim.buttom_to_up, R.anim.top_to_buttom);
     }
 
     @Override

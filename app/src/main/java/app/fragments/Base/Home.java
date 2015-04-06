@@ -1,5 +1,6 @@
 package app.fragments.Base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import app.adapters.HomeView;
 import app.fragments.Calendar.Calendar;
 import app.fragments.Forum.Forum;
 import app.program.BaseActivity;
+import app.program.ForumActivity;
 import app.program.MainActivity;
 import app.program.R;
 
@@ -63,10 +65,8 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
                         .commit();
                 break;
             case "Forum":
-                Forum forum = new Forum();
-                transaction.replace(R.id.MainFrame, forum)
-                            .addToBackStack(null)
-                            .commit();
+                Intent forum = new Intent(getActivity(), ForumActivity.class);
+                startActivity(forum);
                 break;
         }
     }

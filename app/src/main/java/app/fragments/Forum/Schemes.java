@@ -30,6 +30,7 @@ import java.util.ArrayList;
 
 import app.adapters.CardView;
 import app.library.VolleySingleton;
+import app.program.ForumActivity;
 import app.program.MainActivity;
 import app.program.R;
 import jp.wasabeef.recyclerview.animators.adapters.SlideInBottomAnimationAdapter;
@@ -65,7 +66,7 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.forum_fragment, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_schemes);
+        ((ForumActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_schemes);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
 
@@ -168,7 +169,7 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
     public void onItemClick(View view, int position) {
         Post schemePost = Post.newInstance(name[position], intro[position], icon[position]);
         getFragmentManager().beginTransaction()
-                .replace(R.id.MainFrame, schemePost)
+                .replace(R.id.forumFrame, schemePost)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();
@@ -181,7 +182,7 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
             public void onClick(View v) {
                 AskQuestion askQuestion = new AskQuestion();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, askQuestion)
+                        .replace(R.id.forumFrame, askQuestion)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();

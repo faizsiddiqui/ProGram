@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import app.adapters.ForumView;
+import app.program.ForumActivity;
 import app.program.MainActivity;
 import app.program.R;
 
@@ -50,7 +51,7 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.forum_fragment, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_forum);
+        ((ForumActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_forum);
         mLayoutManager = new GridLayoutManager(getActivity(), 1);
         mAdapter = new ForumView(forumTitle, forumText, image);
         mAdapter.SetOnItemClickListener(this);
@@ -69,7 +70,7 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
             case "Question/Answers":
                 QuestionAnswer questionAnswer = new QuestionAnswer();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, questionAnswer)
+                        .replace(R.id.forumFrame, questionAnswer)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();
@@ -77,7 +78,7 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
             case "Schemes":
                 Schemes schemes = new Schemes();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, schemes)
+                        .replace(R.id.forumFrame, schemes)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();
@@ -85,7 +86,7 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
             case "Awards":
                 Awards awards = new Awards();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, awards)
+                        .replace(R.id.forumFrame, awards)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();
@@ -93,7 +94,7 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
             case "Jobs":
                 Jobs jobs = new Jobs();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, jobs)
+                        .replace(R.id.forumFrame, jobs)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();
@@ -108,7 +109,7 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
             public void onClick(View v) {
                 AskQuestion askQuestion = new AskQuestion();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, askQuestion)
+                        .replace(R.id.forumFrame, askQuestion)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();

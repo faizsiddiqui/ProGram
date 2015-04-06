@@ -1,10 +1,9 @@
-package app.fragments.Base;
+package app.program;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
@@ -17,14 +16,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import app.program.MainActivity;
-import app.program.R;
-
 /**
  * Not for public use
- * Created by FAIZ on 28-03-2015.
+ * Created by FAIZ on 07-04-2015.
  */
-public class Tutorial extends Fragment {
+public class TutorialActivity extends Activity {
 
     private ViewPager mViewPager;
     private TutorialView mAdapter;
@@ -38,32 +34,48 @@ public class Tutorial extends Fragment {
     private TextView[] mDots;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.base_tutorial_fragment, container, false);
-        initViews(view);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tutorial);
+        initViews();
 
-        mNext = (Button) view.findViewById(R.id.tutorial_next);
+        mNext = (Button) findViewById(R.id.tutorial_next);
         mNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int next = mViewPager.getCurrentItem() + 1;
-                if(next == 2) {
-                    Intent home = new Intent(getActivity(), MainActivity.class);
-                    startActivity(home);
-                    getActivity().finish();
-                }
-                else {
+                if (next == 2) {
+                    String caller = getIntent().getStringExtra("caller");
+                    if (caller.equals("SplashActivity")) {
+                        Intent home = new Intent(TutorialActivity.this, MainActivity.class);
+                        startActivity(home);
+                    }
+                    finish();
+                } else {
                     mViewPager.setCurrentItem(next, true);
                 }
             }
         });
-
-        setViewPagerItemsWithAdapter(view);
-        setUiPageViewController(view);
-        return view;
+        setViewPagerItemsWithAdapter();
+        setUiPageViewController();
     }
 
-    private void setViewPagerItemsWithAdapter(View view) {
+    private void setUiPageViewController() {
+        mDotsLayout = (LinearLayout) findViewById(R.id.tutorial_pager_count_dots);
+        mDotsCount = mAdapter.getCount();
+        mDots = new TextView[mDotsCount];
+
+        for (int i = 0; i < mDotsCount; i++) {
+            mDots[i] = new TextView(this);
+            mDots[i].setText(Html.fromHtml("&#8226;"));
+            mDots[i].setTextSize(30);
+            mDots[i].setTextColor(getResources().getColor(R.color.colorText));
+            mDotsLayout.addView(mDots[i]);
+        }
+        mDots[0].setTextColor(getResources().getColor(R.color.colorPrimary));
+    }
+
+    private void setViewPagerItemsWithAdapter() {
         mAdapter = new TutorialView();
         mViewPager.setAdapter(mAdapter);
         mViewPager.setCurrentItem(0);
@@ -93,23 +105,8 @@ public class Tutorial extends Fragment {
         }
     };
 
-    private void setUiPageViewController(View view) {
-        mDotsLayout = (LinearLayout) view.findViewById(R.id.tutorial_pager_count_dots);
-        mDotsCount = mAdapter.getCount();
-        mDots = new TextView[mDotsCount];
-
-        for (int i = 0; i < mDotsCount; i++) {
-            mDots[i] = new TextView(getActivity());
-            mDots[i].setText(Html.fromHtml("&#8226;"));
-            mDots[i].setTextSize(30);
-            mDots[i].setTextColor(getResources().getColor(R.color.colorText));
-            mDotsLayout.addView(mDots[i]);
-        }
-        mDots[0].setTextColor(getResources().getColor(R.color.colorPrimary));
-    }
-
-    private void initViews(View view) {
-        mViewPager = (ViewPager) view.findViewById(R.id.tutorial_pager);
+    private void initViews() {
+        mViewPager = (ViewPager) findViewById(R.id.tutorial_pager);
         mTitles = new ArrayList<Integer>();
         mDescription = new ArrayList<Integer>();
         mTitles.add(R.string.tutorial_title_learn);
@@ -121,14 +118,12 @@ public class Tutorial extends Fragment {
     public class TutorialView extends PagerAdapter {
 
         private LayoutInflater inflater;
-
         TextView titles, description;
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-
-            inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.base_tutorial_view, container, false);
+            inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.activity_tutorial_view, container, false);
 
             titles = (TextView) view.findViewById(R.id.tutorial_title);
             description = (TextView) view.findViewById(R.id.tutorial_description);
@@ -156,5 +151,4 @@ public class Tutorial extends Fragment {
             ((ViewPager) container).removeView(view);
         }
     }
-
 }

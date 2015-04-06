@@ -1,5 +1,6 @@
 package app.fragments.Base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ import org.json.JSONObject;
 
 import app.library.DatabaseHandler;
 import app.program.R;
+import app.program.TutorialActivity;
 
 /**
  * Not for public use
@@ -60,12 +62,10 @@ public class SignUp extends Fragment {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Tutorial tutorial = new Tutorial();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.FullScreenFrame, tutorial)
-                        .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit();
+                Intent tutorial = new Intent(getActivity(), TutorialActivity.class);
+                tutorial.putExtra("caller", "SplashActivity");
+                startActivity(tutorial);
+                getActivity().finish();
                /*name = signUpName.getText().toString();
                 mobile = signUpMobile.getText().toString();
                 password = signUpPassword.getText().toString();

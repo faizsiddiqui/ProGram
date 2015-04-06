@@ -12,6 +12,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
 import app.library.VolleySingleton;
+import app.program.ForumActivity;
 import app.program.MainActivity;
 import app.program.R;
 
@@ -54,7 +55,7 @@ public class Post extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.forum_post_fragment, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle(title);
+        ((ForumActivity) getActivity()).setActionBarTitle(title);
 
         titleView = (TextView) view.findViewById(R.id.postTitle);
         descriptionView = (TextView) view.findViewById(R.id.postDescription);

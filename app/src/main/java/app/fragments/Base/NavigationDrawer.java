@@ -27,6 +27,7 @@ import app.library.Preferences;
 import app.library.VolleySingleton;
 import app.program.R;
 import app.program.SettingsActivity;
+import app.program.TutorialActivity;
 
 /**
  * Not for public use
@@ -110,12 +111,9 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
     public void onItemClick(View view, int position) {
         switch (navigationRowText[position]){
             case "Tutorials":
-                Tutorial tutorial = new Tutorial();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, tutorial)
-                        .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit();
+                Intent tutorial = new Intent(getActivity(), TutorialActivity.class);
+                tutorial.putExtra("caller", "MainActivity");
+                startActivity(tutorial);
                 break;
             case "Settings":
                 Intent settings = new Intent(getActivity(), SettingsActivity.class);

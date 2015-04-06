@@ -26,18 +26,6 @@ public class SplashActivity extends FragmentActivity {
         setContentView(R.layout.activity_splash);
         sharedpreferences = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
 
-        if (findViewById(R.id.FullScreenFrame) != null) {
-            if (savedInstanceState != null) {
-                LanguageSelector languageSelector = (LanguageSelector) getSupportFragmentManager().findFragmentByTag("FRAGMENT_LANGUAGE_SELECTOR");
-            } else {
-                LanguageSelector languageSelector = new LanguageSelector();
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.FullScreenFrame, languageSelector, "FRAGMENT_LANGUAGE_SELECTOR")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit();
-            }
-        }
-
         if (sharedpreferences.getBoolean("first_time", true)) {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean("first_time", false);
