@@ -70,8 +70,6 @@
 
     <!-- crop settings -->
     <string name="crop_prompt">Choose a Crop</string>
-    <string name="toolbar_text_enter_location" />
-    <string name="calendar_enter_month" />
     <string-array name="india_crops">
         <item>wheat</item>
         <item>rice</item>
@@ -81,6 +79,7 @@
     </string-array>
 
     <!-- location settings -->
+    <string name="toolbar_text_enter_location">Choose a Location</string>
     <string-array name="location_list">
         <item>Andhra Pradesh</item>
         <item>Arunachal Pradesh</item>
@@ -114,7 +113,8 @@
     </string-array>
 
     <!-- month settings -->
-    <string-array name="month_list">
+    <string name="calendar_enter_month">Choose a Month</string>
+    <string-array name="Month_List">
       <item>January</item>
       <item>February</item>
       <item>March</item>

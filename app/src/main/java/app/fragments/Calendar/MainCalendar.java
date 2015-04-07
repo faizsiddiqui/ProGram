@@ -13,6 +13,7 @@ import app.program.R;
 /**
  * Created by apple on 4/2/2015.
  */
+  @SuppressWarnings("unused")
 public class MainCalendar extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

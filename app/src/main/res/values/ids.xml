@@ -7,4 +7,5 @@
     <item name="calendarTitle" type="id" />
     <item name="calendarText" type="id" />
     <item name="calendarIcon" type="id" />
+    <item name="cropPrompt" type="id" />
 </resources>

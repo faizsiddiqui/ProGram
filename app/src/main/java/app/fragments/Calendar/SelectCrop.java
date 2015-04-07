@@ -8,32 +8,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
+import app.program.MainActivity;
 import app.program.R;
 
 /**
  * Created by apple on 3/18/2015.
  */
 public class SelectCrop extends Fragment {
-
-
-
     private Spinner cropPrompt;
-
-    private float contentView;
-    String [] crop= {"wheat","rice","maize"};
-
-
-    public Spinner getCropPrompt() {
-        return cropPrompt;
-    }
+   // private float contentView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.calendar_select_crop_fragment, container, false);
-        //cropPrompt = (Spinner) view.findViewById(R.id.cropPrompt);
+        ((MainActivity) getActivity()).setActionBarTitle("Select Crop");
+
+        cropPrompt = (Spinner) view.findViewById(R.id.cropPrompt);
         return view;
+    }
+    @SuppressWarnings("unused")
+
+    public Spinner getCropPrompt() {
+        return cropPrompt;
+    }
+    @SuppressWarnings("unused")
+
+    public void setCropPrompt(Spinner cropPrompt) {
+        this.cropPrompt = cropPrompt;
     }
 }
 

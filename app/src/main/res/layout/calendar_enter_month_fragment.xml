@@ -24,7 +24,8 @@
         android:dropDownWidth="@dimen/abc_text_size_subtitle_material_toolbar"
         android:focusableInTouchMode="false"
         android:spinnerMode="dropdown"
-        android:nestedScrollingEnabled="true" />
+        android:nestedScrollingEnabled="true"
+        android:entries="@array/Month_List"/>
 
 
 
