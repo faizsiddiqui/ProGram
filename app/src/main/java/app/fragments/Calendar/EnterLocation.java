@@ -1,28 +1,33 @@
 package app.fragments.Calendar;
 
-  import android.support.v4.app.Fragment;
-  import android.os.Bundle;
-  import android.support.annotation.Nullable;
-  import android.support.v7.widget.LinearLayoutManager;
-  import android.view.LayoutInflater;
-  import android.view.View;
-  import android.view.ViewGroup;
-  import android.widget.AdapterView;
-  import android.widget.ArrayAdapter;
-  import android.widget.Spinner;
-  import android.widget.Toast;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-  import app.program.MainActivity;
-  import app.program.R;
+import app.program.MainActivity;
+import app.program.R;
 
 /**
  * Created by apple on 3/21/2015.
  */
+
 public class EnterLocation extends Fragment {
 
-    private float contentView;
+  //  private float contentView;
     private Spinner locationPrompt;
     private Spinner spinner;
+    private Context context;
+    //public String[] Location_list = this.context.getResources().getStringArray(R.array.location_list);
 
     public Spinner getlocationPrompt() {
         return locationPrompt;
@@ -43,20 +48,17 @@ public class EnterLocation extends Fragment {
             "In Progress"
     };
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_enter_location_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_enter_location);
-        LinearLayoutManager LayoutManager = new LinearLayoutManager(getActivity());
-        spinner = (Spinner) view.findViewById(R.id.location_spinner);
-        // RecyclerView RecyclerView = (RecyclerView) view.findViewById(R.id.CalendarRecyclerView);
-        //  RecyclerView.setHasFixedSize(true);
-        //  RecyclerView.setLayoutManager(LayoutManager);
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(),
+         LinearLayoutManager LayoutManager = new LinearLayoutManager(getActivity());
+         spinner = (Spinner) view.findViewById(R.id.location_spinner);
+         RecyclerView RecyclerView = (RecyclerView) view.findViewById(R.id.CalendarRecyclerView);
+         RecyclerView.setHasFixedSize(true);
+         RecyclerView.setLayoutManager(LayoutManager);
+         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(),
                 android.R.layout.simple_spinner_item, locations);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
@@ -75,7 +77,7 @@ public class EnterLocation extends Fragment {
         });
         return view;
     }
-}
+};
 
 
 

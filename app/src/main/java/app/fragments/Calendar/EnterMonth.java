@@ -1,8 +1,9 @@
 package app.fragments.Calendar;
+
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,19 +13,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import app.program.MainActivity;
 import app.program.R;
-
-import static android.app.PendingIntent.getActivity;
 
 /**
  * Created by apple on 4/1/2015.
  */
 public class EnterMonth extends Fragment {
-
+    @SuppressWarnings("unused")
+    private Context context;
+    @SuppressWarnings("unused")
+    public String[] Month_list = this.context.getResources().getStringArray(R.array.Month_List);
     private Spinner spinner;
+    @SuppressWarnings("unused")
     private char months;
+    @SuppressWarnings("unused")
     private ImageView appImageView;
 
     @Nullable
@@ -33,7 +36,7 @@ public class EnterMonth extends Fragment {
         View view = inflater.inflate(R.layout.calendar_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.calendar_enter_month);
         appImageView = (ImageView) view.findViewById(R.id.imageView);
-
+        @SuppressWarnings("unused")
         LinearLayoutManager LayoutManager = new LinearLayoutManager(getActivity());
         spinner = (Spinner) view.findViewById(R.id.month_spinner);
 

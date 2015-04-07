@@ -18,31 +18,31 @@ import app.program.R;
 /**
  * Created by apple on 3/17/2015.
  */
-public class Calendar extends Fragment implements app.adapters.ForumView.OnItemClickListener {
+public class Calendar extends Fragment implements ForumView.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private app.adapters.ForumView mAdapter;
+    private ForumView mAdapter;
 
     String[] calendarTitle = {
            // "Recommended Crop",
-            "Select Crop"
-          //  "Enter Location",
-          //  "Enter Month"
+            "Select Crop",
+           "Enter Location",
+           "Enter Month"
     };
 
     String[] calendarText = {
-            "In progress"
-        //    "In progress",
-         //   "Completed"
+            "In progress",
+            "In progress",
+           "Completed"
     };
 
     int[] image = {
             R.mipmap.drawer_tutorial,
-          //R.mipmap.drawer_settings,
-          //R.mipmap.drawer_about
+          R.mipmap.drawer_settings,
+          R.mipmap.drawer_about
     };
-    private RecyclerView.Adapter Adapter;
+
 
 
     @Nullable
@@ -58,7 +58,7 @@ public class Calendar extends Fragment implements app.adapters.ForumView.OnItemC
         mRecyclerView = (RecyclerView) view.findViewById(R.id.CalendarRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(Adapter);
+        mRecyclerView.setAdapter(mAdapter);
         return view;
     }
 
@@ -81,22 +81,22 @@ public class Calendar extends Fragment implements app.adapters.ForumView.OnItemC
                         .addToBackStack(null)
                         .commit();
                 break;
-          //  case "Enter Location":
-             //   EnterLocation enterLocation = new EnterLocation();
-              //  getFragmentManager().beginTransaction()
-                   //     .replace(R.id.MainFrame, enterLocation)
-                    //    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                     //   .addToBackStack(null)
-                     //   .commit();
-              //  break;
-         //   case "Enter Month":
-              //  EnterMonth enterMonth = new EnterMonth();
-             //   getFragmentManager().beginTransaction()
-              //          .replace(R.id.MainFrame, enterMonth)
-               //         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                //        .addToBackStack(null)
-                //        .commit();
-             //   break;
+            case "Enter Location":
+               EnterLocation enterLocation = new EnterLocation();
+               getFragmentManager().beginTransaction()
+                       .replace(R.id.MainFrame, enterLocation)
+                       .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                       .commit();
+                break;
+            case "Enter Month":
+               EnterMonth enterMonth = new EnterMonth();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.MainFrame, enterMonth)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                       .addToBackStack(null)
+                       .commit();
+                 break;
         }
     }
 }
