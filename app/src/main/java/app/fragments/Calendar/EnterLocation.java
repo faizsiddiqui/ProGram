@@ -38,32 +38,17 @@ public class EnterLocation extends Fragment {
             "loc 2"
     };
 
-    String [] EnterlocationTitle = {
-            "Enter location",
-            "Recommended Crops"
-    };
-
-    String [] EnterlocationText = {
-            "In Progress",
-            "In Progress"
-    };
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_enter_location_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_enter_location);
 
-         LinearLayoutManager LayoutManager = new LinearLayoutManager(getActivity());
          spinner = (Spinner) view.findViewById(R.id.location_spinner);
-         RecyclerView RecyclerView = (RecyclerView) view.findViewById(R.id.CalendarRecyclerView);
-         RecyclerView.setHasFixedSize(true);
-         RecyclerView.setLayoutManager(LayoutManager);
          ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(),
                 android.R.layout.simple_spinner_item, locations);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
+         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         spinner.setAdapter(dataAdapter);
+         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {

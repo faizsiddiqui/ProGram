@@ -42,30 +42,4 @@
         android:includeFontPadding="@bool/abc_config_allowActionMenuItemTextWithIcon"
         android:editable="true" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </LinearLayout>

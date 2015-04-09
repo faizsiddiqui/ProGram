@@ -20,25 +20,20 @@ import app.program.R;
  * Created by apple on 4/1/2015.
  */
 public class EnterMonth extends Fragment {
-    @SuppressWarnings("unused")
     private Context context;
-    @SuppressWarnings("unused")
-    public String[] Month_list = this.context.getResources().getStringArray(R.array.Month_List);
+    //public String[] Month_list = this.context.getResources().getStringArray(R.array.Month_List);
     private Spinner spinner;
-    @SuppressWarnings("unused")
     private char months;
-    @SuppressWarnings("unused")
     private ImageView appImageView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.calendar_fragment, container, false);
+        View view = inflater.inflate(R.layout.calendar_enter_month_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.calendar_enter_month);
         appImageView = (ImageView) view.findViewById(R.id.imageView);
-        @SuppressWarnings("unused")
-        LinearLayoutManager LayoutManager = new LinearLayoutManager(getActivity());
-        spinner = (Spinner) view.findViewById(R.id.month_spinner);
+
+        spinner = (Spinner) view.findViewById(R.id.spinner);
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(),
                 android.R.layout.simple_spinner_item,months);
