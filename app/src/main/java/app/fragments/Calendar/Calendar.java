@@ -29,19 +29,23 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
            // "Recommended Crop",
             "Select Crop",
            "Enter Location",
-           "Enter Month"
+           "Enter Month",
+            "Soil Parameter 1"
     };
 
     String[] calendarText = {
             "Completed",
             "Completed",
-           "Completed"
+           "Completed",
+            "Completed"
     };
 
     int[] image = {
             R.mipmap.drawer_tutorial,
           R.mipmap.drawer_settings,
-          R.mipmap.drawer_about
+          R.mipmap.drawer_about,
+            R.mipmap.drawer_about
+
     };
 
     @Nullable
@@ -96,6 +100,14 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
                         .addToBackStack(null)
                         .commit();
                  break;
+            case "Soil Parameter 1":
+                SoilParameter1 sp1=new SoilParameter1();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.calendarFrame, sp1)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                break;
         }
     }
 }

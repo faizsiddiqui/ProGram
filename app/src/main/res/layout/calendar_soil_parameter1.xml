@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="16dp"
+    android:id="@+id/soilparameter1"
+    android:weightSum="1"
+    android:orientation="vertical">
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter the values according to soil test report"
+            android:layout_column="1"
+            android:layout_weight="0.25"
+            />
+
+
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pH Value"
+           android:layout_column="1"
+            android:layout_weight="0.25"
+          />
+        <EditText
+         android:layout_width="200dp"
+         android:layout_height="50dp"
+         android:width="100px"
+            android:layout_column="4" />
+
+     </TableRow>
+
+
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Electrical Conductivity "
+            android:layout_column="1"
+            android:layout_weight="0.25"
+            />
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:width="100px"
+            android:hint="(in dS/m) "
+            android:layout_column="4"
+       />
+
+    </TableRow>
+
+
+    <TableRow>
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="Organic Carbon "
+            android:layout_column="1"
+            android:layout_weight="0.25"
+            />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100px"
+            android:hint="(in g/Kg)"
+            android:layout_column="4" />
+
+    </TableRow>
+    <TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+             android:id="@+id/next"
+            android:text="Next"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_column="1"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:layout_span="3" />
+    </TableRow>
+
+
+</TableLayout>
