@@ -18,13 +18,14 @@
         android:layout_height="wrap_content"
         android:prompt="@+id/EnterLocation"
         android:spinnerMode="dialog"
-        android:entries="@array/location_list"/>
+        android:entries="@array/location_list"
+        android:background="@android:drawable/btn_dropdown"/>
 
        <TextView
         android:id="@+id/info_text"
         android:layout_width="match_parent"
         android:layout_height="299dp"
-        android:layout_marginTop="10dip"
+        android:layout_marginTop="20dip"
         android:layout_marginBottom="0dip"
         android:text="Crops which can be grown here are :
 

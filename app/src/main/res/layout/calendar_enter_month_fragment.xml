@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/Month_List"
+        android:background="@android:drawable/btn_dropdown"
         />
 
 </LinearLayout>

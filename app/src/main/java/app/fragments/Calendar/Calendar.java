@@ -41,7 +41,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
     };
 
     int[] image = {
-            R.mipmap.drawer_tutorial,
+          R.mipmap.drawer_tutorial,
           R.mipmap.drawer_settings,
           R.mipmap.drawer_about,
             R.mipmap.drawer_about
