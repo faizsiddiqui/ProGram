@@ -1,6 +1,7 @@
 package app.fragments.Calendar;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,29 +21,29 @@ import app.program.R;
  * Created by apple on 4/1/2015.
  */
 public class EnterMonth extends Fragment {
-    private Context context;
-    //public String[] Month_list = this.context.getResources().getStringArray(R.array.Month_List);
+    public String[] Month_list;
     private Spinner spinner;
-    private char months;
-    private ImageView appImageView;
+    private ImageView image;
+    public TypedArray Month_image;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_enter_month_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.calendar_enter_month);
-        appImageView = (ImageView) view.findViewById(R.id.imageView);
-
-        spinner = (Spinner) view.findViewById(R.id.spinner);
-
+        image = (ImageView)view.findViewById(R.id.months_image);
+        Month_image = getResources().obtainTypedArray(R.array.Month_image);
+        Month_list = getResources().getStringArray(R.array.Month_List);
+        spinner = (Spinner) view.findViewById(R.id.month_spinner);
+        image.setImageResource(Month_image.getResourceId(spinner.getSelectedItemPosition(), -1));
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(),
-                android.R.layout.simple_spinner_item,months);
+                android.R.layout.simple_spinner_item,Month_list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
-                Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

@@ -76,6 +76,16 @@
         <item>maize</item>
         <item>soyabean</item>
         <item>cotton</item>
+        <item>bajra</item>
+        <item>jowar</item>
+        <item>sunflower</item>
+        <item>sugarcane</item>
+        <item>jute</item>
+        <item>tea</item>
+        <item>coffee</item>
+        <item>rubber</item>
+        <item>silk</item>
+        <item>tobacco</item>
     </string-array>
 
     <!-- location settings -->
@@ -128,6 +138,11 @@
       <item>November</item>
       <item>December</item>
     </string-array>
+
+    <!-- month image settings -->
+    <integer-array name="Month_image">
+        <item>@drawable/months</item>
+    </integer-array>
 
 </resources>
 

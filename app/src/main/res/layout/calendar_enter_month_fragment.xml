@@ -8,23 +8,19 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="@dimen/abc_action_bar_default_height_material"
-        android:id="@+id/imageView"
-        android:layout_weight="0.54" />
+        android:id="@+id/months_image"
+        android:layout_gravity="center_vertical"
+        android:scaleType="center"
+        android:layout_weight="0.54"
+        android:src="@drawable/months"/>
 
     <Spinner
-        android:id="@+id/spinner"
+        android:layout_marginTop="40dip"
+        android:spinnerMode="dialog"
+        android:id="@+id/month_spinner"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-
-        style="@style/Animation.AppCompat.DropDownUp"
-        android:accessibilityLiveRegion="@android:integer/config_mediumAnimTime"
-        android:background="#700f0110"
-        android:clickable="true"
-        android:dropDownSelector="@android:color/background_light"
-        android:dropDownWidth="@dimen/abc_text_size_subtitle_material_toolbar"
-        android:focusableInTouchMode="false"
-        android:spinnerMode="dropdown"
-        android:nestedScrollingEnabled="true"
-        android:entries="@array/Month_List"/>
+        android:layout_height="wrap_content"
+        android:entries="@array/Month_List"
+        />
 
 </LinearLayout>

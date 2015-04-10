@@ -32,8 +32,8 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
     };
 
     String[] calendarText = {
-            "In progress",
-            "In progress",
+            "Completed",
+            "Completed",
            "Completed"
     };
 

@@ -2,44 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical" >
-
-
-    <TextView
-        android:layout_width="fill_parent"
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:text="@string/toolbar_text_enter_location"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/location" />
+        android:id="@+id/months_image"
+        android:layout_gravity="center_vertical"
+        android:scaleType="center"
+        android:src="@drawable/location" />
+
 
     <Spinner
+        android:layout_marginTop="20dip"
         android:id="@+id/location_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:prompt="@+id/EnterLocation"
-        android:spinnerMode="dropdown"
+        android:spinnerMode="dialog"
         android:entries="@array/location_list"/>
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view1"
-        android:layout_margin="@dimen/keyLine1"
-        android:padding="@dimen/keyLine1"
-        android:layout_width="335dp"
-        android:layout_marginTop="50dp"
-        android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="10dp">
-
-    </android.support.v7.widget.CardView>
-
-    <TextView
+       <TextView
         android:id="@+id/info_text"
         android:layout_width="match_parent"
         android:layout_height="299dp"
-        android:layout_marginTop="20dp"
-        android:text="Crops which can be grown here are :"
-        android:includeFontPadding="@bool/abc_config_allowActionMenuItemTextWithIcon"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="0dip"
+        android:text="Crops which can be grown here are :
+
+
+        1. Wheat
+
+        2. Rice
+
+        3. Soyabean
+      "
         android:editable="true" />
 
 </LinearLayout>

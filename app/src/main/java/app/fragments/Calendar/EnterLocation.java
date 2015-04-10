@@ -22,37 +22,24 @@ import app.program.R;
  */
 
 public class EnterLocation extends Fragment {
-
-  //  private float contentView;
-    private Spinner locationPrompt;
     private Spinner spinner;
-    private Context context;
-    //public String[] Location_list = this.context.getResources().getStringArray(R.array.location_list);
-
-    public Spinner getlocationPrompt() {
-        return locationPrompt;
-    }
-
-    String [] locations = {
-            "loc 1",
-            "loc 2"
-    };
+    public String[] location_list;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_enter_location_fragment, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_enter_location);
-
+         location_list = getResources().getStringArray(R.array.location_list);
          spinner = (Spinner) view.findViewById(R.id.location_spinner);
          ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(),
-                android.R.layout.simple_spinner_item, locations);
+                android.R.layout.simple_spinner_item,location_list);
          dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
          spinner.setAdapter(dataAdapter);
          spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
