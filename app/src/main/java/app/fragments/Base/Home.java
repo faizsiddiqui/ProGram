@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,11 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import app.adapters.HomeView;
-import app.fragments.Calendar.Calendar;
-import app.fragments.Forum.Forum;
 import app.program.BaseActivity;
+import app.program.CalendarActivity;
 import app.program.ForumActivity;
-import app.program.MainActivity;
 import app.program.R;
 
 /**
@@ -55,14 +52,10 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
 
     @Override
     public void onItemClick(View view, int position) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.left_to_right, R.anim.right_to_left);
         switch (home_text[position]) {
             case "Calendar":
-                Calendar calendar = new Calendar();
-                transaction.replace(R.id.MainFrame, calendar)
-                        .addToBackStack(null)
-                        .commit();
+                Intent calendar = new Intent(getActivity(), CalendarActivity.class);
+                startActivity(calendar);
                 break;
             case "Forum":
                 Intent forum = new Intent(getActivity(), ForumActivity.class);

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import app.adapters.ForumView;
+import app.program.CalendarActivity;
 import app.program.MainActivity;
 import app.program.R;
 
@@ -43,13 +44,11 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
           R.mipmap.drawer_about
     };
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_fragment, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle("Calendar");
+        ((CalendarActivity) getActivity()).setActionBarTitle("Calendar");
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new ForumView( calendarTitle ,calendarText ,image);
         mAdapter.SetOnItemClickListener(this);
@@ -68,7 +67,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
          //   case "Recommended Crops":
               //  RecommendedCrop recommendedCrop = new RecommendedCrop();
               //  getFragmentManager().beginTransaction()
-                     //   .replace(R.id.MainFrame, recommendedCrop)
+                     //   .replace(R.id.calendarFrame, recommendedCrop)
                      //   .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                      //   .addToBackStack(null)
                      //   .commit();
@@ -76,7 +75,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
             case "Select Crop":
                 SelectCrop selectcrop = new SelectCrop();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, selectcrop)
+                        .replace(R.id.calendarFrame, selectcrop)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();
@@ -84,18 +83,18 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
             case "Enter Location":
                EnterLocation enterLocation = new EnterLocation();
                getFragmentManager().beginTransaction()
-                       .replace(R.id.MainFrame, enterLocation)
+                       .replace(R.id.calendarFrame, enterLocation)
                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
+                       .addToBackStack(null)
                        .commit();
                 break;
             case "Enter Month":
                EnterMonth enterMonth = new EnterMonth();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.MainFrame, enterMonth)
+                        .replace(R.id.calendarFrame, enterMonth)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                       .addToBackStack(null)
-                       .commit();
+                        .addToBackStack(null)
+                        .commit();
                  break;
         }
     }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import app.program.CalendarActivity;
 import app.program.MainActivity;
 import app.program.R;
 
@@ -19,7 +20,7 @@ public class MainCalendar extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_enter_location_fragment, container, false);
-        ((MainActivity) getActivity(null)).setActionBarTitle(R.string.toolbar_text_calendar);
+        ((CalendarActivity) getActivity(null)).setActionBarTitle(R.string.toolbar_text_calendar);
         return view;
     }
 

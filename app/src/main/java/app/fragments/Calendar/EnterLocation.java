@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import app.program.CalendarActivity;
 import app.program.MainActivity;
 import app.program.R;
 
@@ -28,7 +29,7 @@ public class EnterLocation extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_enter_location_fragment, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_enter_location);
+        ((CalendarActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_enter_location);
          location_list = getResources().getStringArray(R.array.location_list);
          spinner = (Spinner) view.findViewById(R.id.location_spinner);
          ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(),

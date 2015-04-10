@@ -3,24 +3,24 @@ package app.program;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import app.fragments.Forum.Forum;
+import app.fragments.Calendar.Calendar;
 
 /**
  * Not for public use
- * Created by FAIZ on 06-04-2015.
+ * Created by FAIZ on 10-04-2015.
  */
-public class ForumActivity extends BaseActivity {
+public class CalendarActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (findViewById(R.id.forumFrame) != null) {
+        if(findViewById(R.id.calendarFrame) != null){
             if (savedInstanceState != null) {
-                Forum forum = (Forum) getSupportFragmentManager().findFragmentByTag("FRAGMENT_FORUM");
+                Calendar calendar = (Calendar) getSupportFragmentManager().findFragmentByTag("FRAGMENT_CALENDAR");
             } else {
-                Forum forum = new Forum();
+                Calendar calendar = new Calendar();
                 getSupportFragmentManager().beginTransaction()
-                        .add(R.id.forumFrame, forum, "FRAGMENT_FORUM")
+                        .add(R.id.calendarFrame, calendar, "FRAGMENT_CALENDAR")
                         .commit();
             }
         }
@@ -28,7 +28,7 @@ public class ForumActivity extends BaseActivity {
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.activity_forum;
+        return R.layout.activity_calendar;
     }
 
     @Override

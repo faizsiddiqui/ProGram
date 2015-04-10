@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
+import app.program.CalendarActivity;
 import app.program.MainActivity;
 import app.program.R;
 
@@ -22,7 +23,7 @@ public class SelectCrop extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_select_crop_fragment, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle("Select Crop");
+        ((CalendarActivity) getActivity()).setActionBarTitle("Select Crop");
 
         cropPrompt = (Spinner) view.findViewById(R.id.cropPrompt);
         return view;

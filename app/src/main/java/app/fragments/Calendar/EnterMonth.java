@@ -14,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import app.program.CalendarActivity;
 import app.program.MainActivity;
 import app.program.R;
 
@@ -30,7 +32,7 @@ public class EnterMonth extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_enter_month_fragment, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle(R.string.calendar_enter_month);
+        ((CalendarActivity) getActivity()).setActionBarTitle(R.string.calendar_enter_month);
         image = (ImageView)view.findViewById(R.id.months_image);
         Month_image = getResources().obtainTypedArray(R.array.Month_image);
         Month_list = getResources().getStringArray(R.array.Month_List);
