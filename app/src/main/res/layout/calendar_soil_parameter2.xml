@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="16dp"
-    android:id="@+id/soilparameter1"
+    android:id="@+id/soilparameter2"
     android:weightSum="1"
     android:orientation="vertical">
     <TableRow>
@@ -22,14 +22,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="pH Value"
+            android:text="Nitrogen"
            android:layout_column="1"
             android:layout_weight="0.25"
           />
         <EditText
-         android:layout_width="200dp"
-         android:layout_height="50dp"
-         android:width="100px"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:width="100px"
+            android:hint="(in kg/ha)"
             android:layout_column="4" />
 
      </TableRow>
@@ -39,7 +40,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Electrical Conductivity "
+            android:text="Phosphorous"
             android:layout_column="1"
             android:layout_weight="0.25"
             />
@@ -47,7 +48,7 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:width="100px"
-            android:hint="(in dS/m) "
+            android:hint="(in kg/ha) "
             android:layout_column="4"
        />
 
@@ -58,7 +59,7 @@
         <TextView
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:text="Organic Carbon "
+            android:text="Potassium"
             android:layout_column="1"
             android:layout_weight="0.25"
             />
@@ -66,7 +67,7 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:width="100px"
-            android:hint="(in g/Kg)"
+            android:hint="(in kg/ha)"
             android:layout_column="4" />
 
     </TableRow>

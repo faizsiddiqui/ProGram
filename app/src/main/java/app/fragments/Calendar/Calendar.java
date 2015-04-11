@@ -30,21 +30,27 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
             "Select Crop",
            "Enter Location",
            "Enter Month",
-            "Soil Parameter 1"
+            "Soil Parameter 1",
+            "Soil Parameter 2",
+            "Soil Parameter 3"
     };
 
     String[] calendarText = {
             "Completed",
             "Completed",
-           "Completed",
-            "Completed"
+            "Completed",
+            "Completed",
+            "In Progress",
+            "In Progress"
     };
 
     int[] image = {
-          R.mipmap.drawer_tutorial,
-          R.mipmap.drawer_settings,
-          R.mipmap.drawer_about,
-            R.mipmap.drawer_about
+             R.mipmap.drawer_tutorial,
+             R.mipmap.drawer_settings,
+             R.mipmap.drawer_about,
+             R.mipmap.drawer_settings,
+             R.mipmap.drawer_settings,
+             R.mipmap.drawer_settings
 
     };
 
@@ -104,6 +110,23 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
                 SoilParameter1 sp1=new SoilParameter1();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.calendarFrame, sp1)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+
+            case "Soil Parameter 2":
+                SoilParameter2 sp2=new SoilParameter2();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.calendarFrame, sp2)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case "Soil Parameter 3":
+                SoilParameter3 sp3=new SoilParameter3();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.calendarFrame, sp3)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();
