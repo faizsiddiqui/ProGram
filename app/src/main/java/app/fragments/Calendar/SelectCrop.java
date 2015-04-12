@@ -31,13 +31,13 @@ public class SelectCrop extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_select_crop_fragment, container, false);
         ((CalendarActivity) getActivity()).setActionBarTitle("Select Crop");
-
-        cropPrompt = (Spinner) view.findViewById(R.id.cropPrompt);
-        btn1 = (Button) view.findViewById(R.id.jumpbtn1);
+        india_crops = getResources().getStringArray(R.array.india_crops);
+        cropPrompt = (Spinner) view.findViewById(R.id.crop_spinner);
+        btn1 = (Button) view.findViewById(R.id.jumpbtn);
         btn1.setOnClickListener(new ButtonEvent());
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(),
-                android.R.layout.simple_spinner_item,india_crops);
+                android.R.layout.simple_spinner_item, india_crops);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cropPrompt.setAdapter(dataAdapter);
         cropPrompt.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -56,11 +56,17 @@ public class SelectCrop extends Fragment {
         return view;
 
 
-    } private class ButtonEvent implements View.OnClickListener {
+    }
+    private class ButtonEvent implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
-            new EnterLocation();
+            EnterLocation location = new EnterLocation();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.calendarFrame, location)
+                    .addToBackStack(null)
+                    .commit();
+
         }
     }
 }

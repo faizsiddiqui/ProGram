@@ -55,11 +55,15 @@ public class EnterLocation extends Fragment {
             }
         });
         return view;
-    } private class ButtonEvent implements View.OnClickListener {
-
+    }
+    private class ButtonEvent implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            new EnterMonth();
+            EnterMonth month = new EnterMonth();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.calendarFrame, month)
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 };

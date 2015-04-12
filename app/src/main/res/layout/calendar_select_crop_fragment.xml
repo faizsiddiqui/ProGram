@@ -13,15 +13,16 @@
         android:src="@drawable/crops"/>
 
     <Spinner
+        android:id="@+id/crop_spinner"
         android:layout_marginTop="0dip"
         android:layout_marginBottom="20dip"
-        android:id="@+id/crop_spinner"
         android:spinnerMode="dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/india_crops"
         android:prompt="@string/crop_prompt"
         android:background="@android:drawable/btn_dropdown"/>
+
     <Button
         android:id="@+id/jumpbtn"
         android:text="Next"

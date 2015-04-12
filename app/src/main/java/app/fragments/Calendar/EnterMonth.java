@@ -62,7 +62,11 @@ public class EnterMonth extends Fragment {
 
         @Override
         public void onClick(View v) {
-            new SoilParameter1();
+            SoilParameter1 param = new SoilParameter1();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.calendarFrame, param)
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 
