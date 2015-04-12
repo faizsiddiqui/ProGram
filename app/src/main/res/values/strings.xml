@@ -88,6 +88,12 @@
         <item>tobacco</item>
     </string-array>
 
+    <!-- crop image settings -->
+    <integer-array name="Crops_image">
+        <item>@drawable/crops</item>
+    </integer-array>
+
+
     <!-- location settings -->
     <string name="toolbar_text_enter_location">Choose a Location</string>
     <string-array name="location_list">
@@ -121,6 +127,12 @@
         <item>Uttarakhand</item>
         <item>West Bengal</item>
     </string-array>
+
+    <!-- location image settings -->
+    <integer-array name="Location_image">
+        <item>@drawable/location</item>
+    </integer-array>
+
 
     <!-- month settings -->
     <string name="calendar_enter_month">Choose a Month</string>

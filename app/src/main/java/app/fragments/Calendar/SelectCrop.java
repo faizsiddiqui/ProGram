@@ -1,12 +1,17 @@
 package app.fragments.Calendar;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import app.program.CalendarActivity;
 import app.program.MainActivity;
@@ -17,7 +22,9 @@ import app.program.R;
  */
 public class SelectCrop extends Fragment {
     private Spinner cropPrompt;
-   // private float contentView;
+    public String[] india_crops;
+    private Button btn1;
+
 
     @Nullable
     @Override
@@ -26,20 +33,37 @@ public class SelectCrop extends Fragment {
         ((CalendarActivity) getActivity()).setActionBarTitle("Select Crop");
 
         cropPrompt = (Spinner) view.findViewById(R.id.cropPrompt);
+        btn1 = (Button) view.findViewById(R.id.jumpbtn1);
+        btn1.setOnClickListener(new ButtonEvent());
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(),
+                android.R.layout.simple_spinner_item,india_crops);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cropPrompt.setAdapter(dataAdapter);
+        cropPrompt.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                Toast.makeText(getActivity(), "Have to enter a crop", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         return view;
-    }
-    @SuppressWarnings("unused")
 
-    public Spinner getCropPrompt() {
-        return cropPrompt;
-    }
-    @SuppressWarnings("unused")
 
-    public void setCropPrompt(Spinner cropPrompt) {
-        this.cropPrompt = cropPrompt;
+    } private class ButtonEvent implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            new EnterLocation();
+        }
     }
 }
-
 
 
 

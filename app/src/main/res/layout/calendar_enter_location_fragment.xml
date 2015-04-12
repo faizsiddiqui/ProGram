@@ -5,7 +5,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/months_image"
+        android:id="@+id/locations_image"
         android:layout_gravity="center_vertical"
         android:scaleType="center"
         android:src="@drawable/location" />
@@ -21,21 +21,23 @@
         android:entries="@array/location_list"
         android:background="@android:drawable/btn_dropdown"/>
 
-       <TextView
-        android:id="@+id/info_text"
+
+    <Button
+        android:text="NEXT"
+        android:layout_marginTop="130dip"
+        android:id="@+id/jumpbtn2"
         android:layout_width="match_parent"
-        android:layout_height="299dp"
-        android:layout_marginTop="20dip"
-        android:layout_marginBottom="0dip"
-        android:text="Crops which can be grown here are :
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="jumpToPage"/>
 
-
-        1. Wheat
-
-        2. Rice
-
-        3. Soyabean
-      "
-        android:editable="true" />
-
+    <FrameLayout android:id="@+id/listFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

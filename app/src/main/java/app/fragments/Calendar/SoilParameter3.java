@@ -14,6 +14,7 @@ import app.program.R;
  * Created by admin on 11-04-2015.
  */
 public class SoilParameter3 extends Fragment{
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,@Nullable Bundle savedInstanceState) {

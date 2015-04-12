@@ -86,6 +86,19 @@
             android:layout_marginRight="20dip"
             android:layout_span="3" />
     </TableRow>
+    <Button
+        android:id="@+id/jumpbtn4"
+        android:text="Next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="jumpToPage"/>
 
 
 </TableLayout>

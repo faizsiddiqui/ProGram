@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class EnterMonth extends Fragment {
     private Spinner spinner;
     private ImageView image;
     public TypedArray Month_image;
+    private Button btn3;
 
     @Nullable
     @Override
@@ -37,6 +39,8 @@ public class EnterMonth extends Fragment {
         Month_image = getResources().obtainTypedArray(R.array.Month_image);
         Month_list = getResources().getStringArray(R.array.Month_List);
         spinner = (Spinner) view.findViewById(R.id.month_spinner);
+        btn3 = (Button) view.findViewById(R.id.jumpbtn3);
+        btn3.setOnClickListener(new ButtonEvent());
         image.setImageResource(Month_image.getResourceId(spinner.getSelectedItemPosition(), -1));
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(),
                 android.R.layout.simple_spinner_item,Month_list);
@@ -54,6 +58,12 @@ public class EnterMonth extends Fragment {
             }
         });
         return view;
+    } private class ButtonEvent implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            new SoilParameter1();
+        }
     }
 
 }
