@@ -22,21 +22,24 @@
         android:entries="@array/Month_List"
         android:background="@android:drawable/btn_dropdown"
         />
-    <Button
-        android:text="NEXT"
-        android:layout_marginTop="100dip"
-        android:layout_marginBottom="0dip"
-        android:id="@+id/jumpbtn3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:background="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="jumpToPage" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/jumpbtn3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:text="NEXT"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="jumpToPage"/>
+    </RelativeLayout>
+
 
     <FrameLayout android:id="@+id/listFragment"
         android:layout_width="wrap_content"
