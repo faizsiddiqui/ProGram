@@ -30,6 +30,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
             "Select Crop",
            "Enter Location",
            "Enter Month",
+            "Suggestions",
             "Soil Parameter 1",
             "Soil Parameter 2",
             "Soil Parameter 3"
@@ -39,6 +40,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
             "Completed",
             "Completed",
             "Completed",
+            "In Progress",
             "Completed",
             "In Progress",
             "In Progress"
@@ -48,6 +50,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
              R.mipmap.drawer_tutorial,
              R.mipmap.drawer_settings,
              R.mipmap.drawer_about,
+            R.mipmap.drawer_settings,
              R.mipmap.drawer_settings,
              R.mipmap.drawer_settings,
              R.mipmap.drawer_settings
@@ -106,6 +109,15 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
                         .addToBackStack(null)
                         .commit();
                  break;
+            case "Suggestions":
+               Suggestion suggest = new Suggestion();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.calendarFrame, suggest)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+
             case "Soil Parameter 1":
                 SoilParameter1 sp1=new SoilParameter1();
                 getFragmentManager().beginTransaction()
