@@ -24,17 +24,11 @@
 
     <Button
         android:text="NEXT"
-        android:layout_marginTop="100dip"
         android:id="@+id/jumpbtn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorWhite"
         android:background="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:onClick="jumpToPage"/>
 
     <FrameLayout android:id="@+id/listFragment"

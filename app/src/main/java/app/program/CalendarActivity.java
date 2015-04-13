@@ -29,11 +29,11 @@ public class CalendarActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         if (findViewById(R.id.calendarFrame) != null) {
             if (savedInstanceState != null) {
-                Calendar calendar = (Calendar) getSupportFragmentManager().findFragmentByTag("FRAGMENT_CALENDAR");
+                SelectCrop crop = (SelectCrop) getSupportFragmentManager().findFragmentByTag("FRAGMENT_SELECT_CROP");
             } else {
-                Calendar calendar = new Calendar();
+                SelectCrop crop = new SelectCrop();
                 getSupportFragmentManager().beginTransaction()
-                        .add(R.id.calendarFrame, calendar, "FRAGMENT_CALENDAR")
+                        .add(R.id.calendarFrame, crop, "FRAGMENT_SELECT_CROP")
                         .commit();
             }
 
