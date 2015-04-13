@@ -13,22 +13,18 @@
         android:textSize="15dp"/>
 
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/jumpbtns"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:text="Go for refined results via soil test analysis"
-            android:background="@color/colorPrimary"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:onClick="jumpToPage"/>
-    </RelativeLayout>
+    <Button
+        android:id="@+id/jumpbtns"
+        android:text="Go for refined results via soil test analysis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="jumpToPage"/>
 
 </LinearLayout>
