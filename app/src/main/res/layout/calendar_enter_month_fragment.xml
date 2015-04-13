@@ -7,15 +7,14 @@
 
     <ImageView
         android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="250dip"
         android:id="@+id/months_image"
         android:layout_gravity="center_vertical"
         android:scaleType="center"
-        android:layout_weight="0.54"
         android:src="@drawable/months"/>
 
     <Spinner
-        android:layout_marginTop="0dip"
+        android:layout_marginTop="12dip"
         android:spinnerMode="dialog"
         android:id="@+id/month_spinner"
         android:layout_width="match_parent"
@@ -25,7 +24,7 @@
         />
     <Button
         android:text="NEXT"
-        android:layout_marginTop="12dip"
+        android:layout_marginTop="100dip"
         android:layout_marginBottom="0dip"
         android:id="@+id/jumpbtn3"
         android:layout_width="match_parent"

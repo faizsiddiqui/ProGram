@@ -24,7 +24,7 @@
 
     <Button
         android:text="NEXT"
-        android:layout_marginTop="130dip"
+        android:layout_marginTop="100dip"
         android:id="@+id/jumpbtn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
