@@ -24,21 +24,27 @@ import app.program.R;
  */
 public class SoilParameter1 extends Fragment {
     private Button btn4;
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_soil_parameter1, container, false);
         ((CalendarActivity) getActivity()).setActionBarTitle("Soil Parameters");
         btn4 = (Button) view.findViewById(R.id.jumpbtn4);
         btn4.setOnClickListener(new ButtonEvent());
         return view;
 
-    } private class ButtonEvent implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            new SoilParameter2();
-        }
     }
 
+    private class ButtonEvent implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            SoilParameter2 param = new SoilParameter2();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.calendarFrame, param)
+                    .addToBackStack(null)
+                    .commit();
+
+        }
+    }
 }
