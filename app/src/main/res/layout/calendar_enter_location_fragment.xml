@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical" >
     <ImageView
@@ -12,7 +12,7 @@
 
 
     <Spinner
-        android:layout_marginTop="20dip"
+        android:layout_marginTop="200dip"
         android:id="@+id/location_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -23,6 +23,7 @@
 
 
     <Button
+        android:layout_marginTop="450dp"
         android:text="NEXT"
         android:id="@+id/jumpbtn2"
         android:layout_width="match_parent"
@@ -34,4 +35,4 @@
     <FrameLayout android:id="@+id/listFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</LinearLayout>
+</RelativeLayout>
