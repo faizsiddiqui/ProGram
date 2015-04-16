@@ -21,6 +21,10 @@ import app.program.R;
  */
 public class Calendar extends Fragment implements ForumView.OnItemClickListener {
 
+    public static int Hour_of_day;
+    public static int minute;
+    public static int second;
+    private static Calendar instance;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private ForumView mAdapter;
@@ -56,6 +60,9 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
              R.mipmap.drawer_settings
 
     };
+    
+    
+
 
     @Nullable
     @Override
@@ -144,5 +151,15 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
                         .commit();
                 break;
         }
+    }
+
+    public void set(int year, int month, int day) {
+    }
+
+    public void set(int hour_of_day, int i) {
+    }
+
+    public static Calendar getInstance() {
+        return instance;
     }
 }

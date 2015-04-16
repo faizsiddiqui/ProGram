@@ -6,5 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="267dp"
         android:id="@+id/calendarView" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        />
+    <DatePicker
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:id ="@+id/scheduleTimePicker"/>
+
 
 </LinearLayout>

@@ -9,4 +9,5 @@
     <item name="calendarIcon" type="id" />
     <item name="cropPrompt" type="id" />
     <item name="jumpbtn1" type="id" />
+    <item name="scheduleTimePicker" type="id" />
 </resources>
