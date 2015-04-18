@@ -7,7 +7,6 @@
         android:id="@+id/splash_background_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/splash_background"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
 
@@ -15,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/keyLine3"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/splash_program_logo"
@@ -33,7 +33,8 @@
             android:layout_marginTop="@dimen/keyLine1"
             android:text="@string/app_name"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/colorWhite"/>
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryText"/>
 
         <TextView
             android:id="@+id/splash_app_description"
@@ -44,7 +45,7 @@
             android:layout_marginTop="@dimen/keyLine1"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/splash_app_description"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorSecondaryText"
             android:gravity="center"/>
 
         <Button

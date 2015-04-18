@@ -7,7 +7,6 @@
         android:id="@+id/splash_background_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/splash_background"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
 
@@ -15,13 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/keyLine3"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/language_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/login_image"
+            android:background="@mipmap/language"
             android:layout_centerHorizontal="true"/>
 
         <TextView
@@ -30,10 +30,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/language_image"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/keyLine2"
+            android:layout_marginTop="@dimen/keyLine3"
             android:text="@string/language_lang"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/colorWhite"/>
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryText"/>
 
         <TextView
             android:id="@+id/language_description"
@@ -44,7 +45,7 @@
             android:layout_marginTop="@dimen/keyLine1"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/language_description"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorSecondaryText"
             android:gravity="center"/>
 
         <Button

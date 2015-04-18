@@ -93,7 +93,6 @@
         <item>@drawable/crops</item>
     </integer-array>
 
-
     <!-- location settings -->
     <string name="toolbar_text_enter_location">Choose a Location</string>
     <string-array name="location_list">

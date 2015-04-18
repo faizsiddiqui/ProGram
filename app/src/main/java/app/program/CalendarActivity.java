@@ -15,6 +15,7 @@ import android.view.View;
 
 import app.fragments.Calendar.Calendar;
 import app.fragments.Calendar.SelectCrop;
+import app.fragments.SCalendar.Location;
 
 import static android.app.PendingIntent.getActivity;
 
@@ -29,14 +30,22 @@ public class CalendarActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         if (findViewById(R.id.calendarFrame) != null) {
             if (savedInstanceState != null) {
+                Location location = (Location) getSupportFragmentManager().findFragmentByTag("FRAGMENT_LOCATION");
+            } else {
+                Location location = new Location();
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.calendarFrame, location, "FRAGMENT_LOCATION")
+                        .commit();
+            }
+
+            /*if (savedInstanceState != null) {
                 SelectCrop crop = (SelectCrop) getSupportFragmentManager().findFragmentByTag("FRAGMENT_SELECT_CROP");
             } else {
                 SelectCrop crop = new SelectCrop();
                 getSupportFragmentManager().beginTransaction()
                         .add(R.id.calendarFrame, crop, "FRAGMENT_SELECT_CROP")
                         .commit();
-            }
-
+            } */
 
         }
     }
