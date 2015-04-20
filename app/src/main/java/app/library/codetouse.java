@@ -7,7 +7,7 @@ public class codetouse {
 
     // maine yahan code likhke de dunga tum log use kar lena jaise bhi karna hai
 
-    private int marks[];
+    private double marks[];
     private String crop[]; // is array me mujhe sare crops chahie from the database
     private int length;
 
@@ -15,7 +15,7 @@ public class codetouse {
 
         int i = lowerIndex + 1;
         int j = higherIndex;
-        int pivot = marks[0];
+        double pivot = marks[0];
 
         while (i <= j) {
 
@@ -41,7 +41,7 @@ public class codetouse {
     }
 
     private void exchangeNumbers(int i, int j) {
-        int temp1 = marks[i];
+        double temp1 = marks[i];
         marks[i] = marks[j];
         marks[j] = temp1;
         String temp2 = crop[i];
@@ -54,13 +54,16 @@ public class codetouse {
     double a[]=new double[]{10,9.2,9,5,4.7,4.5,2,1.9,1.8,1.7,1.6};
     double values[]; //esme le aana sari values jo user enter kare and put 999 where value is not entered
     int i;
-
+    double x,y,k,lowrange[],highrange[],m[],lowestrange[],highestrange[];
 
     private void marksnikalo() {
 
 
-        double x,y,k,lowrange=0,highrange=0,m=0,lowestrange=0,highestrange=0;
+        
 
+        for (i=0;i<11;i++){
+            marks[i]=lowrange[i]=lowestrange[i]=m[i]=highrange[i]=highestrange[i]=0;
+        }
         /*lowrange vo apni range jo hogi uski lower value hai aur highrange uski upper value
         m uski optimum value hai jahan apanko multiplier 1 chahie
         aur lowest aur highest vo values hai jahan apanko multiplier 0 karna hai
@@ -68,22 +71,22 @@ public class codetouse {
 
         for (i=0;i<11;i++) {
             if (values[i] != 999) {
-                if (values[i] < lowrange && values[i] > highrange) {
-                    if (values[i] < m) {
-                        k = 1 / ((lowestrange - m) * (lowestrange - m));
+                if (values[i] < lowrange[i] && values[i] > highrange[i]) {
+                    if (values[i] < m[i]) {
+                        k = 1 / ((lowestrange[i] - m[i]) * (lowestrange[i] - m[i]));
                     } else {
-                        k = 1 / ((highestrange - m) * (highestrange - m));
+                        k = 1 / ((highestrange[i] - m[i]) * (highestrange[i] - m[i]));
                     }
 
                 } else {
-                    if (values[i] < m) {
-                        k = (0.87 - 1) / ((lowrange - m) * (lowrange - m));
+                    if (values[i] < m[i]) {
+                        k = (0.87 - 1) / ((lowrange[i] - m[i]) * (lowrange[i] - m[i]));
                     } else {
-                        k = (0.87 - 1) / ((highrange - m) * (highrange - m));
+                        k = (0.87 - 1) / ((highrange[i] - m[i]) * (highrange[i] - m[i]));
                     }
                 }
 
-                y = 1 - (((values[i] - m) * (values[i] - m)) / k);
+                y = 1 - (((values[i] - m[i]) * (values[i] - m[i])) / k);
                 marks[i] += a[i] * y;
             }
         }
