@@ -32,8 +32,7 @@ public class Location extends Fragment {
 
     TextView locationPresent;
     Button locationChange, locationContinue;
-
-    String latitude, longitude;
+    String latitude, longitude, state;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,11 +62,16 @@ public class Location extends Fragment {
             @Override
             public void onClick(View view) {
                 //save results in calendar database
-                SelectCrop crop = new SelectCrop();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.calendarFrame, crop)
-                        .addToBackStack(null)
-                        .commit();
+                state = locationPresent.getText().toString();
+                if (!state.equals("Fetching current state.") && !state.equals("Can't get Address!")) {
+                    SelectCrop crop = SelectCrop.newInstance(state);
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.calendarFrame, crop)
+                            .addToBackStack(null)
+                            .commit();
+                } else {
+                    Toast.makeText(getActivity(), "First Enter any location.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return view;
