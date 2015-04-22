@@ -16,19 +16,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/keyLine2"
-            android:background="@mipmap/login_image"/>
+            android:background="@mipmap/ic_base_login_sign_up"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/keyLine2"
-            android:textSize="@dimen/login_login"
-            android:textStyle="bold"
             android:gravity="center"
-            android:text="@string/login_login"/>
+            android:text="@string/login_login"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryText"/>
 
         <android.support.v7.internal.widget.TintEditText
             android:id="@+id/login_id"
+            android:inputType="phone"
+            android:maxLength="10"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/keyLine2"
@@ -44,7 +47,7 @@
             android:inputType="textPassword"
             android:textColorHint="@color/colorCardText"/>
 
-        <Button
+        <android.support.v7.internal.widget.TintButton
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

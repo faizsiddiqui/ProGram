@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +30,9 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import app.adapters.CardView;
+import app.adapters.SchemesCardView;
 import app.library.VolleySingleton;
 import app.program.ForumActivity;
-import app.program.MainActivity;
 import app.program.R;
 import jp.wasabeef.recyclerview.animators.adapters.SlideInBottomAnimationAdapter;
 
@@ -39,14 +40,14 @@ import jp.wasabeef.recyclerview.animators.adapters.SlideInBottomAnimationAdapter
  * Not for public use
  * Created by FAIZ on 22-02-2015.
  */
-public class Schemes extends Fragment implements CardView.OnItemClickListener {
+public class Schemes extends Fragment implements SchemesCardView.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private CardView mAdapter;
+    private SchemesCardView mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    String[] name, intro, icon;
+    String[] name, category, icon, releaseDate;
 
     private static String URL = "http://buykerz.com/program/v1/api/schemes";
     private static final String KEY_ID = "id";
@@ -56,7 +57,7 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
     private static final String KEY_CENTRAL = "central";
     private static final String KEY_COMPONENTS = "components";
     private static final String KEY_INTRODUCTION = "introduction";
-    private static final String KEY__TARGET = "target_group";
+    private static final String KEY__CATEGORY = "category";
     private static final String KEY__ELIGIBILITY = "eligibility_criteria";
     private static final String KEY__SUPPORT = "support_provided";
     private static final String KEY__CONTACT = "contact_details";
@@ -74,7 +75,7 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        setAdapter();
+        setAdapter(true); //set Adapter with cache
         getFloatingActionButtonView(view);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
@@ -84,7 +85,7 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        setAdapter();
+                        setAdapter(false); //set Adapter without cache
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }, 5000);
@@ -93,37 +94,45 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
         return view;
     }
 
-    private void setAdapter() {
-        Cache cache = VolleySingleton.getInstance().getRequestQueue().getCache();
-        Cache.Entry entry = cache.get(URL);
-        if (entry != null) {
-            try {
-                String data = new String(entry.data, "UTF-8");
+    private void setAdapter(Boolean checkCache) {
+        if (checkCache) {
+            Cache cache = VolleySingleton.getInstance().getRequestQueue().getCache();
+            Cache.Entry entry = cache.get(URL);
+            if (entry != null) {
                 try {
-                    parseJsonFeed(new JSONObject(data));
-                } catch (JSONException e) {
+                    String data = new String(entry.data, "UTF-8");
+                    try {
+                        parseJsonFeed(new JSONObject(data));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
+            } else {
+                requestWhenCacheMiss();
             }
         } else {
-            JsonObjectRequest jsonReq = new JsonObjectRequest(Method.GET,
-                    URL, null, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    if (response != null) {
-                        parseJsonFeed(response);
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getActivity(), "Error fetching Schemes.", Toast.LENGTH_SHORT).show();
-                }
-            });
-            VolleySingleton.getInstance().addToRequestQueue(jsonReq);
+            requestWhenCacheMiss();
         }
+    }
+
+    private void requestWhenCacheMiss() {
+        JsonObjectRequest request = new JsonObjectRequest(Method.GET,
+                URL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (response != null) {
+                    parseJsonFeed(response);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), "Error fetching Schemes.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        VolleySingleton.getInstance().addToRequestQueue(request);
     }
 
     private void parseJsonFeed(JSONObject response) {
@@ -134,26 +143,30 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
                 Boolean res = response.getBoolean(KEY_SUCCESS);
                 if (res) {
                     final ArrayList<String> titles = new ArrayList<String>();
-                    final ArrayList<String> description = new ArrayList<String>();
+                    final ArrayList<String> cat = new ArrayList<String>();
                     final ArrayList<String> images = new ArrayList<String>();
+                    final ArrayList<String> dates = new ArrayList<String>();
 
                     JSONArray schemes = response.getJSONArray("schemes");
 
                     for (Integer i = 0; i <= schemes.length() - 1; i++) {
                         JSONObject scheme = schemes.getJSONObject(i);
                         String name = scheme.getString(KEY_NAME);
-                        String intro = scheme.getString(KEY_INTRODUCTION);
+                        String category = scheme.getString(KEY__CATEGORY);
                         String img = scheme.getString(KEY_IMAGE);
+                        String release = scheme.getString(KEY_RELEASED);
                         titles.add(name);
-                        description.add(intro);
+                        cat.add(category);
                         images.add(img);
+                        dates.add(release);
                     }
 
                     name = titles.toArray(new String[titles.size()]);
-                    intro = description.toArray(new String[description.size()]);
+                    category = cat.toArray(new String[cat.size()]);
                     icon = images.toArray(new String[images.size()]);
+                    releaseDate = dates.toArray(new String[dates.size()]);
 
-                    mAdapter = new CardView(name, intro, icon);
+                    mAdapter = new SchemesCardView(name, icon, category, releaseDate);
                     SlideInBottomAnimationAdapter alphaAdapter = new SlideInBottomAnimationAdapter(mAdapter);
                     alphaAdapter.setDuration(1000);
                     mRecyclerView.setAdapter(alphaAdapter);
@@ -167,7 +180,7 @@ public class Schemes extends Fragment implements CardView.OnItemClickListener {
 
     @Override
     public void onItemClick(View view, int position) {
-        Post schemePost = Post.newInstance(name[position], intro[position], icon[position]);
+        Post schemePost = Post.newInstance(name[position], category[position], icon[position]);
         getFragmentManager().beginTransaction()
                 .replace(R.id.forumFrame, schemePost)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/keyLine2"
+                android:layout_marginLeft="@dimen/keyLine4"
                 android:layout_marginStart="@dimen/keyLine4">
 
                <TextView

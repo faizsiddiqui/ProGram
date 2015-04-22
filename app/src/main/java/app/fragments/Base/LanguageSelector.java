@@ -1,12 +1,11 @@
 package app.fragments.Base;
 
-import android.content.Intent;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,14 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.Locale;
 
 import app.program.R;
-import app.program.SplashActivity;
 
 /**
  * Not for public use
@@ -33,11 +30,14 @@ public class LanguageSelector extends Fragment {
     Locale mLocale;
     Button mLanguageSelector;
 
-    private static final int LANGUAGE_SETTINGS = 1;
+    public static final String PREFERENCES = "ProGramPrefs";
+    SharedPreferences sharedpreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.base_language_selector_fragment, container, false);
+        sharedpreferences = getActivity().getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
+
         mLanguageSelector = (Button) view.findViewById(R.id.language_button);
         mLanguageSelector.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +45,7 @@ public class LanguageSelector extends Fragment {
                 selectLanguage();
             }
         });
+
         return view;
     }
 
@@ -55,11 +56,15 @@ public class LanguageSelector extends Fragment {
                 .itemsCallbackSingleChoice(1, new MaterialDialog.ListCallback() {
                     @Override
                     public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        Toast.makeText(getActivity(), text + " selected.", Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
                         if (which == 0) {
                             setLocale("hi");
+                            editor.putString("language", "hi");
+                            editor.commit();
                         } else if (which == 1) {
                             setLocale("en");
+                            editor.putString("language", "en");
+                            editor.commit();
                         }
                     }
                 })
@@ -67,7 +72,7 @@ public class LanguageSelector extends Fragment {
                 .show();
     }
 
-    private void setLocale(String lang) {
+    public void setLocale(String lang) {
         mLocale = new Locale(lang);
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
@@ -91,22 +96,6 @@ public class LanguageSelector extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
-        }, 1000 ); //SplashActivity.SPLASH_TIME_OUT
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case LANGUAGE_SETTINGS:
-                showUserSettings();
-                break;
-
-        }
-    }
-
-    private void showUserSettings() {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        sharedPrefs.getString("pref_language", "NULL");
+        }, 1000); //SplashActivity.SPLASH_TIME_OUT
     }
 }

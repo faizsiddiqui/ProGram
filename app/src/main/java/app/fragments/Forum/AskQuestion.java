@@ -58,7 +58,7 @@ public class AskQuestion extends Fragment {
             public void onClick(View v) {
                 Title = questionTitle.getText().toString();
                 Description = questionDescription.getText().toString();
-                if (db.isUserLoggedIn() || Title.isEmpty() || Description.isEmpty()) {
+                if (!db.isUserLoggedIn() || Title.isEmpty() || Description.isEmpty()) {
                     Toast.makeText(getActivity(), "Login/Title/Description Empty.", Toast.LENGTH_SHORT).show();
                 } else {
                     postQuestion(); //post question to server

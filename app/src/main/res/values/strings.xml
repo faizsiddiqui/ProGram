@@ -31,7 +31,7 @@
 
     <!-- Login settings -->
     <string name="login_password">Password</string>
-    <string name="login_id">Mobile or Email</string>
+    <string name="login_id">Mobile</string>
     <string name="login_login">Login</string>
     <string name="login_sign_up">Don\'t have a account?</string>
 
@@ -39,10 +39,22 @@
     <string name="sign_up_mobile">Mobile</string>
     <string name="sign_up_name">Name</string>
     <string name="sign_up_password">Password</string>
-    <string name="sign_up_location">Location</string>
+    <string name="sign_up_state">State</string>
     <string name="sign_up_email">Email</string>
     <string name="sign_up_sign_up">Sign Up</string>
+    <string name="sign_up_category">Category</string>
+    <string name="sign_up_gender">Gender</string>
+    <string name="sign_up_age">Age</string>
     <string name="sign_up_login">Do you have an account?</string>
+    <string-array name="sign_up_category">
+        <item>Farmer</item>
+        <item>Researcher</item>
+        <item>Student</item>
+    </string-array>
+    <string-array name="sign_up_gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 
     <!-- Language selector settings -->
     <string name="language_lang">Language</string>

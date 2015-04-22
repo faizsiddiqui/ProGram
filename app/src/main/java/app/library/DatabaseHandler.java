@@ -24,11 +24,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_NAME = "name";
     private static final String KEY_MOBILE = "mobile";
     private static final String KEY_EMAIL = "email";
-    private static final String KEY_LOCATION = "location";
-    private static final String KEY_LANGUAGE = "language";
-    private static final String KEY_IMAGE = "image";
-    private static final String KEY_AGE = "age";
     private static final String KEY_STATE = "state";
+    private static final String KEY_CATEGORY = "category";
+    private static final String KEY_GENDER = "gender";
+    private static final String KEY_AGE = "age";
     private static final String KEY_API = "api_key";
     private static final String KEY_JOINED = "joined";
 
@@ -40,13 +39,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_LOGIN + "("
                 + KEY_INTERNAL_ID + " INTEGER PRIMARY KEY,"
+                + KEY_ID + " INTEGER UNIQUE,"
                 + KEY_NAME + " TEXT,"
                 + KEY_MOBILE + " TEXT UNIQUE,"
                 + KEY_EMAIL + " TEXT UNIQUE,"
-                + KEY_LOCATION +  " TEXT,"
-                + KEY_IMAGE + " TEXT,"
+                + KEY_STATE +  " TEXT,"
+                + KEY_CATEGORY + " TEXT,"
+                + KEY_GENDER + " TEXT,"
+                + KEY_AGE + " TEXT,"
                 + KEY_API + " TEXT,"
-                + KEY_ID + " TEXT,"
                 + KEY_JOINED + " TEXT" + ")";
         sqLiteDatabase.execSQL(CREATE_LOGIN_TABLE);
     }
@@ -59,18 +60,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Create tables again
         onCreate(sqLiteDatabase);
     }
-
-    public void addUser(String name, String mobile, String email, String location , String image,
-                        String id, String api_key, String joined) {
+    public void addUser(String id, String name, String mobile, String email, String state , String category,
+                        String gender, String age, String api_key, String joined) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_ID, id); // id
         values.put(KEY_NAME, name); // Name
         values.put(KEY_MOBILE, mobile); // Mobile
         values.put(KEY_EMAIL, email); // Email
-        values.put(KEY_LOCATION, location); // Location
-        values.put(KEY_IMAGE, image);
-        values.put(KEY_ID, id); // id
+        values.put(KEY_STATE, state); // Location
+        values.put(KEY_CATEGORY, category); //category
+        values.put(KEY_GENDER, gender); //gender
+        values.put(KEY_AGE, age); //age
         values.put(KEY_API, api_key); // api_key
         values.put(KEY_JOINED, joined); // joined At
 
@@ -96,14 +98,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Move to first row
         cursor.moveToFirst();
         if(cursor.getCount() > 0){
-            user.put("name", cursor.getString(1));
-            user.put("mobile", cursor.getString(2));
-            user.put("email", cursor.getString(3));
-            user.put("location", cursor.getString(4));
-            user.put("image", cursor.getString(5));
-            user.put("id", cursor.getString(6));
-            user.put("api_key", cursor.getString(7));
-            user.put("joined", cursor.getString(8));
+            user.put(KEY_ID, cursor.getString(1));
+            user.put(KEY_NAME, cursor.getString(2));
+            user.put(KEY_MOBILE, cursor.getString(3));
+            user.put(KEY_EMAIL, cursor.getString(4));
+            user.put(KEY_STATE, cursor.getString(5));
+            user.put(KEY_CATEGORY, cursor.getString(6));
+            user.put(KEY_GENDER, cursor.getString(7));
+            user.put(KEY_AGE, cursor.getString(8));
+            user.put(KEY_API, cursor.getString(9));
+            user.put(KEY_JOINED, cursor.getString(10));
         }
         cursor.close();
         db.close();

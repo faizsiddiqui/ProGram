@@ -3,10 +3,14 @@ package app.program;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
+
+import java.util.Locale;
 
 import app.fragments.Base.LanguageSelector;
 
@@ -16,7 +20,7 @@ import app.fragments.Base.LanguageSelector;
  */
 public class SplashActivity extends FragmentActivity {
 
-    public final static int SPLASH_TIME_OUT = 5000;
+    Locale mLocale;
     public static final String PREFERENCES = "ProGramPrefs";
     SharedPreferences sharedpreferences;
 
@@ -42,6 +46,15 @@ public class SplashActivity extends FragmentActivity {
                 }
             }
         } else {
+            String lang = sharedpreferences.getString("language", "en");
+
+            mLocale = new Locale(lang);
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration configuration = res.getConfiguration();
+            configuration.locale = mLocale;
+            res.updateConfiguration(configuration, dm);
+
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
             finish();

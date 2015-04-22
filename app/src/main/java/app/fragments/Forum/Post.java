@@ -13,7 +13,6 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import app.library.VolleySingleton;
 import app.program.ForumActivity;
-import app.program.MainActivity;
 import app.program.R;
 
 /**
@@ -25,13 +24,13 @@ public class Post extends Fragment {
     private static final String POST_TITLE = "title";
     private static final String POST_DESCRIPTION = "description";
     private static final String POST_IMAGE = "image";
-    String title,description,image;
+    String title, description, image;
 
     TextView titleView, descriptionView;
     NetworkImageView imageView;
     ImageLoader mImageLoader;
 
-    public static Post newInstance(String title, String description, String image){
+    public static Post newInstance(String title, String description, String image) {
         Post post = new Post();
         Bundle bundle = new Bundle();
         bundle.putString(POST_TITLE, title);
@@ -45,7 +44,7 @@ public class Post extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mImageLoader = VolleySingleton.getInstance().getImageLoader();
-        if(getArguments() != null){
+        if (getArguments() != null) {
             title = getArguments().getString(POST_TITLE);
             description = getArguments().getString(POST_DESCRIPTION);
             image = getArguments().getString(POST_IMAGE);

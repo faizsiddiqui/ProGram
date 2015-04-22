@@ -70,7 +70,6 @@ public class Location extends Fragment {
                         .commit();
             }
         });
-
         return view;
     }
 
