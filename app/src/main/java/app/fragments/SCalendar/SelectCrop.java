@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import app.adapters.CalendarSelectCropCardView;
+import app.fragments.Calendar.EnterMonth;
+import app.program.CalendarActivity;
 import app.program.R;
 
 /**
@@ -18,32 +20,66 @@ import app.program.R;
  */
 public class SelectCrop extends Fragment {
 
-    Button soilTest;
+    Button calendarSoilTest;
+
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     CalendarSelectCropCardView mAdapter;
 
+    private static final String STATE = "state";
+    String state;
+
+    public static SelectCrop newInstance(String state){
+        SelectCrop selectCrop = new SelectCrop();
+        Bundle bundle = new Bundle();
+        bundle.putString(STATE, state);
+        selectCrop.setArguments(bundle);
+        return selectCrop;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(getArguments() != null){
+            state = getArguments().getString(STATE);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.s_calendar_select_crop, container, false);
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        ((CalendarActivity) getActivity()).setActionBarTitle("Choose a crop");
 
+        calendarSoilTest = (Button) view.findViewById(R.id.calendar_soil_test);
+
+        mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView = (RecyclerView) view.findViewById(R.id.calendar_select_crop);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        setAdapter();
+        calendarSoilTest.setOnClickListener(new ToSoilTest());
 
+        setAdapter();
         return view;
     }
 
     private void setAdapter() {
 
         String[] name = {"Crop 1", "Crop 2"};
-        String[] images = {"https://d13yacurqjgara.cloudfront.net/users/134564/screenshots/2025052/dbbb1.png",
-                "https://d13yacurqjgara.cloudfront.net/users/134564/screenshots/2025052/dbbb1.png"};
+        String[] images = {"", ""};
 
-        mAdapter = new CalendarSelectCropCardView(name, name);
+        mAdapter = new CalendarSelectCropCardView(name, images);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private class ToSoilTest implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            EnterMonth month = new EnterMonth();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.calendarFrame, month)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 }

@@ -64,7 +64,7 @@ public class Location extends Fragment {
                 //save results in calendar database
                 state = locationPresent.getText().toString();
                 if (!state.equals("Fetching current state.") && !state.equals("Can't get Address!")) {
-                    SelectCrop crop = SelectCrop.newInstance(state);
+                    SelectCrop crop = SelectCrop.newInstance(state) ;
                     getFragmentManager().beginTransaction()
                             .replace(R.id.calendarFrame, crop)
                             .addToBackStack(null)
