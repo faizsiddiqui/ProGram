@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,6 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-import app.adapters.CardView;
 import app.adapters.SchemesCardView;
 import app.library.VolleySingleton;
 import app.program.ForumActivity;
@@ -47,7 +45,7 @@ public class Schemes extends Fragment implements SchemesCardView.OnItemClickList
     private SchemesCardView mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    String[] name, category, icon, releaseDate;
+    String[] image, name, category, introduction, component, support, eligibility, contact, releaseDate;
 
     private static String URL = "http://buykerz.com/program/v1/api/schemes";
     private static final String KEY_ID = "id";
@@ -57,10 +55,10 @@ public class Schemes extends Fragment implements SchemesCardView.OnItemClickList
     private static final String KEY_CENTRAL = "central";
     private static final String KEY_COMPONENTS = "components";
     private static final String KEY_INTRODUCTION = "introduction";
-    private static final String KEY__CATEGORY = "category";
-    private static final String KEY__ELIGIBILITY = "eligibility_criteria";
-    private static final String KEY__SUPPORT = "support_provided";
-    private static final String KEY__CONTACT = "contact_details";
+    private static final String KEY_CATEGORY = "category";
+    private static final String KEY_ELIGIBILITY = "eligibility_criteria";
+    private static final String KEY_SUPPORT = "support_provided";
+    private static final String KEY_CONTACT = "contact_details";
     private static final String KEY_PUBLISHED = "published";
     private static final String KEY_RELEASED = "released";
 
@@ -142,31 +140,52 @@ public class Schemes extends Fragment implements SchemesCardView.OnItemClickList
             if (response.getString(KEY_SUCCESS) != null) {
                 Boolean res = response.getBoolean(KEY_SUCCESS);
                 if (res) {
-                    final ArrayList<String> titles = new ArrayList<String>();
-                    final ArrayList<String> cat = new ArrayList<String>();
                     final ArrayList<String> images = new ArrayList<String>();
+                    final ArrayList<String> names = new ArrayList<String>();
+                    final ArrayList<String> categories = new ArrayList<String>();
+                    final ArrayList<String> introductions = new ArrayList<String>();
+                    final ArrayList<String> components = new ArrayList<String>();
+                    final ArrayList<String> supports = new ArrayList<String>();
+                    final ArrayList<String> eligibilitys = new ArrayList<String>();
+                    final ArrayList<String> contacts = new ArrayList<String>();
                     final ArrayList<String> dates = new ArrayList<String>();
 
                     JSONArray schemes = response.getJSONArray("schemes");
 
                     for (Integer i = 0; i <= schemes.length() - 1; i++) {
                         JSONObject scheme = schemes.getJSONObject(i);
+                        String image = scheme.getString(KEY_IMAGE);
                         String name = scheme.getString(KEY_NAME);
-                        String category = scheme.getString(KEY__CATEGORY);
-                        String img = scheme.getString(KEY_IMAGE);
+                        String category = scheme.getString(KEY_CATEGORY);
+                        String introduction = scheme.getString(KEY_INTRODUCTION);
+                        String component = scheme.getString(KEY_COMPONENTS);
+                        String support = scheme.getString(KEY_SUPPORT);
+                        String eligibility = scheme.getString(KEY_ELIGIBILITY);
+                        String contact = scheme.getString(KEY_CONTACT);
                         String release = scheme.getString(KEY_RELEASED);
-                        titles.add(name);
-                        cat.add(category);
-                        images.add(img);
+
+                        images.add(image);
+                        names.add(name);
+                        categories.add(category);
+                        introductions.add(introduction);
+                        components.add(component);
+                        supports.add(support);
+                        eligibilitys.add(eligibility);
+                        contacts.add(contact);
                         dates.add(release);
                     }
 
-                    name = titles.toArray(new String[titles.size()]);
-                    category = cat.toArray(new String[cat.size()]);
-                    icon = images.toArray(new String[images.size()]);
+                    image = images.toArray(new String[images.size()]);
+                    name = names.toArray(new String[names.size()]);
+                    category = categories.toArray(new String[categories.size()]);
+                    introduction = introductions.toArray(new String[introductions.size()]);
+                    component = components.toArray(new String[components.size()]);
+                    support = supports.toArray(new String[supports.size()]);
+                    eligibility = eligibilitys.toArray(new String[eligibilitys.size()]);
+                    contact = contacts.toArray(new String[contacts.size()]);
                     releaseDate = dates.toArray(new String[dates.size()]);
 
-                    mAdapter = new SchemesCardView(name, icon, category, releaseDate);
+                    mAdapter = new SchemesCardView(name, image, category, releaseDate);
                     SlideInBottomAnimationAdapter alphaAdapter = new SlideInBottomAnimationAdapter(mAdapter);
                     alphaAdapter.setDuration(1000);
                     mRecyclerView.setAdapter(alphaAdapter);
@@ -180,9 +199,9 @@ public class Schemes extends Fragment implements SchemesCardView.OnItemClickList
 
     @Override
     public void onItemClick(View view, int position) {
-        Post schemePost = Post.newInstance(name[position], category[position], icon[position]);
+        SchemePost post = SchemePost.newInstance(image[position], name[position], category[position], introduction[position], component[position], support[position], eligibility[position], contact[position]);
         getFragmentManager().beginTransaction()
-                .replace(R.id.forumFrame, schemePost)
+                .replace(R.id.forumFrame, post)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();

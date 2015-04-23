@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app.widgets.ScrimInsetsScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:scrollbarSize="@dimen/keyLine3">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/scheme_image"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorCardImage"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/keyLine1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/scheme_name"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exampleString"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryText"/>
+
+            <TextView
+                android:id="@+id/scheme_category"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textSize="12sp"
+                android:textColor="@color/colorSecondaryText"
+                android:text="CATEGORY"
+                android:textAllCaps="true"/>
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyLine2"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorPrimaryText"
+                android:text="INTRODUCTION"/>
+
+            <TextView
+                android:id="@+id/scheme_introduction"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cardView_inner_margin_top"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorSecondaryText"
+                android:text="Introduction here"/>
+
+
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyLine2"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorPrimaryText"
+                android:text="COMPONENT"/>
+
+            <TextView
+                android:id="@+id/scheme_component"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cardView_inner_margin_top"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorSecondaryText"
+                android:text="Component detail here"/>
+
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyLine2"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorPrimaryText"
+                android:text="SUPPORT PROVIDED"/>
+
+            <TextView
+                android:id="@+id/scheme_support_provided"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cardView_inner_margin_top"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorSecondaryText"
+                android:text="Support Provided here"/>
+
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyLine2"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorPrimaryText"
+                android:text="ELIGIBILITY"/>
+
+            <TextView
+                android:id="@+id/scheme_eligibility"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cardView_inner_margin_top"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorSecondaryText"
+                android:text="Eligibility here"/>
+
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/keyLine2"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorPrimaryText"
+                android:text="CONTACT DETAILS"/>
+
+            <TextView
+                android:id="@+id/scheme_contact_details"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cardView_inner_margin_top"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorSecondaryText"
+                android:text="Contact detail here"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</app.widgets.ScrimInsetsScrollView>
