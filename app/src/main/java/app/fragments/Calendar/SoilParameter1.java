@@ -33,12 +33,25 @@ public class SoilParameter1 extends Fragment {
         btn4.setOnClickListener(new ButtonEvent());
         return view;
 
-    } private class ButtonEvent implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            new SoilParameter2();
-        }
     }
+
+
+        private class ButtonEvent implements View.OnClickListener {
+
+            @Override
+            public void onClick(View view) {
+            MainCalendar param = new MainCalendar();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.calendarFrame, param)
+                            .addToBackStack(null)
+                            .commit();
+
+
+                }
+        }
+
+
+
+
 
 }
