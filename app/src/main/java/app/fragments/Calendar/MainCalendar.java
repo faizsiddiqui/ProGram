@@ -1,11 +1,18 @@
    package app.fragments.Calendar;
 
+    import android.app.NotificationManager;
+    import android.app.PendingIntent;
+    import android.app.TaskStackBuilder;
+    import android.content.Context;
+    import android.content.Intent;
     import android.os.Bundle;
     import android.support.annotation.Nullable;
     import android.support.v4.app.Fragment;
+    import android.support.v4.app.NotificationCompat;
     import android.view.LayoutInflater;
     import android.view.View;
     import android.view.ViewGroup;
+    import android.widget.CalendarView;
     import android.widget.DatePicker;
     import android.widget.Toast;
 
@@ -15,26 +22,69 @@
 
 
     /**
-    * Created by apple on 4/2/2015.
+    * Created by apple on 4/2/2015./
     */
    @SuppressWarnings("unused")
    public class MainCalendar extends Fragment {
+
+        CalendarView calendar;
+
         // This is the date picker used to select the date for our notification
-        private DatePicker picker;
+        //private DatePicker picker;
+
+        //public String[] color;
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.calendar_enter_location_fragment, container, false);
+
+            View view = inflater.inflate(R.layout.calendar_fragment_main_calendar, container, false);
+            calendar = (CalendarView)view.findViewById(R.id.maincalendar);
             ((CalendarActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_calendar);
+
+
+
             //get a reference to our date picker
-            picker = (DatePicker) view.findViewById(R.id.scheduleTimePicker);
+            //picker = (DatePicker) view.findViewById(R.id.scheduleTimePicker);
+           /* NotificationCompat.Builder mBuilder= new NotificationCompat.Builder(getActivity());
+           // mBuilder.setSmallIcon(R.drawable.image);
+            mBuilder.setContentTitle("Notification Alert, Click Me!");
+            mBuilder.setContentText("Hi.. Notification Details");
+
+            Intent resultIntent= new Intent(getActivity(), MainCalendar.class);
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(getActivity());
+            stackBuilder.addParentStack(MainCalendar.class);
+
+            stackBuilder.addNextIntent(resultIntent);
+            PendingIntent resultPendingIntent= stackBuilder.getPendingIntent(
+                    0, PendingIntent.FLAG_UPDATE_CURRENT );
+            mBuilder.setContentIntent(resultPendingIntent);
+            NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+            */
+
+        initializeCalendar();
             return view;
+
 
         }
 
-            // this is the onclick called from XML to set a new notification
+public void initializeCalendar() {
 
-        public void onDateSelectedButtonClick(View v) {
+
+    calendar.setShowWeekNumber(false);
+    calendar.setFirstDayOfWeek(2);
+    calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        @Override
+        public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
+            Toast.makeText(getActivity(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+
+        }
+
+        });
+    }
+
+        // this is the onclick called from XML to set a new notification
+        /*public void onDateSelectedButtonClick(View v) {
             //get the date from datepicker
             int day = picker.getDayOfMonth();
             int month = picker.getMonth();
@@ -45,11 +95,17 @@
             c.set(year, month, day);
             c.set(Calendar.Hour_of_day, 0);
             c.set(Calendar.minute, 0);
-            c.set(Calendar.second, 0);
+            c.set(Calendar.second, 0); }
 
         }
+   */
+
 
 
     }
+
+
+
+
 
 

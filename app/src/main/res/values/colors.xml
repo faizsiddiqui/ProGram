@@ -49,5 +49,8 @@
     <color name="float_pink_pressed">#ec407a</color>
     <color name="float_blue_semi_transparent">#805677fc</color>
     <color name="float_blue_semi_transparent_pressed">#80738ffe</color>
+    
+    <!-- Calendar color -->
+    <color name="transparent" type="color">#00FFFFFF </color>
 
 </resources>
