@@ -3,6 +3,7 @@ package app.program;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,8 +28,7 @@ public class TutorialActivity extends Activity {
     private TutorialView mAdapter;
     Button mNext;
 
-    private ArrayList<Integer> mTitles;
-    private ArrayList<Integer> mDescription;
+    private ArrayList<Integer> mImages, mTitles, mDescription;
 
     LinearLayout mDotsLayout;
     private int mDotsCount;
@@ -89,7 +90,6 @@ public class TutorialActivity extends Activity {
             for (int i = 0; i < mDotsCount; i++) {
                 mDots[i].setTextColor(getResources().getColor(R.color.colorText));
                 mDots[i].setTextSize(30);
-
             }
             mDots[position].setTextColor(getResources().getColor(R.color.colorPrimary));
         }
@@ -107,8 +107,12 @@ public class TutorialActivity extends Activity {
 
     private void initViews() {
         mViewPager = (ViewPager) findViewById(R.id.tutorial_pager);
+        mImages = new ArrayList<Integer>();
         mTitles = new ArrayList<Integer>();
         mDescription = new ArrayList<Integer>();
+
+        mImages.add(R.mipmap.ic_forum_learn);
+        mImages.add(R.mipmap.ic_forum_job);
         mTitles.add(R.string.tutorial_title_learn);
         mTitles.add(R.string.tutorial_title_employment);
         mDescription.add(R.string.tutorial_description_learn);
@@ -119,15 +123,18 @@ public class TutorialActivity extends Activity {
 
         private LayoutInflater inflater;
         TextView titles, description;
+        ImageView images;
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.activity_tutorial_view, container, false);
 
+            images = (ImageView) view.findViewById(R.id.tutorial_image);
             titles = (TextView) view.findViewById(R.id.tutorial_title);
             description = (TextView) view.findViewById(R.id.tutorial_description);
 
+            images.setBackgroundResource(mImages.get(position));
             titles.setText(mTitles.get(position));
             description.setText(mDescription.get(position));
             ((ViewPager) container).addView(view);

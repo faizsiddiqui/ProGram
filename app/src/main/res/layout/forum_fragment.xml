@@ -38,15 +38,8 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/float_white"
             fab:fab_colorPressed="@color/float_white_pressed"
-            fab:fab_title="Ask Question"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_b"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/float_white"
-            fab:fab_title="Post Scheme"
-            fab:fab_colorPressed="@color/float_white_pressed"/>
+            fab:fab_title="Ask Question"
+            fab:fab_icon="@mipmap/ic_float_q_a"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

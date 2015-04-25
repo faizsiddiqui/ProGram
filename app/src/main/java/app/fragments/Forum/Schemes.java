@@ -28,21 +28,21 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-import app.adapters.SchemesCardView;
+import app.adapters.ForumPostsCardView;
 import app.library.VolleySingleton;
 import app.program.ForumActivity;
 import app.program.R;
-import jp.wasabeef.recyclerview.animators.adapters.SlideInBottomAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
 
 /**
  * Not for public use
  * Created by FAIZ on 22-02-2015.
  */
-public class Schemes extends Fragment implements SchemesCardView.OnItemClickListener {
+public class Schemes extends Fragment implements ForumPostsCardView.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private SchemesCardView mAdapter;
+    private ForumPostsCardView mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     String[] image, name, category, introduction, component, support, eligibility, contact, releaseDate;
@@ -185,8 +185,8 @@ public class Schemes extends Fragment implements SchemesCardView.OnItemClickList
                     contact = contacts.toArray(new String[contacts.size()]);
                     releaseDate = dates.toArray(new String[dates.size()]);
 
-                    mAdapter = new SchemesCardView(name, image, category, releaseDate);
-                    SlideInBottomAnimationAdapter alphaAdapter = new SlideInBottomAnimationAdapter(mAdapter);
+                    mAdapter = new ForumPostsCardView(getActivity(), name, image, category, releaseDate);
+                    AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
                     alphaAdapter.setDuration(1000);
                     mRecyclerView.setAdapter(alphaAdapter);
                     mAdapter.SetOnItemClickListener(this);

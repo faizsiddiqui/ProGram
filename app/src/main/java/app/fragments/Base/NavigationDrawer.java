@@ -86,14 +86,12 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
         }
 
         navigationRowText = new String[]{
-                "Tutorials", "Update",
-                "Settings", "Help",
-                "About"};
+                "Tutorials", "Settings",
+                "Help", "About"};
 
         navigationRowImage = new Integer[]{
-                R.mipmap.drawer_tutorial, R.mipmap.drawer_update,
-                R.mipmap.drawer_settings, R.mipmap.drawer_help,
-                R.mipmap.drawer_about};
+                R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_setting,
+                R.mipmap.ic_nav_help, R.mipmap.ic_nav_about};
 
         navigationAdapter = new NavigationView(getActivity(), navigationRowText, navigationRowImage);
         mLayoutManager = new LinearLayoutManager(getActivity());

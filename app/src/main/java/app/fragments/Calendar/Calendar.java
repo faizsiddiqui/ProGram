@@ -51,13 +51,13 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
     };
 
     int[] image = {
-             R.mipmap.drawer_tutorial,
-             R.mipmap.drawer_settings,
-             R.mipmap.drawer_about,
-            R.mipmap.drawer_settings,
-             R.mipmap.drawer_settings,
-             R.mipmap.drawer_settings,
-             R.mipmap.drawer_settings
+             R.mipmap.ic_base_login_sign_up,
+             R.mipmap.ic_base_login_sign_up,
+             R.mipmap.ic_base_login_sign_up,
+            R.mipmap.ic_base_login_sign_up,
+             R.mipmap.ic_base_login_sign_up,
+             R.mipmap.ic_base_login_sign_up,
+             R.mipmap.ic_base_login_sign_up
 
     };
     

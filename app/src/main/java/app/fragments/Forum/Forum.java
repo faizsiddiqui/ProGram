@@ -29,17 +29,21 @@ public class Forum extends Fragment implements HomeView.OnItemClickListener {
     private HomeView mAdapter;
 
     String[] forumTitle = {
-            "Question/Answers",
+            "Learn",
+            "Q&A",
             "Schemes",
             "Jobs",
+            "Spotlight",
             "Awards"
     };
 
     int[] forumImage = {
-            R.mipmap.drawer_tutorial,
-            R.mipmap.drawer_settings,
-            R.mipmap.drawer_about,
-            R.mipmap.drawer_about
+            R.mipmap.ic_forum_learn,
+            R.mipmap.ic_forum_q_a,
+            R.mipmap.ic_forum_scheme,
+            R.mipmap.ic_forum_job,
+            R.mipmap.ic_forum_spotlight,
+            R.mipmap.ic_forum_award
     };
 
     @Override
@@ -61,7 +65,7 @@ public class Forum extends Fragment implements HomeView.OnItemClickListener {
     @Override
     public void onItemClick(View view, int position) {
         switch (forumTitle[position]) {
-            case "Question/Answers":
+            case "Q&A":
                 QuestionAnswer questionAnswer = new QuestionAnswer();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.forumFrame, questionAnswer)

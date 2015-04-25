@@ -84,11 +84,11 @@ public class SchemePost extends Fragment {
         schemeImage.setImageUrl(image, mImageLoader);
         schemeName.setText(name);
         schemeCategory.setText(category);
-        schemeIntroduction.setText(introduction);
-        schemeComponent.setText(component);
-        schemeSupport.setText(support);
-        schemeEligibility.setText(eligibility);
-        schemeContact.setText(contact);
+        schemeIntroduction.setText(introduction.replace("\\n", "\n"));
+        schemeComponent.setText(component.replace("\\n", "\n"));
+        schemeSupport.setText(support.replace("\\n", "\n"));
+        schemeEligibility.setText(eligibility.replace("\\n", "\n"));
+        schemeContact.setText(contact.replace("\\n", "\n"));
         return view;
     }
 }

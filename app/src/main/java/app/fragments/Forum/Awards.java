@@ -27,10 +27,9 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-import app.adapters.CardView;
+import app.adapters.ForumPostsCardView;
 import app.library.VolleySingleton;
 import app.program.ForumActivity;
-import app.program.MainActivity;
 import app.program.R;
 import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
 
@@ -38,21 +37,22 @@ import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
  * Not for public use
  * Created by FAIZ on 12-03-2015.
  */
-public class Awards extends Fragment implements CardView.OnItemClickListener {
+public class Awards extends Fragment implements ForumPostsCardView.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private CardView mAdapter;
+    private ForumPostsCardView mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    String[] titles, descriptions, images;
+
+    String[] image, name, prize, state, description, publishedDate;
 
     private static String URL = "http://buykerz.com/program/v1/api/awards";
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_IMAGE = "image";
+    private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_PRIZE = "prize";
     private static final String KEY_STATE = "state";
-    private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_PUBLISHED = "published";
 
     @Override
@@ -66,7 +66,7 @@ public class Awards extends Fragment implements CardView.OnItemClickListener {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        setAdapter();
+        setAdapter(true);
         getFloatingActionButtonView(view);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
@@ -76,7 +76,7 @@ public class Awards extends Fragment implements CardView.OnItemClickListener {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        setAdapter();
+                        setAdapter(false);
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }, 5000);
@@ -85,37 +85,45 @@ public class Awards extends Fragment implements CardView.OnItemClickListener {
         return view;
     }
 
-    private void setAdapter() {
-        Cache cache = VolleySingleton.getInstance().getRequestQueue().getCache();
-        Cache.Entry entry = cache.get(URL);
-        if (entry != null) {
-            try {
-                String data = new String(entry.data, "UTF-8");
+    private void setAdapter(Boolean checkCache) {
+        if (checkCache) {
+            Cache cache = VolleySingleton.getInstance().getRequestQueue().getCache();
+            Cache.Entry entry = cache.get(URL);
+            if (entry != null) {
                 try {
-                    parseJsonFeed(new JSONObject(data));
-                } catch (JSONException e) {
+                    String data = new String(entry.data, "UTF-8");
+                    try {
+                        parseJsonFeed(new JSONObject(data));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
+            } else {
+                requestWhenCacheMiss();
             }
         } else {
-            JsonObjectRequest jsonReq = new JsonObjectRequest(Request.Method.GET,
-                    URL, null, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    if (response != null) {
-                        parseJsonFeed(response);
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getActivity(), "Error fetching Awards.", Toast.LENGTH_SHORT).show();
-                }
-            });
-            VolleySingleton.getInstance().addToRequestQueue(jsonReq);
+            requestWhenCacheMiss();
         }
+    }
+
+    private void requestWhenCacheMiss() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
+                URL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (response != null) {
+                    parseJsonFeed(response);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), "Error fetching Awards.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        VolleySingleton.getInstance().addToRequestQueue(request);
     }
 
     private void parseJsonFeed(JSONObject response) {
@@ -125,27 +133,41 @@ public class Awards extends Fragment implements CardView.OnItemClickListener {
             if (response.getString(KEY_SUCCESS) != null) {
                 Boolean res = response.getBoolean(KEY_SUCCESS);
                 if (res) {
+                    final ArrayList<String> images = new ArrayList<String>();
                     final ArrayList<String> names = new ArrayList<String>();
-                    final ArrayList<String> intro = new ArrayList<String>();
-                    final ArrayList<String> icon = new ArrayList<String>();
+                    final ArrayList<String> descriptions = new ArrayList<String>();
+                    final ArrayList<String> prizes = new ArrayList<String>();
+                    final ArrayList<String> states = new ArrayList<String>();
+                    final ArrayList<String> publishedDates = new ArrayList<String>();
 
                     JSONArray awards = response.getJSONArray("awards");
 
                     for (Integer i = 0; i <= awards.length() - 1; i++) {
                         JSONObject award = awards.getJSONObject(i);
-                        String title = award.getString(KEY_NAME);
-                        String description = award.getString(KEY_DESCRIPTION);
                         String image = award.getString(KEY_IMAGE);
-                        names.add(title);
-                        intro.add(description);
-                        icon.add(image);
+                        String name = award.getString(KEY_NAME);
+                        String description = award.getString(KEY_DESCRIPTION);
+                        String prize = award.getString(KEY_PRIZE);
+                        String state = award.getString(KEY_STATE);
+                        String publishedDate = award.getString(KEY_PUBLISHED);
+
+                        images.add(image);
+                        names.add(name);
+                        descriptions.add(description);
+                        prizes.add(prize);
+                        states.add(state);
+                        publishedDates.add(publishedDate);
+
                     }
 
-                    titles = names.toArray(new String[names.size()]);
-                    descriptions = intro.toArray(new String[names.size()]);
-                    images = icon.toArray(new String[names.size()]);
+                    image = images.toArray(new String[images.size()]);
+                    name = names.toArray(new String[names.size()]);
+                    description = descriptions.toArray(new String[descriptions.size()]);
+                    prize = prizes.toArray(new String[prizes.size()]);
+                    state = states.toArray(new String[states.size()]);
+                    publishedDate = publishedDates.toArray(new String[publishedDates.size()]);
 
-                    mAdapter = new CardView(titles, descriptions, images);
+                    mAdapter = new ForumPostsCardView(getActivity(), name, image, state, publishedDate);
                     AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
                     alphaAdapter.setDuration(1000);
                     mRecyclerView.setAdapter(alphaAdapter);
@@ -159,7 +181,7 @@ public class Awards extends Fragment implements CardView.OnItemClickListener {
 
     @Override
     public void onItemClick(View view, int position) {
-        Post postAward = Post.newInstance(titles[position], descriptions[position], images[position]);
+        Post postAward = Post.newInstance(name[position], description[position], image[position]);
         getFragmentManager().beginTransaction()
                 .replace(R.id.forumFrame, postAward)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
