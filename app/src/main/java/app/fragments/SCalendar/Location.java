@@ -99,8 +99,8 @@ public class Location extends Fragment {
     }
 
     public String GetState(String lat, String lon) {
-        Geocoder geocoder = new Geocoder(getActivity(), Locale.ENGLISH);
-        String state;
+        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+        String state = "";
         try {
             List<Address> addresses = geocoder.getFromLocation(Double.parseDouble(lat), Double.parseDouble(lon), 1);
             if (addresses != null) {

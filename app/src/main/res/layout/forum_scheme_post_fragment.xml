@@ -13,7 +13,7 @@
         <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/scheme_image"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/cardView_image_height"
             android:background="@color/colorCardImage"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop" />
@@ -30,119 +30,141 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/exampleString"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold"
                 android:textColor="@color/colorPrimaryText"/>
 
             <TextView
                 android:id="@+id/scheme_category"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:textSize="12sp"
                 android:textColor="@color/colorSecondaryText"
                 android:text="CATEGORY"
                 android:textAllCaps="true"/>
 
+            <!-- Introduction -->
+
             <TextView
-                style="@style/Base.TextAppearance.AppCompat.Medium"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/keyLine2"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 android:text="INTRODUCTION"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/cardView_inner_margin_top"
+                android:layout_marginBottom="@dimen/cardView_inner_margin_top"
+                android:background="@drawable/toolbar_border_bottom" />
 
             <TextView
                 android:id="@+id/scheme_introduction"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cardView_inner_margin_top"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/colorSecondaryText"
+                android:textColor="@color/colorPrimaryText"
                 android:text="Introduction here"/>
 
-
+            <!-- Component -->
 
             <TextView
-                style="@style/Base.TextAppearance.AppCompat.Medium"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/keyLine2"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 android:text="COMPONENT"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/cardView_inner_margin_top"
+                android:layout_marginBottom="@dimen/cardView_inner_margin_top"
+                android:background="@drawable/toolbar_border_bottom" />
 
             <TextView
                 android:id="@+id/scheme_component"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cardView_inner_margin_top"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/colorSecondaryText"
+                android:textColor="@color/colorPrimaryText"
                 android:text="Component detail here"/>
 
+            <!-- Support Provided -->
 
             <TextView
-                style="@style/Base.TextAppearance.AppCompat.Medium"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/keyLine2"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 android:text="SUPPORT PROVIDED"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/cardView_inner_margin_top"
+                android:layout_marginBottom="@dimen/cardView_inner_margin_top"
+                android:background="@drawable/toolbar_border_bottom" />
 
             <TextView
                 android:id="@+id/scheme_support_provided"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cardView_inner_margin_top"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/colorSecondaryText"
+                android:textColor="@color/colorPrimaryText"
                 android:text="Support Provided here"/>
 
+            <!-- Eligibility -->
 
             <TextView
-                style="@style/Base.TextAppearance.AppCompat.Medium"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/keyLine2"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 android:text="ELIGIBILITY"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/cardView_inner_margin_top"
+                android:layout_marginBottom="@dimen/cardView_inner_margin_top"
+                android:background="@drawable/toolbar_border_bottom" />
 
             <TextView
                 android:id="@+id/scheme_eligibility"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cardView_inner_margin_top"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/colorSecondaryText"
+                android:textColor="@color/colorPrimaryText"
                 android:text="Eligibility here"/>
 
+            <!-- Contact details -->
 
             <TextView
-                style="@style/Base.TextAppearance.AppCompat.Medium"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/keyLine2"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 android:text="CONTACT DETAILS"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/cardView_inner_margin_top"
+                android:layout_marginBottom="@dimen/cardView_inner_margin_top"
+                android:background="@drawable/toolbar_border_bottom" />
 
             <TextView
                 android:id="@+id/scheme_contact_details"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cardView_inner_margin_top"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/colorSecondaryText"
+                android:textColor="@color/colorPrimaryText"
                 android:text="Contact detail here"/>
 
         </LinearLayout>

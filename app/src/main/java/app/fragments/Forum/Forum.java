@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import app.adapters.ForumView;
+import app.adapters.HomeView;
 import app.program.ForumActivity;
 import app.program.MainActivity;
 import app.program.R;
@@ -21,11 +22,11 @@ import app.program.R;
  * Not for public use
  * Created by FAIZ on 11-03-2015.
  */
-public class Forum extends Fragment implements ForumView.OnItemClickListener {
+public class Forum extends Fragment implements HomeView.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ForumView mAdapter;
+    private HomeView mAdapter;
 
     String[] forumTitle = {
             "Question/Answers",
@@ -34,14 +35,7 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
             "Awards"
     };
 
-    String[] forumText = {
-            "COMPLETED",
-            "COMPLETED",
-            "IN PROGRESS",
-            "COMPLETED"
-    };
-
-    int[] image = {
+    int[] forumImage = {
             R.mipmap.drawer_tutorial,
             R.mipmap.drawer_settings,
             R.mipmap.drawer_about,
@@ -52,8 +46,8 @@ public class Forum extends Fragment implements ForumView.OnItemClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.forum_fragment, container, false);
         ((ForumActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_forum);
-        mLayoutManager = new GridLayoutManager(getActivity(), 1);
-        mAdapter = new ForumView(forumTitle, forumText, image);
+        mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        mAdapter = new HomeView(forumTitle, forumImage);
         mAdapter.SetOnItemClickListener(this);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.forumRecyclerView);
