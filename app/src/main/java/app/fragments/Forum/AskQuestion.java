@@ -25,7 +25,6 @@ import java.util.Map;
 import app.library.DatabaseHandler;
 import app.library.VolleySingleton;
 import app.program.ForumActivity;
-import app.program.MainActivity;
 import app.program.R;
 
 /**

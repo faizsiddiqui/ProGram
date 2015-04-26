@@ -12,10 +12,8 @@ import android.view.ViewGroup;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
-import app.adapters.ForumView;
 import app.adapters.HomeView;
 import app.program.ForumActivity;
-import app.program.MainActivity;
 import app.program.R;
 
 /**
@@ -81,18 +79,26 @@ public class Forum extends Fragment implements HomeView.OnItemClickListener {
                         .addToBackStack(null)
                         .commit();
                 break;
-            case "Awards":
-                Awards awards = new Awards();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.forumFrame, awards)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
-                break;
             case "Jobs":
                 Jobs jobs = new Jobs();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.forumFrame, jobs)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case "Spotlight":
+                Spotlight spotlight = new Spotlight();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.forumFrame, spotlight)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case "Awards":
+                Awards awards = new Awards();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.forumFrame, awards)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();

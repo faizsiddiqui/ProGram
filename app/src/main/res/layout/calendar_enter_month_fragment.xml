@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/months.jpg"
     android:weightSum="1">
 
     <ImageView
         android:layout_width="match_parent"
-      android:layout_height="250dip"
+        android:layout_height="250dip"
         android:id="@+id/months_image"
         android:layout_gravity="center_vertical"
         android:scaleType="center"
-        android:src="@drawable/months"/>
+        android:src="@drawable/months" />
 
     <Spinner
         android:layout_marginTop="12dip"
@@ -20,11 +21,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/Month_List"
-        android:background="@android:drawable/btn_dropdown"
-        />
+        android:background="@android:drawable/btn_dropdown" />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/jumpbtn3"
             android:layout_width="match_parent"
@@ -37,11 +39,12 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:onClick="jumpToPage"/>
+            android:onClick="jumpToPage" />
     </RelativeLayout>
 
 
-    <FrameLayout android:id="@+id/listFragment"
+    <FrameLayout
+        android:id="@+id/listFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

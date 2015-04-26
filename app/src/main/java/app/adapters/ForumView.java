@@ -19,7 +19,7 @@ public class ForumView extends RecyclerView.Adapter<ForumView.ViewHolder> {
     int[] forumIcon;
     OnItemClickListener mItemClickListener;
 
-    public ForumView(String[] forumTitle, String[] forumText, int[] forumIcon){
+    public ForumView(String[] forumTitle, String[] forumText, int[] forumIcon) {
         this.forumTitle = forumTitle;
         this.forumText = forumText;
         this.forumIcon = forumIcon;
@@ -27,7 +27,7 @@ public class ForumView extends RecyclerView.Adapter<ForumView.ViewHolder> {
 
     @Override
     public ForumView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.forum_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.forum_row_no_use, parent, false);
         return new ViewHolder(view);
     }
 
@@ -47,6 +47,7 @@ public class ForumView extends RecyclerView.Adapter<ForumView.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView forumTitle, forumText, forumTopTitle;
         ImageView forumIcon;
+
         public ViewHolder(View itemView) {
             super(itemView);
             forumTopTitle = (TextView) itemView.findViewById(R.id.forumTopTitle);
@@ -58,17 +59,17 @@ public class ForumView extends RecyclerView.Adapter<ForumView.ViewHolder> {
 
         @Override
         public void onClick(View v) {
-            if(mItemClickListener != null){
+            if (mItemClickListener != null) {
                 mItemClickListener.onItemClick(v, getPosition());
             }
         }
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         public void onItemClick(View view, int position);
     }
 
-    public void SetOnItemClickListener(OnItemClickListener mItemClickListener){
+    public void SetOnItemClickListener(OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
     }
 }

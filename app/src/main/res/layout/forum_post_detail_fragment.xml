@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app.widgets.ScrimInsetsScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:scrollbarSize="@dimen/keyLine3">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/post_image"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/cardView_image_height"
+            android:background="@color/colorCardImage"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/keyLine1"
+            android:paddingLeft="@dimen/keyLine2"
+            android:paddingRight="@dimen/keyLine2"
+            android:paddingBottom="@dimen/keyLine2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/post_name"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exampleString"
+                android:textStyle="bold"
+                android:textColor="@color/colorCardTitle" />
+
+            <TextView
+                android:id="@+id/post_category"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/colorSecondaryText"
+                android:text="CATEGORY"
+                android:textAllCaps="true" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/detail_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</app.widgets.ScrimInsetsScrollView>

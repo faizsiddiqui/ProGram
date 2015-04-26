@@ -10,6 +10,7 @@
     <string name="toolbar_text_forum">Forum</string>
     <string name="toolbar_text_calendar">Calendar</string>
     <string name="toolbar_text_awards">Awards</string>
+    <string name="toolbar_text_spotlight">Spotlight</string>
     <string name="toolbar_login">Login</string>
     <string name="toolbar_jobs">Jobs</string>
 

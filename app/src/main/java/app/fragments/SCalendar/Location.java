@@ -50,9 +50,15 @@ public class Location extends Fragment {
                 longitude = Double.toString(location.getLongitude());
                 locationPresent.setText(GetState(latitude, longitude));
             }
-            public void onStatusChanged(String s, int i, Bundle bundle) {}
-            public void onProviderEnabled(String s) {}
-            public void onProviderDisabled(String s) {}
+
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+            }
+
+            public void onProviderEnabled(String s) {
+            }
+
+            public void onProviderDisabled(String s) {
+            }
         };
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
@@ -64,7 +70,7 @@ public class Location extends Fragment {
                 //save results in calendar database
                 state = locationPresent.getText().toString();
                 if (!state.equals("Fetching current state.") && !state.equals("Can't get Address!")) {
-                    SelectCrop crop = SelectCrop.newInstance(state) ;
+                    SelectCrop crop = SelectCrop.newInstance(state);
                     getFragmentManager().beginTransaction()
                             .replace(R.id.calendarFrame, crop)
                             .addToBackStack(null)

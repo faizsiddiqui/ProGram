@@ -30,7 +30,7 @@ public class CardView extends RecyclerView.Adapter<CardView.ViewHolder> {
 
     @Override
     public CardView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.forum_card_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.forum_post_card_view_large, parent, false);
         mImageLoader = VolleySingleton.getInstance().getImageLoader();
         return new ViewHolder(view);
     }

@@ -21,7 +21,7 @@ public class CalendarSelectCropCardView extends RecyclerView.Adapter<CalendarSel
     public String[] cropNames, cropImages;
     ImageLoader mImageLoader;
 
-    public CalendarSelectCropCardView(String[] names, String[] images){
+    public CalendarSelectCropCardView(String[] names, String[] images) {
         this.cropNames = names;
         this.cropImages = images;
     }

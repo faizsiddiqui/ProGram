@@ -6,26 +6,28 @@
     android:id="@+id/soilparameter3"
     android:weightSum="1"
     android:orientation="vertical">
+
     <TableRow>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter the values according to your soil test report"
             android:layout_column="1"
-            android:layout_weight="0.75"
-            />
+            android:layout_weight="0.75" />
 
 
     </TableRow>
 
     <TableRow>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Copper"
-           android:layout_column="1"
-            android:layout_weight="0.25"
-          />
+            android:layout_column="1"
+            android:layout_weight="0.25" />
+
         <EditText
             android:layout_width="200dp"
             android:layout_height="50dp"
@@ -33,36 +35,37 @@
             android:hint="(in mg/kg)"
             android:layout_column="4" />
 
-     </TableRow>
+    </TableRow>
 
 
     <TableRow>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Zinc"
             android:layout_column="1"
-            android:layout_weight="0.25"
-            />
+            android:layout_weight="0.25" />
+
         <EditText
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:width="100px"
             android:hint="(in mg/kg) "
-            android:layout_column="4"
-       />
+            android:layout_column="4" />
 
     </TableRow>
 
 
     <TableRow>
+
         <TextView
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:text="Manganese"
             android:layout_column="1"
-            android:layout_weight="0.25"
-            />
+            android:layout_weight="0.25" />
+
         <EditText
             android:layout_width="200dp"
             android:layout_height="50dp"
@@ -71,14 +74,16 @@
             android:layout_column="4" />
 
     </TableRow>
+
     <TableRow>
+
         <TextView
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:text="Iron"
             android:layout_column="1"
-            android:layout_weight="0.25"
-            />
+            android:layout_weight="0.25" />
+
         <EditText
             android:layout_width="200dp"
             android:layout_height="50dp"
@@ -87,14 +92,16 @@
             android:layout_column="4" />
 
     </TableRow>
+
     <TableRow>
+
         <TextView
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:text="Sulphur"
             android:layout_column="1"
-            android:layout_weight="0.25"
-            />
+            android:layout_weight="0.25" />
+
         <EditText
             android:layout_width="200dp"
             android:layout_height="50dp"
@@ -111,9 +118,11 @@
 
 
     </TableRow>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/jumpbtn6"
             android:layout_width="match_parent"
@@ -126,7 +135,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:onClick="jumpToPage"/>
+            android:onClick="jumpToPage" />
     </RelativeLayout>
 
 

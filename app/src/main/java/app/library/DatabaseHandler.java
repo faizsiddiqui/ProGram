@@ -43,7 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_NAME + " TEXT,"
                 + KEY_MOBILE + " TEXT UNIQUE,"
                 + KEY_EMAIL + " TEXT UNIQUE,"
-                + KEY_STATE +  " TEXT,"
+                + KEY_STATE + " TEXT,"
                 + KEY_CATEGORY + " TEXT,"
                 + KEY_GENDER + " TEXT,"
                 + KEY_AGE + " TEXT,"
@@ -60,7 +60,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Create tables again
         onCreate(sqLiteDatabase);
     }
-    public void addUser(String id, String name, String mobile, String email, String state , String category,
+
+    public void addUser(String id, String name, String mobile, String email, String state, String category,
                         String gender, String age, String api_key, String joined) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -89,15 +90,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public HashMap<String, String> getUserDetails(){
-        HashMap<String,String> user = new HashMap<String,String>();
+    public HashMap<String, String> getUserDetails() {
+        HashMap<String, String> user = new HashMap<String, String>();
         String selectQuery = "SELECT  * FROM " + TABLE_LOGIN;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         // Move to first row
         cursor.moveToFirst();
-        if(cursor.getCount() > 0){
+        if (cursor.getCount() > 0) {
             user.put(KEY_ID, cursor.getString(1));
             user.put(KEY_NAME, cursor.getString(2));
             user.put(KEY_MOBILE, cursor.getString(3));
@@ -126,21 +127,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return rowCount;
     }
 
-    public void resetTables(){
+    public void resetTables() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_LOGIN, null, null); // Delete All Rows
         db.close();
     }
 
-    public boolean isUserLoggedIn(){
+    public boolean isUserLoggedIn() {
         int count = this.getRowCount();
-        if(count > 0){
+        if (count > 0) {
             return true;
         }
         return false;
     }
 
-    public boolean logoutUser(){
+    public boolean logoutUser() {
         this.resetTables();
         return true;
     }

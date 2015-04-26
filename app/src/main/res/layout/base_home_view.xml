@@ -24,6 +24,6 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:gravity="center_horizontal"
-        android:textColor="@color/colorText"/>
+        android:textColor="@color/colorText" />
 
 </LinearLayout>

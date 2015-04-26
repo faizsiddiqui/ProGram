@@ -1,6 +1,7 @@
 package app.widgets;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,9 +12,11 @@ import android.view.ViewGroup;
  * Created by FAIZ on 20-02-2015.
  */
 public class LinearLayoutManagerRecyclerView extends LinearLayoutManager {
-    public LinearLayoutManagerRecyclerView(Context context) {
-        super(context);
+
+    public LinearLayoutManagerRecyclerView(Context context)    {
+        super(context, VERTICAL, false);
     }
+
     private int[] mMeasuredDimension = new int[2];
 
     @Override
@@ -23,28 +26,37 @@ public class LinearLayoutManagerRecyclerView extends LinearLayoutManager {
         final int heightMode = View.MeasureSpec.getMode(heightSpec);
         final int widthSize = View.MeasureSpec.getSize(widthSpec);
         final int heightSize = View.MeasureSpec.getSize(heightSpec);
+        int width = 0;
+        int height = 0;
+        for (int i = 0; i < getItemCount(); i++) {
+            measureScrapChild(recycler, i,
+                    View.MeasureSpec.makeMeasureSpec(i, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(i, View.MeasureSpec.UNSPECIFIED),
+                    mMeasuredDimension);
 
-        measureScrapChild(recycler, 0,
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                mMeasuredDimension);
-
-        int width = mMeasuredDimension[0];
-        int height = mMeasuredDimension[1];
-
+            if (getOrientation() == HORIZONTAL) {
+                width = width + mMeasuredDimension[0];
+                if (i == 0) {
+                    height = mMeasuredDimension[1];
+                }
+            } else {
+                height = height + mMeasuredDimension[1];
+                if (i == 0) {
+                    width = mMeasuredDimension[0];
+                }
+            }
+        }
         switch (widthMode) {
             case View.MeasureSpec.EXACTLY:
-            case View.MeasureSpec.AT_MOST:
                 width = widthSize;
-                break;
+            case View.MeasureSpec.AT_MOST:
             case View.MeasureSpec.UNSPECIFIED:
         }
 
         switch (heightMode) {
             case View.MeasureSpec.EXACTLY:
-            case View.MeasureSpec.AT_MOST:
                 height = heightSize;
-                break;
+            case View.MeasureSpec.AT_MOST:
             case View.MeasureSpec.UNSPECIFIED:
         }
 
@@ -61,8 +73,8 @@ public class LinearLayoutManagerRecyclerView extends LinearLayoutManager {
             int childHeightSpec = ViewGroup.getChildMeasureSpec(heightSpec,
                     getPaddingTop() + getPaddingBottom(), p.height);
             view.measure(childWidthSpec, childHeightSpec);
-            measuredDimension[0] = view.getMeasuredWidth();
-            measuredDimension[1] = view.getMeasuredHeight();
+            measuredDimension[0] = view.getMeasuredWidth() + p.leftMargin + p.rightMargin;
+            measuredDimension[1] = view.getMeasuredHeight() + p.bottomMargin + p.topMargin;
             recycler.recycleView(view);
         }
     }

@@ -1,9 +1,5 @@
 package app.library;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Map;
-import org.json.JSONException;
-import org.json.JSONObject;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -11,6 +7,12 @@ import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 /**
  * Not for public use
@@ -38,7 +40,9 @@ public class CustomJsonObjectRequest extends Request<JSONObject> {
     protected Map<String, String> getParams()
             throws com.android.volley.AuthFailureError {
         return params;
-    };
+    }
+
+    ;
 
     @Override
     protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {

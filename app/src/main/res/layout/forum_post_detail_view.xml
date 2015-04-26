@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Small"
+        android:id="@+id/detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/keyLine2"
+        android:textColor="@color/colorSecondaryText"
+        android:text="INTRODUCTION"
+        android:textAllCaps="true"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/cardView_inner_margin_top"
+        android:layout_marginBottom="@dimen/cardView_inner_margin_top"
+        android:background="@drawable/toolbar_border_bottom" />
+
+    <TextView
+        android:id="@+id/detail_description"
+        style="@style/Base.TextAppearance.AppCompat.Small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryText"
+        android:text="Introduction here" />
+
+</LinearLayout>

@@ -1,7 +1,6 @@
 package app.widgets;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.util.AttributeSet;
@@ -49,8 +48,7 @@ public class MaterialListPreference extends ListPreference {
         if (contentView != null) {
             onBindDialogView(contentView);
             mBuilder.customView(contentView, true);
-        }
-        else
+        } else
             mBuilder.content(getDialogMessage());
 
         mBuilder.show();

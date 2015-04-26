@@ -1,6 +1,5 @@
 package app.fragments.Calendar;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import app.program.CalendarActivity;
-import app.program.MainActivity;
 import app.program.R;
 
 /**
@@ -57,6 +55,7 @@ public class SelectCrop extends Fragment {
 
 
     }
+
     private class ButtonEvent implements View.OnClickListener {
 
         @Override

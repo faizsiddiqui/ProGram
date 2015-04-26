@@ -52,7 +52,7 @@ public class SelectCrop extends Fragment {
     private static final String KEY_IMAGE = "image";
     private static final String KEY_STATE = "state";
 
-    public static SelectCrop newInstance(String state){
+    public static SelectCrop newInstance(String state) {
         SelectCrop selectCrop = new SelectCrop();
         Bundle bundle = new Bundle();
         bundle.putString(KEY_STATE, state);
@@ -63,7 +63,7 @@ public class SelectCrop extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments() != null){
+        if (getArguments() != null) {
             state = getArguments().getString(KEY_STATE);
         }
     }
@@ -90,7 +90,7 @@ public class SelectCrop extends Fragment {
         CustomJsonObjectRequest request = new CustomJsonObjectRequest(Method.POST, URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                if(response != null) {
+                if (response != null) {
                     try {
                         String KEY_SUCCESS = "success";
                         String KEY_MSG = "message";
@@ -130,7 +130,7 @@ public class SelectCrop extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getActivity(), "Error fetching crops.", Toast.LENGTH_SHORT).show();
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();

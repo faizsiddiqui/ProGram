@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/cardView_outer_margin"
+    android:layout_marginRight="@dimen/cardView_outer_margin"
+    android:layout_marginTop="@dimen/cardView_outer_margin"
+    card_view:cardCornerRadius="@dimen/cardView_outer_radius">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/cardViewImage"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/cardView_image_height"
+            android:background="@color/colorCardImage"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/cardView_inner_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cardViewTitle"
+                style="@style/Base.TextAppearance.AppCompat.Title"
+                android:textColor="@color/colorCardTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/cardViewText"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorCardText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="6"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/cardView_inner_margin_top" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

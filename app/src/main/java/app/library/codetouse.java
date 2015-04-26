@@ -50,26 +50,23 @@ public class codetouse {
     }
 
 
-
-    double a[]=new double[]{10,9.2,9,5,4.7,4.5,2,1.9,1.8,1.7,1.6};
+    double a[] = new double[]{10, 9.2, 9, 5, 4.7, 4.5, 2, 1.9, 1.8, 1.7, 1.6};
     double values[]; //esme le aana sari values jo user enter kare and put 999 where value is not entered
     int i;
-    double x,y,k,lowrange[],highrange[],m[],lowestrange[],highestrange[];
+    double x, y, k, lowrange[], highrange[], m[], lowestrange[], highestrange[];
 
     private void marksnikalo() {
 
 
-        
-
-        for (i=0;i<11;i++){
-            marks[i]=lowrange[i]=lowestrange[i]=m[i]=highrange[i]=highestrange[i]=0;
+        for (i = 0; i < 11; i++) {
+            marks[i] = lowrange[i] = lowestrange[i] = m[i] = highrange[i] = highestrange[i] = 0;
         }
         /*lowrange vo apni range jo hogi uski lower value hai aur highrange uski upper value
         m uski optimum value hai jahan apanko multiplier 1 chahie
         aur lowest aur highest vo values hai jahan apanko multiplier 0 karna hai
         to ye sari values le aana yahanpe*/
 
-        for (i=0;i<11;i++) {
+        for (i = 0; i < 11; i++) {
             if (values[i] != 999) {
                 if (values[i] < lowrange[i] && values[i] > highrange[i]) {
                     if (values[i] < m[i]) {
@@ -93,12 +90,12 @@ public class codetouse {
     }
 
 
-    private void main(){
+    private void main() {
 
         //pehele sari values nikalna database se set karna jo variables die hai us hisab se fir eske aage ka kam karna
         marksnikalo();
-        length=crop.length;
-        quickSort(0,length-1);
-       // eske bad khushi manao crop wali array show kar dena vahi final list hai jo chahie apanko
+        length = crop.length;
+        quickSort(0, length - 1);
+        // eske bad khushi manao crop wali array show kar dena vahi final list hai jo chahie apanko
     }
 }

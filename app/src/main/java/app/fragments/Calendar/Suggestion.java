@@ -18,9 +18,10 @@ import app.program.R;
 public class Suggestion extends Fragment {
 
     private Button btns;
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_suggestion, container, false);
         ((CalendarActivity) getActivity()).setActionBarTitle("Suggested Crops");
 
@@ -28,18 +29,18 @@ public class Suggestion extends Fragment {
         btns.setOnClickListener(new ButtonEvent());
         return view;
     }
-        private class ButtonEvent implements View.OnClickListener{
-            @Override
-            public void onClick(View view) {
-                SoilParameter1 param = new SoilParameter1();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.calendarFrame, param)
-                        .addToBackStack(null)
-                        .commit();
 
-            }
+    private class ButtonEvent implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            SoilParameter1 param = new SoilParameter1();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.calendarFrame, param)
+                    .addToBackStack(null)
+                    .commit();
+
         }
-
+    }
 
 
 }

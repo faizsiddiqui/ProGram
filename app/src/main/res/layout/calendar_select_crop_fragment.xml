@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
@@ -10,7 +11,7 @@
         android:layout_gravity="center_vertical"
         android:scaleType="center"
         android:layout_weight="0.54"
-        android:src="@drawable/crops"/>
+        android:src="@drawable/crops" />
 
     <Spinner
         android:id="@+id/crop_spinner"
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:entries="@array/india_crops"
         android:prompt="@string/crop_prompt"
-        android:background="@android:drawable/btn_dropdown"/>
+        android:background="@android:drawable/btn_dropdown" />
 
     <Button
         android:id="@+id/jumpbtn"
@@ -35,10 +36,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="jumpToPage"/>
+        android:onClick="jumpToPage" />
 
-    <FrameLayout android:id="@+id/listFragment"
+    <FrameLayout
+        android:id="@+id/listFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    </LinearLayout>
+</LinearLayout>

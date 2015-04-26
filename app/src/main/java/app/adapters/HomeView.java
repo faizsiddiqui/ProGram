@@ -19,7 +19,7 @@ public class HomeView extends RecyclerView.Adapter<HomeView.ViewHolder> {
     public int[] icons;
     OnItemClickListener mItemClickListener;
 
-    public HomeView(String[] text, int[] icons){
+    public HomeView(String[] text, int[] icons) {
         this.text = text;
         this.icons = icons;
     }
@@ -48,8 +48,8 @@ public class HomeView extends RecyclerView.Adapter<HomeView.ViewHolder> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            homeIcon = (ImageView)itemView.findViewById(R.id.homeIcon);
-            homeText = (TextView)itemView.findViewById(R.id.homeText);
+            homeIcon = (ImageView) itemView.findViewById(R.id.homeIcon);
+            homeText = (TextView) itemView.findViewById(R.id.homeText);
             itemView.setOnClickListener(this);
         }
 

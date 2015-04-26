@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import app.adapters.ForumView;
 import app.program.CalendarActivity;
-import app.program.MainActivity;
 import app.program.R;
 
 /**
@@ -30,10 +29,10 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
     private ForumView mAdapter;
 
     String[] calendarTitle = {
-           // "Recommended Crop",
+            // "Recommended Crop",
             "Select Crop",
-           "Enter Location",
-           "Enter Month",
+            "Enter Location",
+            "Enter Month",
             "Suggestions",
             "Soil Parameter 1",
             "Soil Parameter 2",
@@ -51,17 +50,15 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
     };
 
     int[] image = {
-             R.mipmap.ic_base_login_sign_up,
-             R.mipmap.ic_base_login_sign_up,
-             R.mipmap.ic_base_login_sign_up,
             R.mipmap.ic_base_login_sign_up,
-             R.mipmap.ic_base_login_sign_up,
-             R.mipmap.ic_base_login_sign_up,
-             R.mipmap.ic_base_login_sign_up
+            R.mipmap.ic_base_login_sign_up,
+            R.mipmap.ic_base_login_sign_up,
+            R.mipmap.ic_base_login_sign_up,
+            R.mipmap.ic_base_login_sign_up,
+            R.mipmap.ic_base_login_sign_up,
+            R.mipmap.ic_base_login_sign_up
 
     };
-    
-    
 
 
     @Nullable
@@ -70,7 +67,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
         View view = inflater.inflate(R.layout.calendar_fragment, container, false);
         ((CalendarActivity) getActivity()).setActionBarTitle("Calendar");
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new ForumView( calendarTitle ,calendarText ,image);
+        mAdapter = new ForumView(calendarTitle, calendarText, image);
         mAdapter.SetOnItemClickListener(this);
 
 
@@ -84,14 +81,14 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
     @Override
     public void onItemClick(View view, int position) {
         switch (calendarTitle[position]) {
-         //   case "Recommended Crops":
-              //  RecommendedCrop recommendedCrop = new RecommendedCrop();
-              //  getFragmentManager().beginTransaction()
-                     //   .replace(R.id.calendarFrame, recommendedCrop)
-                     //   .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                     //   .addToBackStack(null)
-                     //   .commit();
-             //   break;
+            //   case "Recommended Crops":
+            //  RecommendedCrop recommendedCrop = new RecommendedCrop();
+            //  getFragmentManager().beginTransaction()
+            //   .replace(R.id.calendarFrame, recommendedCrop)
+            //   .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            //   .addToBackStack(null)
+            //   .commit();
+            //   break;
             case "Select Crop":
                 SelectCrop selectcrop = new SelectCrop();
                 getFragmentManager().beginTransaction()
@@ -101,23 +98,23 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
                         .commit();
                 break;
             case "Enter Location":
-               EnterLocation enterLocation = new EnterLocation();
-               getFragmentManager().beginTransaction()
-                       .replace(R.id.calendarFrame, enterLocation)
-                       .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                       .addToBackStack(null)
-                       .commit();
+                EnterLocation enterLocation = new EnterLocation();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.calendarFrame, enterLocation)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case "Enter Month":
-               EnterMonth enterMonth = new EnterMonth();
+                EnterMonth enterMonth = new EnterMonth();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.calendarFrame, enterMonth)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
                         .commit();
-                 break;
+                break;
             case "Suggestions":
-               Suggestion suggest = new Suggestion();
+                Suggestion suggest = new Suggestion();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.calendarFrame, suggest)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -126,7 +123,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
                 break;
 
             case "Soil Parameter 1":
-                SoilParameter1 sp1=new SoilParameter1();
+                SoilParameter1 sp1 = new SoilParameter1();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.calendarFrame, sp1)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -135,7 +132,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
                 break;
 
             case "Soil Parameter 2":
-                SoilParameter2 sp2=new SoilParameter2();
+                SoilParameter2 sp2 = new SoilParameter2();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.calendarFrame, sp2)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -143,7 +140,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
                         .commit();
                 break;
             case "Soil Parameter 3":
-                SoilParameter3 sp3=new SoilParameter3();
+                SoilParameter3 sp3 = new SoilParameter3();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.calendarFrame, sp3)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

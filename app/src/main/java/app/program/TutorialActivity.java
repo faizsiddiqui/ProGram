@@ -3,7 +3,6 @@ package app.program;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -83,7 +82,7 @@ public class TutorialActivity extends Activity {
         mViewPager.setOnPageChangeListener(tutorialPagerChangeListener);
     }
 
-    ViewPager.OnPageChangeListener tutorialPagerChangeListener = new ViewPager.OnPageChangeListener(){
+    ViewPager.OnPageChangeListener tutorialPagerChangeListener = new ViewPager.OnPageChangeListener() {
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -149,12 +148,12 @@ public class TutorialActivity extends Activity {
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == ((View)object);
+            return view == ((View) object);
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            View view = (View)object;
+            View view = (View) object;
             ((ViewPager) container).removeView(view);
         }
     }

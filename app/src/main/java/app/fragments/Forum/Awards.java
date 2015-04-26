@@ -1,5 +1,6 @@
 package app.fragments.Forum;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -11,13 +12,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Cache;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.NetworkImageView;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -27,10 +31,12 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import app.adapters.ForumDetailPostView;
 import app.adapters.ForumPostsCardView;
 import app.library.VolleySingleton;
 import app.program.ForumActivity;
 import app.program.R;
+import app.widgets.LinearLayoutManagerRecyclerView;
 import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
 
 /**
@@ -43,17 +49,18 @@ public class Awards extends Fragment implements ForumPostsCardView.OnItemClickLi
     private RecyclerView.LayoutManager mLayoutManager;
     private ForumPostsCardView mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private ProgressDialog pDialog;
 
     String[] image, name, prize, state, description, publishedDate;
 
     private static String URL = "http://buykerz.com/program/v1/api/awards";
     private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
-    private static final String KEY_IMAGE = "image";
-    private static final String KEY_DESCRIPTION = "description";
-    private static final String KEY_PRIZE = "prize";
-    private static final String KEY_STATE = "state";
-    private static final String KEY_PUBLISHED = "published";
+    public static final String KEY_NAME = "name";
+    public static final String KEY_IMAGE = "image";
+    public static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_PRIZE = "prize";
+    public static final String KEY_STATE = "state";
+    public static final String KEY_PUBLISHED = "published";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -65,6 +72,10 @@ public class Awards extends Fragment implements ForumPostsCardView.OnItemClickLi
         mRecyclerView = (RecyclerView) view.findViewById(R.id.forumRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        pDialog = new ProgressDialog(getActivity());
+        pDialog.setMessage("Loading awards...");
+        pDialog.setCancelable(false);
 
         setAdapter(true);
         getFloatingActionButtonView(view);
@@ -109,6 +120,8 @@ public class Awards extends Fragment implements ForumPostsCardView.OnItemClickLi
     }
 
     private void requestWhenCacheMiss() {
+        if (!pDialog.isShowing())
+            pDialog.show();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
                 URL, null, new Response.Listener<JSONObject>() {
             @Override
@@ -177,13 +190,16 @@ public class Awards extends Fragment implements ForumPostsCardView.OnItemClickLi
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        Post postAward = Post.newInstance(name[position], description[position], image[position]);
+        AwardsPost post = AwardsPost.newInstance(image[position], name[position], state[position],
+                prize[position], description[position], publishedDate[position]);
         getFragmentManager().beginTransaction()
-                .replace(R.id.forumFrame, postAward)
+                .replace(R.id.forumFrame, post)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();
@@ -202,5 +218,76 @@ public class Awards extends Fragment implements ForumPostsCardView.OnItemClickLi
                         .commit();
             }
         });
+    }
+
+    public static class AwardsPost extends Fragment {
+
+        NetworkImageView mImage;
+        ImageLoader mImageLoader;
+        RecyclerView mRecyclerView;
+        RecyclerView.LayoutManager mLayoutManager;
+        ForumDetailPostView mAdapter;
+        TextView awardName, awardCategory;
+
+        String[] titles, descriptions;
+
+        String name, image, state, description, prize, publishedDate;
+
+        public static AwardsPost newInstance(String image, String name, String state,
+                                             String prize, String description, String publishedDate){
+            AwardsPost post = new AwardsPost();
+            Bundle bundle = new Bundle();
+            bundle.putString(KEY_IMAGE, image);
+            bundle.putString(KEY_NAME, name);
+            bundle.putString(KEY_STATE, state);
+            bundle.putString(KEY_DESCRIPTION, description);
+            bundle.putString(KEY_PRIZE, prize);
+            bundle.putString(KEY_PUBLISHED, publishedDate);
+            post.setArguments(bundle);
+            return post;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            mImageLoader = VolleySingleton.getInstance().getImageLoader();
+            if (getArguments() != null) {
+                image = getArguments().getString(KEY_IMAGE);
+                name = getArguments().getString(KEY_NAME);
+                state = getArguments().getString(KEY_STATE);
+                description = getArguments().getString(KEY_DESCRIPTION);
+                prize = getArguments().getString(KEY_PRIZE);
+                publishedDate = getArguments().getString(KEY_PUBLISHED);
+            }
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.forum_post_detail_fragment, container, false);
+            ((ForumActivity) getActivity()).setActionBarTitle(name);
+            mImage = (NetworkImageView) view.findViewById(R.id.post_image);
+            awardName = (TextView) view.findViewById(R.id.post_name);
+            awardCategory = (TextView) view.findViewById(R.id.post_category);
+            mRecyclerView = (RecyclerView) view.findViewById(R.id.detail_list);
+            mRecyclerView.setHasFixedSize(true);
+            mLayoutManager = new LinearLayoutManagerRecyclerView(getActivity());
+            mRecyclerView.setLayoutManager(mLayoutManager);
+
+            titles = new String[]{
+                    KEY_DESCRIPTION, KEY_PRIZE
+            };
+
+            descriptions = new String[]{
+                    description, prize
+            };
+
+            mImage.setImageUrl(image, mImageLoader);
+            awardName.setText(name);
+            awardCategory.setText(state);
+            mAdapter = new ForumDetailPostView(titles, descriptions);
+            mRecyclerView.setAdapter(mAdapter);
+
+            return view;
+        }
     }
 }

@@ -1,51 +1,42 @@
-   package app.fragments.Calendar;
+package app.fragments.Calendar;
 
-    import android.app.NotificationManager;
-    import android.app.PendingIntent;
-    import android.app.TaskStackBuilder;
-    import android.content.Context;
-    import android.content.Intent;
-    import android.os.Bundle;
-    import android.support.annotation.Nullable;
-    import android.support.v4.app.Fragment;
-    import android.support.v4.app.NotificationCompat;
-    import android.view.LayoutInflater;
-    import android.view.View;
-    import android.view.ViewGroup;
-    import android.widget.CalendarView;
-    import android.widget.DatePicker;
-    import android.widget.Toast;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CalendarView;
+import android.widget.Toast;
 
-    import app.program.CalendarActivity;
-    import app.program.MainActivity;
-    import app.program.R;
+import app.program.CalendarActivity;
+import app.program.R;
 
 
-    /**
-    * Created by apple on 4/2/2015./
-    */
-   @SuppressWarnings("unused")
-   public class MainCalendar extends Fragment {
+/**
+ * Created by apple on 4/2/2015./
+ */
+@SuppressWarnings("unused")
+public class MainCalendar extends Fragment {
 
-        CalendarView calendar;
+    CalendarView calendar;
 
-        // This is the date picker used to select the date for our notification
-        //private DatePicker picker;
+    // This is the date picker used to select the date for our notification
+    //private DatePicker picker;
 
-        //public String[] color;
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-            View view = inflater.inflate(R.layout.calendar_fragment_main_calendar, container, false);
-            calendar = (CalendarView)view.findViewById(R.id.maincalendar);
-            ((CalendarActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_calendar);
+    //public String[] color;
 
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-            //get a reference to our date picker
-            //picker = (DatePicker) view.findViewById(R.id.scheduleTimePicker);
+        View view = inflater.inflate(R.layout.calendar_fragment_main_calendar, container, false);
+        calendar = (CalendarView) view.findViewById(R.id.maincalendar);
+        ((CalendarActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_calendar);
+
+
+        //get a reference to our date picker
+        //picker = (DatePicker) view.findViewById(R.id.scheduleTimePicker);
            /* NotificationCompat.Builder mBuilder= new NotificationCompat.Builder(getActivity());
            // mBuilder.setSmallIcon(R.drawable.image);
             mBuilder.setContentTitle("Notification Alert, Click Me!");
@@ -63,27 +54,27 @@
             */
 
         initializeCalendar();
-            return view;
+        return view;
 
 
-        }
+    }
 
-public void initializeCalendar() {
+    public void initializeCalendar() {
 
 
-    calendar.setShowWeekNumber(false);
-    calendar.setFirstDayOfWeek(2);
-    calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-        @Override
-        public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
-            Toast.makeText(getActivity(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+        calendar.setShowWeekNumber(false);
+        calendar.setFirstDayOfWeek(2);
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
+                Toast.makeText(getActivity(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
 
-        }
+            }
 
         });
     }
 
-        // this is the onclick called from XML to set a new notification
+    // this is the onclick called from XML to set a new notification
         /*public void onDateSelectedButtonClick(View v) {
             //get the date from datepicker
             int day = picker.getDayOfMonth();
@@ -101,8 +92,7 @@ public void initializeCalendar() {
    */
 
 
-
-    }
+}
 
 
 
