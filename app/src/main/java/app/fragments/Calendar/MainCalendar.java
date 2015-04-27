@@ -1,12 +1,25 @@
 package app.fragments.Calendar;
 
+import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import app.program.CalendarActivity;
@@ -20,7 +33,9 @@ import app.program.R;
 public class MainCalendar extends Fragment {
 
     CalendarView calendar;
-
+    TextView notification;
+    private int notificationID = 100;
+    private int numMessages = 0;
     // This is the date picker used to select the date for our notification
     //private DatePicker picker;
 
@@ -37,23 +52,16 @@ public class MainCalendar extends Fragment {
 
         //get a reference to our date picker
         //picker = (DatePicker) view.findViewById(R.id.scheduleTimePicker);
-           /* NotificationCompat.Builder mBuilder= new NotificationCompat.Builder(getActivity());
-           // mBuilder.setSmallIcon(R.drawable.image);
-            mBuilder.setContentTitle("Notification Alert, Click Me!");
-            mBuilder.setContentText("Hi.. Notification Details");
-
-            Intent resultIntent= new Intent(getActivity(), MainCalendar.class);
-            TaskStackBuilder stackBuilder = TaskStackBuilder.create(getActivity());
-            stackBuilder.addParentStack(MainCalendar.class);
-
-            stackBuilder.addNextIntent(resultIntent);
-            PendingIntent resultPendingIntent= stackBuilder.getPendingIntent(
-                    0, PendingIntent.FLAG_UPDATE_CURRENT );
-            mBuilder.setContentIntent(resultPendingIntent);
-            NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-            */
 
         initializeCalendar();
+        TextView notification = (TextView) view.findViewById(R.id.text);
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                displayNotification();
+
+            }
+        });
         return view;
 
 
@@ -73,6 +81,34 @@ public class MainCalendar extends Fragment {
 
         });
     }
+
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    protected void displayNotification(){
+
+       Log.i("Start", "Notification");
+       NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity());
+       mBuilder.setContentTitle("Notification Alert, Click Me!");
+       mBuilder.setContentText("Hi.. Notification Details");
+       mBuilder.setTicker("New Message Alert");
+
+        mBuilder.setSmallIcon(R.mipmap.ic_launcher);
+
+        mBuilder.setNumber(++numMessages);                        //to increase no of notifications!
+       /*Intent resultIntent = new Intent(getActivity(), SoilParameter1.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getActivity());
+        stackBuilder.addParentStack(SoilParameter1.class);
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(resultPendingIntent); */
+
+
+
+       mBuilder.setDefaults(Notification.DEFAULT_SOUND);
+       NotificationManager mNotificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+       mNotificationManager.notify(notificationID, mBuilder.build());
+
+  }
 
     // this is the onclick called from XML to set a new notification
         /*public void onDateSelectedButtonClick(View v) {

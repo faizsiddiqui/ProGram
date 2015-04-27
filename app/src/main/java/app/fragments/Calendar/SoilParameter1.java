@@ -24,8 +24,10 @@ public class SoilParameter1 extends Fragment {
         View view = inflater.inflate(R.layout.calendar_soil_parameter1, container, false);
         ((CalendarActivity) getActivity()).setActionBarTitle("Soil Parameters");
         btn4 = (Button) view.findViewById(R.id.jumpbtn4);
+
         btn4.setOnClickListener(new ButtonEvent());
         return view;
+
 
     }
 

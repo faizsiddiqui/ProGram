@@ -52,6 +52,7 @@
     
     <!-- Calendar color -->
     <color name="transparent" type="color">#00FFFFFF </color>
+    <color name="gray" type="color">#d3d3d3</color>
 
     <!-- Learn color -->
     <color name="ColorPrimary">#e62117</color>
