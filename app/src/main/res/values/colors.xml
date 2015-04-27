@@ -53,4 +53,10 @@
     <!-- Calendar color -->
     <color name="transparent" type="color">#00FFFFFF </color>
 
+    <!-- Learn color -->
+    <color name="ColorPrimary">#e62117</color>
+    <color name="ColorPrimaryDark">#c31c13</color>
+    <color name="tabsScrollColor">#8a140e</color>
+
+
 </resources>
