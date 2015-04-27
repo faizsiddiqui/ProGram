@@ -8,11 +8,6 @@
         android:id="@+id/toolbar"
         layout="@layout/base_toolbar" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@drawable/toolbar_border_bottom" />
-
     <FrameLayout
         android:id="@+id/calendarFrame"
         android:layout_width="match_parent"

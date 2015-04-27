@@ -55,9 +55,8 @@ public class SettingsActivity extends BaseActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             if (key.equals(KEY_PREF_LANGUAGE)) {
-                Toast.makeText(getActivity(), "Changed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), sharedPreferences.toString(), Toast.LENGTH_SHORT).show();
             }
-
         }
     }
 }

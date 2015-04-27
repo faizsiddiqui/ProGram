@@ -2,8 +2,9 @@
 <resources>
 
     <!-- Theme Colors. -->
-    <color name="colorPrimary">#5fcf80</color>
-    <color name="colorPrimaryDark">#4da767</color>
+    <color name="colorPrimary">#00A878</color>
+    <color name="colorPrimaryDark">#00825D</color>
+    <color name="colorPrimaryLight">#5BBA6F</color>
     <color name="colorAccent">#637a91</color>
     <color name="colorIcon">#666</color>
 
@@ -20,15 +21,14 @@
     <color name="colorBackground">#f9f9f9</color>
 
     <!-- Toolbar settings -->
-    <color name="colorToolbarTitle">#959ba3</color>
-    <color name="colorToolbarNavigationIcon">#959ba3</color>
-    <color name="colorToolbarBorder">#e2e3ea</color>
+    <color name="colorToolbarTitle">#ffffff</color>
+    <color name="colorToolbarNavigationIcon">#ffffff</color>
+    <color name="colorToolbarBorder">#00563D</color>
 
     <!-- Card settings -->
     <color name="colorCardTitle">#767b86</color>
     <color name="colorCardText">#959ba3</color>
     <color name="colorCardImage">#e2e3ea</color>
-
 
     <!-- Splash settings -->
     <color name="splash_background">#a7a7a7</color>
@@ -41,23 +41,9 @@
 
     <!-- Floating action button -->
     <color name="float_black_semi_transparent">#B2000000</color>
-    <color name="float_background">#e5e5e5</color>
-    <color name="float_half_black">#808080</color>
-    <color name="float_white">#fafafa</color>
-    <color name="float_white_pressed">#f1f1f1</color>
-    <color name="float_pink">#e91e63</color>
-    <color name="float_pink_pressed">#ec407a</color>
-    <color name="float_blue_semi_transparent">#805677fc</color>
-    <color name="float_blue_semi_transparent_pressed">#80738ffe</color>
     
     <!-- Calendar color -->
     <color name="transparent" type="color">#00FFFFFF </color>
     <color name="gray" type="color">#d3d3d3</color>
-
-    <!-- Learn color -->
-    <color name="ColorPrimary">#e62117</color>
-    <color name="ColorPrimaryDark">#c31c13</color>
-    <color name="tabsScrollColor">#8a140e</color>
-
 
 </resources>
