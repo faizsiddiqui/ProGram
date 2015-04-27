@@ -3,19 +3,13 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/forum_learn_tool_bar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        />
-
-    <com.android4devs.slidingtab.SlidingTabLayout
+    <app.widgets.SlidingTabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="2dp"
-        android:background="@color/ColorPrimary"/>
+        android:background="@color/ColorPrimary">
+    </app.widgets.SlidingTabLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"

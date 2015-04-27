@@ -63,6 +63,14 @@ public class Forum extends Fragment implements HomeView.OnItemClickListener {
     @Override
     public void onItemClick(View view, int position) {
         switch (forumTitle[position]) {
+            case "Learn":
+                Learn learn = new Learn();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.forumFrame, learn)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                break;
             case "Q&A":
                 QuestionAnswer questionAnswer = new QuestionAnswer();
                 getFragmentManager().beginTransaction()
