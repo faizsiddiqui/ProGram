@@ -10,25 +10,18 @@
         android:orientation="vertical"
         android:background="@color/colorFlatRed"
         android:gravity="center"
-        android:padding="@dimen/keyLine2">
+        android:padding="@dimen/keyLine1">
 
         <TextView
+            android:id="@+id/calendar_soil_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter soil details for precise results."
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/keyLine1"
             android:textColor="@color/colorWhite"
-            android:gravity="center_horizontal" />
-
-        <Button
-            android:id="@+id/calendar_soil_test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginTop="@dimen/keyLine2"
-            android:background="@color/colorWhite"
-            android:textColor="@color/colorSecondaryText"
-            android:text="Soil test report" />
+            android:drawablePadding="@dimen/keyLine1"
+            android:drawableLeft="@mipmap/ic_base_error"
+            android:drawableStart="@mipmap/ic_base_error"/>
 
     </LinearLayout>
 

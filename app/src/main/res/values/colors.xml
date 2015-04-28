@@ -17,7 +17,7 @@
 
     <!-- Fixed Colors. -->
     <color name="colorWhite">#fff</color>
-    <color name="colorFlatRed">#E74C3C</color>
+    <color name="colorFlatRed">#F06F63</color>
     <color name="colorBackground">#f9f9f9</color>
 
     <!-- Toolbar settings -->
