@@ -149,8 +149,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
                 break;
         }
     }
-
-    public void set(int year, int month, int day) {
+     public void set(int year, int month, int day) {
     }
 
     public void set(int hour_of_day, int i) {
@@ -159,4 +158,6 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
     public static Calendar getInstance() {
         return instance;
     }
+
+
 }

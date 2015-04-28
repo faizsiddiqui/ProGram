@@ -14,6 +14,11 @@
         android:selectedWeekBackgroundColor="@color/colorPrimary"
         android:selectedDateVerticalBar="@color/colorFlatRed"
         />
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:text="Add a new event"
+        android:id="@+id/new_event"/>
+
 
     <TextView
         android:layout_width="fill_parent"

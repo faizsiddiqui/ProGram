@@ -5,12 +5,14 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
@@ -18,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +39,7 @@ public class MainCalendar extends Fragment {
     TextView notification;
     private int notificationID = 100;
     private int numMessages = 0;
+    Button button;
     // This is the date picker used to select the date for our notification
     //private DatePicker picker;
 
@@ -62,6 +66,16 @@ public class MainCalendar extends Fragment {
 
             }
         });
+
+        Button button = (Button)view.findViewById(R.id.new_event);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(getActivity(), "hello", Toast.LENGTH_LONG).show();
+                //addCalendarEvent();
+            }
+        });
+
         return view;
 
 
@@ -76,14 +90,22 @@ public class MainCalendar extends Fragment {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
                 Toast.makeText(getActivity(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
-
+     addCalendarEvent();
             }
 
+
         });
+
     }
 
+    public void addCalendarEvent() {
+    Intent intent = new Intent(Intent.ACTION_INSERT, CalendarContract.Events.CONTENT_URI);
+    startActivity(intent);}
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+
+
+
+
     protected void displayNotification(){
 
        Log.i("Start", "Notification");
