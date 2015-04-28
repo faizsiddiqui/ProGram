@@ -20,7 +20,7 @@ public class Learn extends Fragment {
     ViewPager pager;
     LearnViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[] = {"Learn OF", "Learn Steps"};
+    CharSequence Titles[] = {"Introduction", "Steps"};
     int numberOfTabs = 2;
 
     @Override
@@ -37,7 +37,7 @@ public class Learn extends Fragment {
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.colorWhite);
+                return getResources().getColor(R.color.colorPrimaryDark);
             }
         });
         tabs.setViewPager(pager);

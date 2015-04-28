@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,6 +16,7 @@ import java.util.TimeZone;
 
 import app.library.VolleySingleton;
 import app.program.R;
+import app.widgets.BezelNetworkImageView;
 
 /**
  * Not for public use
@@ -28,6 +28,16 @@ public class ForumPostsCardView extends RecyclerView.Adapter<ForumPostsCardView.
     String[] schemesNames, schemesImages, schemesCategory, schemesReleaseDate;
     OnItemClickListener mItemClickListener;
     ImageLoader mImageLoader;
+    Boolean allCaps;
+
+    public ForumPostsCardView(Context context, String[] names, String[] images, String[] category, Boolean checkAllCaps) {
+        this.context = context;
+        this.schemesNames = names;
+        this.schemesImages = images;
+        this.schemesCategory = category;
+        this.schemesReleaseDate = null;
+        this.allCaps = checkAllCaps;
+    }
 
     public ForumPostsCardView(Context context, String[] names, String[] images, String[] category, String[] date) {
         this.context = context;
@@ -35,6 +45,16 @@ public class ForumPostsCardView extends RecyclerView.Adapter<ForumPostsCardView.
         this.schemesImages = images;
         this.schemesCategory = category;
         this.schemesReleaseDate = date;
+        this.allCaps = true;
+    }
+
+    public ForumPostsCardView(Context context, String[] names, String[] images, String[] category, String[] date, Boolean checkAllCaps) {
+        this.context = context;
+        this.schemesNames = names;
+        this.schemesImages = images;
+        this.schemesCategory = category;
+        this.schemesReleaseDate = date;
+        this.allCaps = checkAllCaps;
     }
 
     @Override
@@ -49,7 +69,9 @@ public class ForumPostsCardView extends RecyclerView.Adapter<ForumPostsCardView.
         holder.schemeName.setText(schemesNames[position]);
         holder.schemeImage.setImageUrl(schemesImages[position], mImageLoader);
         holder.schemeCategory.setText(schemesCategory[position]);
-        holder.schemeReleaseDate.setText(formatDateTime(schemesReleaseDate[position]));
+        if(schemesReleaseDate != null) {
+            holder.schemeReleaseDate.setText(formatDateTime(schemesReleaseDate[position]));
+        }
     }
 
     @Override
@@ -60,14 +82,20 @@ public class ForumPostsCardView extends RecyclerView.Adapter<ForumPostsCardView.
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView schemeName, schemeCategory, schemeReleaseDate;
-        NetworkImageView schemeImage;
+        BezelNetworkImageView schemeImage;
 
         public ViewHolder(View itemView) {
             super(itemView);
             schemeName = (TextView) itemView.findViewById(R.id.schemes_names);
-            schemeImage = (NetworkImageView) itemView.findViewById(R.id.schemes_image);
+            schemeImage = (BezelNetworkImageView) itemView.findViewById(R.id.schemes_image);
             schemeCategory = (TextView) itemView.findViewById(R.id.schemes_category);
             schemeReleaseDate = (TextView) itemView.findViewById(R.id.schemes_release_date);
+
+            if(!allCaps) {
+                schemeCategory.setAllCaps(allCaps);
+                schemeReleaseDate.setAllCaps(allCaps);
+            }
+
             itemView.setOnClickListener(this);
         }
 
