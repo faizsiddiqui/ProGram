@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <CalendarView
@@ -26,6 +28,72 @@
         android:id="@+id/text"
         android:text="Notifications Here:"
         />
+    <android.support.v7.widget.CardView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:id="@+id/cardview"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/colorWhite"
+            android:padding="@dimen/keyLine1">
+
+            <app.widgets.BezelNetworkImageView
+                android:id="@+id/schemes_image"
+                android:layout_width="@dimen/keyLine5"
+                android:layout_height="@dimen/keyLine5"
+                android:scaleType="centerCrop"
+                android:src="@color/colorCardImage"
+                app:maskDrawable="@drawable/circle_mask"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/keyLine1"
+                android:layout_marginStart="@dimen/keyLine1">
+
+                <TextView
+                    android:id="@+id/eventdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/calendar_event_dateString"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorPrimaryText"/>
+
+                <TextView
+                    android:id="@+id/schemes_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="@string/calendar_eventString"
+                    android:textAllCaps="true"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorSecondaryText"/>
+
+                <TextView
+                    android:id="@+id/schemes_release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textAllCaps="true"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorSecondaryText"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
 
 
 </LinearLayout>

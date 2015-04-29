@@ -168,6 +168,12 @@
         <item>@drawable/months</item>
     </integer-array>
 
+    <!-- Calendar Events -->
+    <string name="calendar_eventString">Click for event Description</string>
+    <string name="calendar_event_dateString">Event Date</string>
+
+
+
 </resources>
 
 

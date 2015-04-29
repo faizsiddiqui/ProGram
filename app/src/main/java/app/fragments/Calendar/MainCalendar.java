@@ -25,6 +25,9 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
+
+import app.adapters.CardView;
 import app.program.CalendarActivity;
 import app.program.R;
 
@@ -39,7 +42,10 @@ public class MainCalendar extends Fragment {
     TextView notification;
     private int notificationID = 100;
     private int numMessages = 0;
+    int first_date;
+    int last_date;
     Button button;
+    TextView Event;
     // This is the date picker used to select the date for our notification
     //private DatePicker picker;
 
@@ -73,6 +79,7 @@ public class MainCalendar extends Fragment {
             public void onClick(View view) {
                 //Toast.makeText(getActivity(), "hello", Toast.LENGTH_LONG).show();
                 //addCalendarEvent();
+                addCalendarEvent();
             }
         });
 
@@ -90,11 +97,22 @@ public class MainCalendar extends Fragment {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
                 Toast.makeText(getActivity(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
-     addCalendarEvent();
+                TextView Event = (TextView) getActivity().findViewById(R.id.eventdate);
+                Event.setText(day + "/" + month + "/" + year);
+
+
+
+                newEvent();
+
             }
 
 
         });
+
+    }
+
+   public void newEvent()
+    {
 
     }
 
