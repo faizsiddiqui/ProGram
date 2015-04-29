@@ -24,6 +24,7 @@ import app.adapters.NavigationView;
 import app.library.DatabaseHandler;
 import app.library.Preferences;
 import app.library.VolleySingleton;
+import app.program.OtherActivity;
 import app.program.R;
 import app.program.SettingsActivity;
 import app.program.TutorialActivity;
@@ -115,6 +116,11 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
             case "Settings":
                 Intent settings = new Intent(getActivity(), SettingsActivity.class);
                 startActivity(settings);
+                break;
+            case "About":
+                Intent about = new Intent(getActivity(), OtherActivity.class);
+                about.putExtra("fragment", "About");
+                startActivity(about);
                 break;
         }
     }

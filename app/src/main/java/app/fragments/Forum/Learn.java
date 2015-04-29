@@ -17,20 +17,32 @@ import app.widgets.SlidingTabLayout;
  */
 public class Learn extends Fragment {
 
-    ViewPager pager;
-    LearnViewPagerAdapter adapter;
+    ViewPager mViewPager;
+    LearnViewPagerAdapter mViewPageAdapter;
     SlidingTabLayout tabs;
     CharSequence Titles[] = {"Introduction", "Steps"};
     int numberOfTabs = 2;
 
+    View view;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initialize();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.forum_learn, container, false);
+        view = inflater.inflate(R.layout.forum_learn, container, false);
         ((ForumActivity) getActivity()).setActionBarTitle("Learn");
+        initialize();
+        return view;
+    }
 
-        adapter = new LearnViewPagerAdapter(getActivity().getSupportFragmentManager(), Titles, numberOfTabs);
-        pager = (ViewPager) view.findViewById(R.id.pager);
-        pager.setAdapter(adapter);
+    private void initialize(){
+        mViewPageAdapter = new LearnViewPagerAdapter(getActivity().getSupportFragmentManager(), Titles, numberOfTabs);
+        mViewPager = (ViewPager) view.findViewById(R.id.pager);
+        mViewPager.setAdapter(mViewPageAdapter);
 
         tabs = (SlidingTabLayout) view.findViewById(R.id.tabs);
         tabs.setDistributeEvenly(true);
@@ -40,8 +52,7 @@ public class Learn extends Fragment {
                 return getResources().getColor(R.color.colorPrimaryDark);
             }
         });
-        tabs.setViewPager(pager);
-        return view;
+        tabs.setViewPager(mViewPager);
     }
 }
 

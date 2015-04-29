@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app.widgets.ScrimInsetsScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:scrollbarSize="@dimen/keyLine3"
+    android:background="#f5f5f5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/keyLine2"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/about_logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@mipmap/artwork"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/about_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/about_logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/keyLine1"
+                android:text="ProGram - A Farmers Friend"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorWhite"/>
+
+            <TextView
+                android:id="@+id/about_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/about_title"
+                android:layout_centerHorizontal="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Version 0.1"
+                android:textColor="@color/colorWhite"
+                android:gravity="center" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/keyLine1"
+            android:paddingRight="@dimen/keyLine1">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/developer_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/keyLine1"/>
+
+            <View
+                android:id="@+id/border_one"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/developer_list"
+                android:layout_marginTop="@dimen/keyLine1"
+                android:layout_marginBottom="@dimen/keyLine1"
+                android:background="@color/gray" >
+            </View>
+
+            <TextView
+                android:id="@+id/open_source_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/border_one"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:text="Open source licenses"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/open_source_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/open_source_heading"
+                android:paddingTop="@dimen/keyLine1"/>
+
+            <View
+                android:id="@+id/border_two"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/open_source_list"
+                android:layout_marginTop="@dimen/keyLine1"
+                android:layout_marginBottom="@dimen/keyLine1"
+                android:background="@color/gray" >
+            </View>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</app.widgets.ScrimInsetsScrollView>

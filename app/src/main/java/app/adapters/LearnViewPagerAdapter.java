@@ -2,9 +2,12 @@ package app.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.view.ViewGroup;
 
+import app.fragments.Forum.Learn;
 import app.fragments.Forum.LearnOF;
 import app.fragments.Forum.LearnSteps;
 import app.program.R;
