@@ -3,7 +3,6 @@
     <string name="app_name">ProGram</string>
     <!-- Base -->
     <string name="base_about_title">ProGram - A Farmers Friend</string>
-    
 
     <!-- Toolbar settings -->
     <string name="toolbar_text_home">Home</string>
@@ -90,7 +89,7 @@
     <string name="tutorial_description_Calender">Calendar provides timely notifications prior to the time of performing the next farming step according to the farming cycle of the crop selected.</string>
     <string name="tutorial_description_QuestionAndAnswers">Read what problems are being faced by other farmers, if you have enough knowledge help them out, if you have problems ask your own questions and someone else might help you.</string>
     <string name="tutorial_description_SchemesAndAwards">Here you can get all the information related to schemes and awards issued by government for farmers</string>
-    <string name="tutorial_description_employment">Don't know what to do in off season, check out the jobs section and you might find some work to do</string>
+    <string name="tutorial_description_employment">Don\'t know what to do in off season, check out the jobs section and you might find some work to do</string>
 
     <string name="tutorial_next">NEXT</string>
 
