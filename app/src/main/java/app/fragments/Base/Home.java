@@ -27,7 +27,7 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
     private HomeView mAdapter;
 
     String[] home_text = {
-            "Home",
+            "Calendar",
             "Forum"
     };
 
