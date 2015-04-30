@@ -1,49 +1,30 @@
-package app.fragments.Calendar;
+package app.fragments.SCalendar;
 
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import app.adapters.CalendarSelectCropCardView;
-import app.fragments.SCalendar.Location;
-import app.fragments.SCalendar.SelectCrop;
-import app.library.CustomJsonObjectRequest;
-import app.library.DatabaseHandler;
 import app.program.CalendarActivity;
 import app.program.R;
 
 /**
  * Created by admin on 10-04-2015.
  */
-public class SoilParameter1 extends Fragment {
+public class SoilTestParameters extends Fragment {
 
     private Button search;
     String selectedState, ph,ec,oc,n,p,k,z,c,i,m,b,s;
 
     EditText PH,EC,OC,N,P,K,ZN,CU,FE,MN,S;
 
-    public static SoilParameter1 newInstance(String state){
-        SoilParameter1 params = new SoilParameter1();
+    public static SoilTestParameters newInstance(String state){
+        SoilTestParameters params = new SoilTestParameters();
         Bundle bundle = new Bundle();
         bundle.putString("state", state);
         params.setArguments(bundle);

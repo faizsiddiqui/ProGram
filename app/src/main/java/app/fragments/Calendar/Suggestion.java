@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import app.fragments.SCalendar.SoilTestParameters;
 import app.program.CalendarActivity;
 import app.program.R;
 
@@ -33,7 +34,7 @@ public class Suggestion extends Fragment {
     private class ButtonEvent implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            SoilParameter1 param = new SoilParameter1();
+            SoilTestParameters param = new SoilTestParameters();
             getFragmentManager().beginTransaction()
                     .replace(R.id.calendarFrame, param)
                     .addToBackStack(null)

@@ -1,4 +1,4 @@
-package app.fragments.Calendar;
+package app.fragments.SCalendar;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
@@ -123,9 +123,8 @@ public class MainCalendar extends Fragment {
                 TextView Event = (TextView) getActivity().findViewById(R.id.eventdate);
                 Event.setText(day + "/" + month + "/" + year);
                 TextView EventDescription = (TextView) getActivity().findViewById(R.id.eventdescription);
-                cp.getEventDescription(day, month,year);
-                newEvent();
-
+                //cp.getEventDescription(day, month,year);
+                //newEvent();
             }
 
 
@@ -156,9 +155,9 @@ public class MainCalendar extends Fragment {
         mBuilder.setSmallIcon(R.mipmap.ic_launcher);
 
         mBuilder.setNumber(++numMessages);                        //to increase no of notifications!
-       /*Intent resultIntent = new Intent(getActivity(), SoilParameter1.class);
+       /*Intent resultIntent = new Intent(getActivity(), SoilTestParameters.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(getActivity());
-        stackBuilder.addParentStack(SoilParameter1.class);
+        stackBuilder.addParentStack(SoilTestParameters.class);
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent); */

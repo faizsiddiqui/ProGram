@@ -1,16 +1,13 @@
 package app.fragments.SCalendar;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,23 +15,20 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
-import app.adapters.CalendarSelectCropCardView;
 import app.adapters.ForumPostsCardView;
-import app.fragments.Calendar.EnterMonth;
-import app.fragments.Calendar.MainCalendar;
 import app.library.CropHandler;
 import app.library.CustomJsonObjectRequest;
-import app.library.DatabaseHandler;
 import app.library.VolleySingleton;
 import app.program.CalendarActivity;
 import app.program.R;
@@ -212,17 +206,20 @@ public class SelectCrop extends Fragment implements ForumPostsCardView.OnItemCli
 
     @Override
     public void onItemClick(View view, int position) {
+        pDialog.setMessage("Creating calendar...");
         if (!pDialog.isShowing())
             pDialog.show();
 
-        Toast.makeText(getActivity(), "Open calendar for " + name[position], Toast.LENGTH_SHORT).show();
-
         String SELECTED_CROP_URL = "http://buykerz.com/program/v1/api/selectCrop";
-        String SELECTED_CROP_DURATION_SOWING = "";
-        String SELECTED_CROP_DURATION_IRRIGATION = "";
-        String SELECTED_CROP_DURATION_FERTILIZATION = "";
-        String SELECTED_CROP_DURATION_HARVESTING = "";
-        String SELECTED_CROP_DURATION_PESTICIDE = "";
+        String SELECTED_CROP_NAME = "crop_name";
+        String SELECTED_CROP_VARIETY_ID = "variety_id";
+        String SELECTED_CROP_VARIETY_NAME = "variety_name";
+        String SELECTED_CROP_DURATION = "time_duration";
+        String SELECTED_CROP_DURATION_SOWING = "sowing";
+        String SELECTED_CROP_DURATION_IRRIGATION = "irrigation";
+        String SELECTED_CROP_DURATION_FERTILIZATION = "fertilization";
+        String SELECTED_CROP_DURATION_PESTICIDE = "pesticide";
+        String SELECTED_CROP_DURATION_HARVESTING = "harvesting";
 
         final String selectCropId = id[position];
 
@@ -236,24 +233,24 @@ public class SelectCrop extends Fragment implements ForumPostsCardView.OnItemCli
                         if (response.getString(KEY_SUCCESS) != null) {
                             Boolean res = response.getBoolean(KEY_SUCCESS);
                             if (res) {
-                                JSONArray crops = response.getJSONArray("crop");
+                                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
                                 String sday, smonth, syear , eday, emonth, eyear, evname, evdesc;
-                                sday = "1";
-                                smonth = "5";
-                                syear = "2014";
-                                eday = "2";
+                                sday= String.valueOf(calendar.get(Calendar.DATE));
+                                smonth = String.valueOf(calendar.get(Calendar.MONTH));
+                                syear = String.valueOf(calendar.get(Calendar.YEAR));
+                                eday = "5";
                                 emonth = "5";
                                 eyear = "2014";
                                 evname = "Sowing";
                                 evdesc = "Today is sowing day";
-                                ch.addCrop(sday, smonth, syear, eday, emonth, eyear, evname, evdesc);
-                                HashMap<String, String> cropDetails = ch.getCropDetails();
-                                String calendarId = cropDetails.get("id");
+                                //ch.addCrop(sday, smonth, syear, eday, emonth, eyear, evname, evdesc);
+                                //HashMap<String, String> cropDetails = ch.getCropDetails();
+                                //String calendarId = cropDetails.get("id");
                                 if (pDialog.isShowing())
                                     pDialog.dismiss();
-                                MainCalendar calendar = new MainCalendar();
+                                MainCalendar cal = new MainCalendar();
                                 getFragmentManager().beginTransaction()
-                                        .replace(R.id.calendarFrame, calendar)
+                                        .replace(R.id.calendarFrame, cal)
                                         .addToBackStack(null)
                                         .commit();
                             }
@@ -261,6 +258,8 @@ public class SelectCrop extends Fragment implements ForumPostsCardView.OnItemCli
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                    if (pDialog.isShowing())
+                        pDialog.dismiss();
                 }
             }
         }, new Response.ErrorListener() {
@@ -274,7 +273,7 @@ public class SelectCrop extends Fragment implements ForumPostsCardView.OnItemCli
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id", selectCropId);
+                params.put("crop_id", "1");
                 return params;
             }
         };

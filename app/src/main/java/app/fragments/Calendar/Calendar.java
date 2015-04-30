@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import app.adapters.ForumView;
+import app.fragments.SCalendar.SoilTestParameters;
 import app.program.CalendarActivity;
 import app.program.R;
 
@@ -123,7 +124,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
                 break;
 
             case "Soil Parameter 1":
-                SoilParameter1 sp1 = new SoilParameter1();
+                SoilTestParameters sp1 = new SoilTestParameters();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.calendarFrame, sp1)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

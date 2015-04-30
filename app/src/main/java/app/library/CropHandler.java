@@ -116,14 +116,6 @@ public class CropHandler extends SQLiteOpenHelper{
         String eventDescribe = "SELECT * FROM" + TABLE_CROP + "WHERE day>=startday AND month>=startmonth AND year>=startyear AND day<=endday AND month<=endmonth AND year<=endyear";
         SQLiteDatabase cp = this.getReadableDatabase();
         Cursor cursor = cp.rawQuery(eventDescribe ,null);
-
-
-
-
-
     }
 
-   }
-
-
-
+}
