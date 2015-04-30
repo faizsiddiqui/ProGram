@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Kisaan  helpline  number (MP) :"
+        android:id="@+id/Kisaancallcentre"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorPrimary"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+        android:editable="false"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_marginTop="10dp"
+        android:text="1800-233-4433"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:editable="false"
+       />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Indian Institute of Soil sciences :"
+        android:id="@+id/iiss"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
+        android:textSize="20dp"
+        android:editable="false"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:text="0755 -2730970 /2733341 /2733372 /2734221"
+        android:editable="false"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Central Institute of Agricultural Engineering :"
+        android:id="@+id/ciae"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
+        android:textSize="18dp"
+        android:layout_marginTop="20dp"
+        android:editable="false"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:layout_gravity="center_horizontal"
+        android:text="0755 - 2521090"
+        android:textSize="20dp"
+        android:editable="false"/>
+</LinearLayout>

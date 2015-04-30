@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
@@ -89,21 +88,21 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
         }
 
         navigationRowText = new String[]{
-                "Tutorials", "Help",
-                "About", "Settings"};
+                "Tutorials", "Settings",
+                "Help", "About"};
 
         navigationRowImage = new Integer[]{
-                R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_help,
-                R.mipmap.ic_nav_about, R.mipmap.ic_nav_setting};
+                R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_setting,
+                R.mipmap.ic_nav_help, R.mipmap.ic_nav_about};
 
         if (db.isUserLoggedIn()) {
             navigationRowText = new String[]{
-                    "Tutorials", "Help",
-                    "About", "Settings", "Logout"};
+                    "Tutorials", "Settings",
+                    "Help", "About", "Logout"};
 
             navigationRowImage = new Integer[]{
-                    R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_help,
-                    R.mipmap.ic_nav_about, R.mipmap.ic_nav_setting, R.mipmap.ic_nav_logout};
+                    R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_setting,
+                    R.mipmap.ic_nav_help, R.mipmap.ic_nav_about, R.mipmap.ic_nav_about};
         }
 
         navigationAdapter = new NavigationView(getActivity(), navigationRowText, navigationRowImage);
@@ -114,6 +113,7 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
         navigationRecyclerView.setLayoutManager(mLayoutManager);
         navigationAdapter.SetOnItemClickListener(this);
         navigationRecyclerView.setAdapter(navigationAdapter);
+
         return view;
     }
 
@@ -129,15 +129,15 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
                 Intent settings = new Intent(getActivity(), SettingsActivity.class);
                 startActivity(settings);
                 break;
-            case "Help":
-                Intent help = new Intent(getActivity(), OtherActivity.class);
-                help.putExtra("fragment", "Help");
-                startActivity(help);
-                break;
             case "About":
                 Intent about = new Intent(getActivity(), OtherActivity.class);
                 about.putExtra("fragment", "About");
                 startActivity(about);
+                break;
+            case "Help":
+                Intent help = new Intent(getActivity(), OtherActivity.class);
+                help.putExtra("fragment","Help");
+                startActivity(help);
                 break;
             case "Logout":
                 if (db.isUserLoggedIn()) {
