@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import app.fragments.Base.About;
+import app.fragments.Base.Help;
 
 /**
  * Not for public use
@@ -22,12 +23,19 @@ public class OtherActivity extends BaseActivity {
             if (savedInstanceState != null) {
                 if(fragment.equals("About")) {
                     About about = (About) getSupportFragmentManager().findFragmentByTag("FRAGMENT_ABOUT");
+                } else if(fragment.equals("Help")){
+                    Help help = (Help) getSupportFragmentManager().findFragmentByTag("FRAGMENT_HELP");
                 }
             } else {
                 if(fragment.equals("About")) {
                     About about = new About();
                     getSupportFragmentManager().beginTransaction()
                             .add(R.id.forumFrame, about, "FRAGMENT_ABOUT")
+                            .commit();
+                } else if (fragment.equals("Help")){
+                    Help help = new Help();
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.forumFrame, help, "FRAGMENT_HELP")
                             .commit();
                 }
             }

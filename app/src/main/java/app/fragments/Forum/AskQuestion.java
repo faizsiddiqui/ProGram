@@ -1,5 +1,6 @@
 package app.fragments.Forum;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import app.library.CustomJsonObjectRequest;
 import app.library.DatabaseHandler;
 import app.library.VolleySingleton;
 import app.program.ForumActivity;
@@ -35,6 +37,7 @@ public class AskQuestion extends Fragment {
     private TintEditText questionTitle, questionDescription;
     private Button post;
     private String Title, Description;
+    private ProgressDialog pDialog;
 
     DatabaseHandler db;
 
@@ -48,10 +51,11 @@ public class AskQuestion extends Fragment {
         questionTitle = (TintEditText) layout.findViewById(R.id.questionTitle);
         questionDescription = (TintEditText) layout.findViewById(R.id.questionDescription);
         post = (Button) layout.findViewById(R.id.questionPost);
-        Toast.makeText(getActivity(), "Login first.", Toast.LENGTH_SHORT).show();
-        if (!db.isUserLoggedIn()) {
-            Toast.makeText(getActivity(), "Login first.", Toast.LENGTH_SHORT).show();
-        }
+
+        pDialog = new ProgressDialog(getActivity());
+        pDialog.setMessage("Please wait...");
+        pDialog.setCancelable(false);
+
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,23 +72,28 @@ public class AskQuestion extends Fragment {
     }
 
     private void postQuestion() {
-        JsonObjectRequest request;
+        if (!pDialog.isShowing())
+            pDialog.show();
         final HashMap<String, String> user = db.getUserDetails();
-        request = new JsonObjectRequest(Method.POST, URL, null, new Response.Listener<JSONObject>() {
+        CustomJsonObjectRequest request = new CustomJsonObjectRequest(Method.POST, URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 if (response != null) {
                     parseJsonFeed(response);
+                    if (pDialog.isShowing())
+                        pDialog.dismiss();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getActivity(), "Error posting question.", Toast.LENGTH_SHORT).show();
+                if (pDialog.isShowing())
+                    pDialog.dismiss();
             }
-        }) {
+        }){
             @Override
-            protected Map<String, String> getParams() {
+            protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("title", Title);
                 params.put("description", Description);

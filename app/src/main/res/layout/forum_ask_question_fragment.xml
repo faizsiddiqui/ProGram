@@ -29,6 +29,10 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:layout_marginTop="@dimen/keyLine1"
+<<<<<<< HEAD
+=======
+        android:textColor="@color/colorWhite"
+>>>>>>> origin/master
         android:text="@string/question_post" />
 
 </LinearLayout>
