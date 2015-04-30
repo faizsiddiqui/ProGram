@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/keyLine1"
-            android:text="Select State"
+            android:text="@string/scalendar_location_select_state"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryText" />
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Fetching current state."
+                android:text="@string/scalendar_fetch_state"
                 android:textColor="@color/colorWhite"
                 android:gravity="center"
                 android:paddingTop="8dp"
@@ -57,7 +57,7 @@
             android:layout_marginTop="@dimen/keyLine2"
             android:background="@color/colorPrimary"
             android:textColor="@color/colorWhite"
-            android:text="Change State"
+            android:text="@string/scalendar_change_state"
             android:layout_gravity="center_horizontal|bottom" />
 
         <Button
@@ -67,7 +67,7 @@
             android:layout_marginTop="@dimen/keyLine1"
             android:background="@color/colorPrimary"
             android:textColor="@color/colorWhite"
-            android:text="Continue"
+            android:text="@string/scalendar_continue"
             android:layout_gravity="center_horizontal|bottom" />
 
     </LinearLayout>

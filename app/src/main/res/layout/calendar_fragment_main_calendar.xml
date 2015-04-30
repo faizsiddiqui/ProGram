@@ -18,15 +18,15 @@
         />
     <Button android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           android:text="Add a new event"
-        android:id="@+id/new_event"/>
+           android:text="@string/calendar_new_event"
+           android:id="@+id/new_event"/>
 
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="20dp"
         android:id="@+id/text"
-        android:text="Notifications Here:"
+        android:text="@string/Notifications"
         />
     <android.support.v7.widget.CardView
         android:layout_width="fill_parent"

@@ -1,6 +1,9 @@
 <resources>
     <!-- App settings -->
     <string name="app_name">ProGram</string>
+    <!-- Base -->
+    <string name="base_about_title">ProGram - A Farmers Friend</string>
+    
 
     <!-- Toolbar settings -->
     <string name="toolbar_text_home">Home</string>
@@ -77,7 +80,7 @@
     <!-- Tutorial Settings -->
     <string name="tutorial_title_learn">Learn</string>
     <string name="tutorial_title_employment">Employment</string>
-    <string name="tutorial_description_learn">Learn Description</string>
+    <string name="tutorial_description_learn">Here you can find \n all you need to know about \n Organic Farming and the IDEAL farming practices.</string>
     <string name="tutorial_description_employment">Learn Description</string>
     <string name="tutorial_next">NEXT</string>
 
@@ -167,11 +170,44 @@
     <integer-array name="Month_image">
         <item>@drawable/months</item>
     </integer-array>
+    <!-- Calendar -->
+    <string name="calendar_new_event">Add a new event</string>
+    <string name="Notifications">Notifications</string>
+
+    <!-- SCalendar -->
+    <string name="scalendar_location_select_state">Select State</string>
+    <string name="scalendar_fetch_state">Fetching current state.</string>
+    <string name="scalendar_change_state">Change State</string>
+    <string name="scalendar_continue">Continue</string>
+
 
     <!-- Calendar Events -->
     <string name="calendar_eventString">Click for event Description</string>
     <string name="calendar_event_dateString">Event Date</string>
 
+    <!--Soil Parameters -->
+    <string name="soilparameter_pH">pH Value</string>
+    <string name="soilparameter_EC">Electical Conductivity</string>
+    <string name="soilparameter_OC">Organic Carbon</string>
+    <string name="soilparameter_N">Nitrogen</string>
+    <string name="soilparameter_P">Phosphorus</string>
+    <string name="soilparameter_K">Potassium</string>
+    <string name="soilparameter_CU">Copper</string>
+    <string name="soilparameter_ZN">Zinc</string>
+    <string name="soilparameter_MN">Manganese</string>
+    <string name="soilparameter_FE">Iron</string>
+    <string name="soilparameter_S">Sulphur</string>
+    <string name="soilparameter_search">SEARCH</string>
+
+
+
+    <!-- Forum -->
+    <string name="forum_learn_of_name">What is Organic Farming?</string>
+    <string name="forum_post_category">Category</string>
+    <string name="forum_post_detail_title">Introduction</string>
+    <string name="forum_post_detail_description">Introduction here</string>
+    <!-- Home -->
+    <string name="home_calendar">Home</string>
 
 
 </resources>

@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:textColor="@color/colorSecondaryText"
-                android:text="CATEGORY"
+                android:text="@string/forum_post_category"
                 android:textAllCaps="true" />
 
             <android.support.v7.widget.RecyclerView

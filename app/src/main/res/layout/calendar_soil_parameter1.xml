@@ -34,7 +34,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="pH Value"
+                    android:text="@string/soilparameter_pH"
                     android:layout_column="1"
                     android:layout_weight="0.25" />
 
@@ -55,7 +55,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Electrical Conductivity "
+                    android:text="@string/soilparameter_EC"
                     android:layout_column="1"
                     android:layout_weight="0.25" />
 
@@ -76,7 +76,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="50dp"
-                    android:text="Organic Carbon "
+                    android:text="@string/soilparameter_OC"
                     android:layout_column="1"
                     android:layout_weight="0.25" />
 
@@ -96,7 +96,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nitrogen"
+                    android:text="@string/soilparameter_N"
                     android:layout_column="1"
                     android:layout_weight="0.25" />
 
@@ -116,7 +116,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phosphorous"
+                    android:text="@string/soilparameter_P"
                     android:layout_column="1"
                     android:layout_weight="0.25" />
 
@@ -136,7 +136,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="50dp"
-                    android:text="Potassium"
+                    android:text="@string/soilparameter_K"
                     android:layout_column="1"
                     android:layout_weight="0.25" />
 
@@ -156,7 +156,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Copper"
+                    android:text="@string/soilparameter_CU"
                     android:layout_column="1"
                     android:layout_weight="0.25" />
 
@@ -176,7 +176,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Zinc"
+                    android:text="@string/soilparameter_ZN"
                     android:layout_column="1"
                     android:layout_weight="0.25" />
 
@@ -196,7 +196,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="50dp"
-                    android:text="Manganese"
+                    android:text="@string/soilparameter_MN"
                     android:layout_column="1"
                     android:layout_weight="0.25" />
 
@@ -216,7 +216,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="50dp"
-                    android:text="Iron"
+                    android:text="@string/soilparameter_ZN"
                     android:layout_column="1"
                     android:layout_weight="0.25" />
 
@@ -236,7 +236,7 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="50dp"
-                    android:text="Sulphur"
+                    android:text="@string/soilparameter_S"
                     android:layout_column="1"
                     android:layout_weight="0.25" />
 
@@ -258,7 +258,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorWhite"
-        android:text="SEARCH"
+        android:text="@string/soilparameter_search"
         android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"

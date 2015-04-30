@@ -3,13 +3,14 @@
     <!-- App settings -->
     <string name="app_name">Proग्राम</string>
 
+
     <!-- Toolbar settings -->
     <string name="toolbar_text_home">होम</string>
     <string name="toolbar_text_schemes">योजनाएं</string>
     <string name="toolbar_text_ask_question">प्रश्न पूछो</string>
     <string name="toolbar_text_question">सवाल</string>
     <string name="toolbar_text_forum">मंच</string>
-    <string name="toolbar_text_calendar">Calendar</string>
+    <string name="toolbar_text_calendar">कैलेंडर</string>
     <string name="toolbar_text_awards">पुरस्कार</string>
     <string name="toolbar_login">लॉग इन करें</string>
     <string name="toolbar_jobs">नौकरी</string>
@@ -47,10 +48,82 @@
         <item>हिंदी</item>
         <item>अंग्रेजी</item>
     </string-array>
+    <!-- Calendar -->
+    <string name="calendar_new_event">नया कार्य जोड़ें</string>
+    <string name="Notifications">सूचनाएं</string>
+
+    <!-- SCalendar -->
+    <string name="scalendar_location_select_state">राज्य चुनें</string>
+    <string name="scalendar_fetch_state">वर्तमान राज्य लोड हो रहा है</string>
+    <string name="scalendar_change_state">राज्य बदले </string>
+    <string name="scalendar_continue">जारी रखने के लिए</string>
+
 
     <!-- Splash settings -->
     <string name="splash_app_description">Proग्राम में स्वागत,\nहर पहलू में एक किसान का दोस्त.</string>
     <string name="next">अगली</string>
     <string name="splash_continue">जारी रखें</string>
+    <string name="base_about_title">प्रोग्राम एक किसान का दोस्त हर पहलु में </string>
+
+    <!-- Calendar Events -->
+    <string name="calendar_event_dateString">कार्यक्रम की तिथि</string>
+    <string name="calendar_eventString">विवरण के लिए यहां क्लिक करें</string>
+
+    <!--Soil Parameters -->
+    <string name="soilparameter_pH">pH मान</string>
+    <string name="soilparameter_EC">विद्युत चालकता </string>
+    <string name="soilparameter_OC">जैविक कार्बन</string>
+    <string name="soilparameter_N">नाइट्रोजन</string>
+    <string name="soilparameter_P">फास्फोरस</string>
+    <string name="soilparameter_K">पोटैशियम</string>
+    <string name="soilparameter_CU">तांबा</string>
+    <string name="soilparameter_ZN">जस्ता</string>
+    <string name="soilparameter_MN">मैंगनीज</string>
+    <string name="soilparameter_FE">लोहा</string>
+    <string name="soilparameter_S">गंधक</string>
+    <string name="soilparameter_search">खोजे</string>
+
+    <!-- Forum -->
+    <string name="forum_learn_of_name">जैविक खेती क्या है?</string>
+    <string name="forum_post_category">श्रेणी</string>
+    <string name="forum_post_detail_title">परिचय</string>
+    <string name="forum_post_detail_description">यहां परिचय</string>
+
+    <!-- location settings -->
+    <string name="toolbar_text_enter_location">एक स्थान का चयन करे</string>
+    <string-array name="location_list">
+        <item>आंध्र प्रदेश</item>
+        <item>अरुणाचल प्रदेश</item>
+        <item> असम</item>
+        <item>बिहार</item>
+        <item> छत्तीसगढ़</item>
+        <item>गोवा</item>
+        <item>गुजरात</item>
+        <item> हरियाणा</item>
+        <item>हिमाचल प्रदेश</item>
+        <item>जम्मू और कश्मीर</item>
+        <item>झारखंड</item>
+        <item>कर्नाटक</item>
+        <item>केरल</item>
+        <item>मध्य प्रदेश </item>
+        <item>महाराष्ट्र</item>
+        <item>मणिपुर</item>
+        <item>मेघालय</item>
+        <item>मिजोरम</item>
+        <item>ओडिशा (उड़ीसा )</item>
+        <item>पंजाब</item>
+        <item>राजस्थान</item>
+        <item>सिक्किम</item>
+        <item>तमिलनाडु</item>
+        <item>तेलंगाना</item>
+        <item>त्रिपुरा</item>
+        <item>उत्तर प्रदेश </item>
+        <item>उत्तराखंड</item>
+        <item>पश्चिम बंगाल</item>
+    </string-array>
+
+    <!-- Home -->
+    <string name="home_calendar">होम</string>
+
 
 </resources>

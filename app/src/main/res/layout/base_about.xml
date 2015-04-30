@@ -31,7 +31,7 @@
                 android:layout_below="@+id/about_logo"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/keyLine1"
-                android:text="ProGram - A Farmers Friend"
+                android:text="@string/base_about_title"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/colorWhite"/>
 
