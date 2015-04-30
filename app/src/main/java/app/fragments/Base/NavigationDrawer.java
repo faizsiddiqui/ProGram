@@ -88,21 +88,21 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
         }
 
         navigationRowText = new String[]{
-                "Tutorials", "Settings",
-                "Help", "About"};
+                "Tutorials", "Help",
+                "About", "Settings"};
 
         navigationRowImage = new Integer[]{
-                R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_setting,
-                R.mipmap.ic_nav_help, R.mipmap.ic_nav_about};
+                R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_help,
+                R.mipmap.ic_nav_about, R.mipmap.ic_nav_setting};
 
         if (db.isUserLoggedIn()) {
             navigationRowText = new String[]{
-                    "Tutorials", "Settings",
-                    "Help", "About", "Logout"};
+                    "Tutorials", "Help",
+                    "About", "Settings", "Logout"};
 
             navigationRowImage = new Integer[]{
-                    R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_setting,
-                    R.mipmap.ic_nav_help, R.mipmap.ic_nav_about, R.mipmap.ic_nav_about};
+                    R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_help,
+                    R.mipmap.ic_nav_about, R.mipmap.ic_nav_setting, R.mipmap.ic_nav_logout};
         }
 
         navigationAdapter = new NavigationView(getActivity(), navigationRowText, navigationRowImage);

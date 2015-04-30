@@ -42,7 +42,7 @@
                 android:layout_below="@+id/about_title"
                 android:layout_centerHorizontal="true"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Version 0.1"
+                android:text="Version"
                 android:textColor="@color/colorWhite"
                 android:gravity="center" />
 

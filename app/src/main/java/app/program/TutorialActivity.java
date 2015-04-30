@@ -44,7 +44,7 @@ public class TutorialActivity extends Activity {
             @Override
             public void onClick(View v) {
                 int next = mViewPager.getCurrentItem() + 1;
-                if (next == 2) {
+                if (next == 6) {
                     String caller = getIntent().getStringExtra("caller");
                     if (caller.equals("SplashActivity")) {
                         Intent home = new Intent(TutorialActivity.this, MainActivity.class);
@@ -113,7 +113,7 @@ public class TutorialActivity extends Activity {
         mImages.add(R.mipmap.ic_forum_learn);
         mImages.add(R.mipmap.ic_forum_learn);
         mImages.add(R.mipmap.ic_home_calendar);
-        mImages.add(R.mipmap.ic_float_q_a);
+        mImages.add(R.mipmap.ic_forum_q_a);
         mImages.add(R.mipmap.ic_forum_scheme);
         mImages.add(R.mipmap.ic_forum_job);
 
