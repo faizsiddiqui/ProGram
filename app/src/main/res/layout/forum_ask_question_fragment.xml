@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:layout_marginTop="@dimen/keyLine1"
-        android:textColor="@color/colorCardText"
+        android:textColor="@color/colorWhite"
         android:text="@string/question_post" />
 
 </LinearLayout>
