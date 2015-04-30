@@ -79,9 +79,19 @@
 
     <!-- Tutorial Settings -->
     <string name="tutorial_title_learn">Learn</string>
+    <string name="tutorial_title_SelectCrop">Get Best Crop</string>
+    <string name="tutorial_title_Calender">Calender</string>
+    <string name="tutorial_title_QuestionAndAnswers">Question And Answers</string>
+    <string name="tutorial_title_SchemesAndAwards">Schemes And Awards</string>
     <string name="tutorial_title_employment">Employment</string>
-    <string name="tutorial_description_learn">Here you can find \n all you need to know about \n Organic Farming and the IDEAL farming practices.</string>
-    <string name="tutorial_description_employment">Learn Description</string>
+
+    <string name="tutorial_description_learn">Here you can find all you need to know about Organic Farming and the IDEAL farming practices</string>
+    <string name="tutorial_description_SelectCrop">Select a crops based on your soil, every soil favours a different crop, go check out what you should grow. Enter your soil parameters and you will get your answer.</string>
+    <string name="tutorial_description_Calender">Calendar provides timely notifications prior to the time of performing the next farming step according to the farming cycle of the crop selected.</string>
+    <string name="tutorial_description_QuestionAndAnswers">Read what problems are being faced by other farmers, if you have enough knowledge help them out, if you have problems ask your own questions and someone else might help you.</string>
+    <string name="tutorial_description_SchemesAndAwards">Here you can get all the information related to schemes and awards issued by government for farmers</string>
+    <string name="tutorial_description_employment">Don't know what to do in off season, check out the jobs section and you might find some work to do</string>
+
     <string name="tutorial_next">NEXT</string>
 
     <!-- crop settings -->

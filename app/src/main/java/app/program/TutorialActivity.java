@@ -111,11 +111,26 @@ public class TutorialActivity extends Activity {
         mDescription = new ArrayList<Integer>();
 
         mImages.add(R.mipmap.ic_forum_learn);
+        mImages.add(R.mipmap.ic_forum_learn);
+        mImages.add(R.mipmap.ic_home_calendar);
+        mImages.add(R.mipmap.ic_float_q_a);
+        mImages.add(R.mipmap.ic_forum_scheme);
         mImages.add(R.mipmap.ic_forum_job);
+
         mTitles.add(R.string.tutorial_title_learn);
+        mTitles.add(R.string.tutorial_title_SelectCrop);
+        mTitles.add(R.string.tutorial_title_Calender);
+        mTitles.add(R.string.tutorial_title_QuestionAndAnswers);
+        mTitles.add(R.string.tutorial_title_SchemesAndAwards);
         mTitles.add(R.string.tutorial_title_employment);
+
         mDescription.add(R.string.tutorial_description_learn);
+        mDescription.add(R.string.tutorial_description_SelectCrop);
+        mDescription.add(R.string.tutorial_description_Calender);
+        mDescription.add(R.string.tutorial_description_QuestionAndAnswers);
+        mDescription.add(R.string.tutorial_description_SchemesAndAwards);
         mDescription.add(R.string.tutorial_description_employment);
+
     }
 
     public class TutorialView extends PagerAdapter {
