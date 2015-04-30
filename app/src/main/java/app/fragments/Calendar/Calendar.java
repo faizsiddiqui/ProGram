@@ -90,7 +90,7 @@ public class Calendar extends Fragment implements ForumView.OnItemClickListener 
             //   .commit();
             //   break;
             case "Select Crop":
-                SelectCrop selectcrop = new SelectCrop();
+                SelectCrop1 selectcrop = new SelectCrop1();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.calendarFrame, selectcrop)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

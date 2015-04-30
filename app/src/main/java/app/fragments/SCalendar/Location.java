@@ -14,6 +14,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import app.fragments.Calendar.SoilParameter1;
 import app.library.DatabaseHandler;
 import app.program.CalendarActivity;
 import app.program.R;
@@ -52,9 +53,9 @@ public class Location extends Fragment {
                 //save results in calendar database
                 state = locationPresent.getText().toString();
                 if (!state.equals("Fetching current state.") && !state.equals("Can't get Address!")) {
-                    SelectCrop crop = SelectCrop.newInstance(state);
+                    SoilParameter1 param = SoilParameter1.newInstance(state);
                     getFragmentManager().beginTransaction()
-                            .replace(R.id.calendarFrame, crop)
+                            .replace(R.id.calendarFrame, param)
                             .addToBackStack(null)
                             .commit();
                 } else {

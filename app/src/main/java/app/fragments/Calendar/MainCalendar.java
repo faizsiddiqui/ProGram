@@ -22,14 +22,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Date;
+import java.util.HashMap;
 
 import app.adapters.CardView;
+import app.library.CropHandler;
+import app.library.DatabaseHandler;
 import app.program.CalendarActivity;
 import app.program.R;
+import app.program.TutorialActivity;
 
 
 /**
@@ -46,6 +54,18 @@ public class MainCalendar extends Fragment {
     int last_date;
     Button button;
     TextView Event;
+    TextView EventDescription;
+    CropHandler cp;
+    private static String URL = "http://buykerz.com/program/v1/api/crops";
+    private static final String KEY_STARTDAY= "sday";
+    private static final String KEY_STARTMONTH = "smonth";
+    private static final String KEY_STARTYEAR = "syear";
+    private static final String KEY_ENDDAY = "eday";
+    private static final String KEY_ENDMONTH = "emonth";
+    private static final String KEY_ENDYEAR = "eyear";
+    private static final String KEY_EVENTNAME = "ename";
+    private static final String KEY_EVENTDESC = "edesc";
+
     // This is the date picker used to select the date for our notification
     //private DatePicker picker;
 
@@ -58,6 +78,9 @@ public class MainCalendar extends Fragment {
         View view = inflater.inflate(R.layout.calendar_fragment_main_calendar, container, false);
         calendar = (CalendarView) view.findViewById(R.id.maincalendar);
         ((CalendarActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_calendar);
+        cp = new CropHandler(getActivity());
+
+       
 
 
         //get a reference to our date picker
@@ -99,9 +122,8 @@ public class MainCalendar extends Fragment {
                 Toast.makeText(getActivity(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
                 TextView Event = (TextView) getActivity().findViewById(R.id.eventdate);
                 Event.setText(day + "/" + month + "/" + year);
-
-
-
+                TextView EventDescription = (TextView) getActivity().findViewById(R.id.eventdescription);
+                cp.getEventDescription(day, month,year);
                 newEvent();
 
             }
@@ -117,8 +139,7 @@ public class MainCalendar extends Fragment {
     }
 
     public void addCalendarEvent() {
-    Intent intent = new Intent(Intent.ACTION_INSERT, CalendarContract.Events.CONTENT_URI);
-    startActivity(intent);}
+    }
 
 
 
@@ -168,7 +189,28 @@ public class MainCalendar extends Fragment {
    */
 
 
-}
+ private void parseJsonFeed(JSONObject response) {
+     try {
+         String KEY_SUCCESS = "success";
+         String KEY_MSG = "message";
+         if (response.getString(KEY_SUCCESS) != null) {
+             Boolean res = response.getBoolean(KEY_SUCCESS);
+             if (res) {
+                 cp = new CropHandler(getActivity());
+                 JSONObject json_crop = response.getJSONObject("crop");
+                 cp.addCrop(json_crop.getString(KEY_STARTDAY), json_crop.getString(KEY_STARTMONTH), json_crop.getString(KEY_STARTYEAR),
+                         json_crop.getString(KEY_ENDDAY), json_crop.getString(KEY_ENDMONTH), json_crop.getString(KEY_ENDYEAR)
+                         , json_crop.getString(KEY_EVENTDESC),
+                         json_crop.getString(KEY_EVENTNAME));
+             }  Toast.makeText(getActivity(), response.getString(KEY_MSG), Toast.LENGTH_SHORT).show();
+             }
+         }catch(JSONException e){
+             e.printStackTrace();
+         }
+     }
+ }
+
+
 
 
 

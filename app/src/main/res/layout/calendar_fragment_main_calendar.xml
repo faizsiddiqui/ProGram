@@ -66,7 +66,7 @@
                     android:textColor="@color/colorPrimaryText"/>
 
                 <TextView
-                    android:id="@+id/schemes_category"
+                    android:id="@+id/eventdescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
@@ -76,16 +76,7 @@
                     android:ellipsize="end"
                     android:textColor="@color/colorSecondaryText"/>
 
-                <TextView
-                    android:id="@+id/schemes_release_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textAllCaps="true"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    android:textColor="@color/colorSecondaryText"
-                    />
+
 
             </LinearLayout>
 

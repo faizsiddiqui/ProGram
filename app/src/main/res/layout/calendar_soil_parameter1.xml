@@ -42,7 +42,10 @@
                     android:layout_width="200dp"
                     android:layout_height="50dp"
                     android:width="100px"
-                    android:layout_column="4" />
+                    android:layout_column="4"
+                    android:id="@+id/ph"
+                    android:inputType="number"/>
+
 
             </TableRow>
 
@@ -61,7 +64,9 @@
                     android:layout_height="50dp"
                     android:width="100px"
                     android:hint="(in dS/m) "
-                    android:layout_column="4" />
+                    android:layout_column="4"
+                    android:id="@+id/ec"
+                    android:inputType="number"/>
 
             </TableRow>
 
@@ -80,7 +85,9 @@
                     android:layout_height="50dp"
                     android:width="100px"
                     android:hint="(in g/Kg)"
-                    android:layout_column="4" />
+                    android:layout_column="4"
+                    android:id="@+id/oc"
+                    android:inputType="number"/>
 
             </TableRow>
 
@@ -98,7 +105,9 @@
                     android:layout_height="50dp"
                     android:width="100px"
                     android:hint="(in kg/ha)"
-                    android:layout_column="4" />
+                    android:layout_column="4"
+                    android:id="@+id/n"
+                    android:inputType="number"/>
 
             </TableRow>
 
@@ -116,7 +125,9 @@
                     android:layout_height="50dp"
                     android:width="100px"
                     android:hint="(in kg/ha) "
-                    android:layout_column="4" />
+                    android:layout_column="4"
+                    android:id="@+id/p"
+                    android:inputType="number"/>
 
             </TableRow>
 
@@ -134,7 +145,9 @@
                     android:layout_height="50dp"
                     android:width="100px"
                     android:hint="(in kg/ha)"
-                    android:layout_column="4" />
+                    android:layout_column="4"
+                    android:id="@+id/k"
+                    android:inputType="number"/>
 
             </TableRow>
 
@@ -152,7 +165,9 @@
                     android:layout_height="50dp"
                     android:width="100px"
                     android:hint="(in mg/kg)"
-                    android:layout_column="4" />
+                    android:layout_column="4"
+                    android:id="@+id/cu"
+                    android:inputType="number"/>
 
             </TableRow>
 
@@ -170,7 +185,9 @@
                     android:layout_height="50dp"
                     android:width="100px"
                     android:hint="(in mg/kg) "
-                    android:layout_column="4" />
+                    android:layout_column="4"
+                    android:id="@+id/zn"
+                    android:inputType="number"/>
 
             </TableRow>
 
@@ -188,7 +205,9 @@
                     android:layout_height="50dp"
                     android:width="100px"
                     android:hint="(in mg/kg)"
-                    android:layout_column="4" />
+                    android:layout_column="4"
+                    android:id="@+id/mn"
+                    android:inputType="number"/>
 
             </TableRow>
 
@@ -206,7 +225,9 @@
                     android:layout_height="50dp"
                     android:width="100px"
                     android:hint="(in mg/kg)"
-                    android:layout_column="4" />
+                    android:layout_column="4"
+                    android:id="@+id/fe"
+                    android:inputType="number"/>
 
             </TableRow>
 
@@ -224,7 +245,9 @@
                     android:layout_height="80dp"
                     android:width="100px"
                     android:hint="(in mg/kg)"
-                    android:layout_column="4" />
+                    android:layout_column="4"
+                    android:id="@+id/s"
+                    android:inputType="number"/>
 
             </TableRow>
         </TableLayout>

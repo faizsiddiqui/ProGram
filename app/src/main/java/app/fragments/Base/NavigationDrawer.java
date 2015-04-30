@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +28,7 @@ import app.library.VolleySingleton;
 import app.program.OtherActivity;
 import app.program.R;
 import app.program.SettingsActivity;
+import app.program.SplashActivity;
 import app.program.TutorialActivity;
 
 /**
@@ -93,6 +95,16 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
                 R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_setting,
                 R.mipmap.ic_nav_help, R.mipmap.ic_nav_about};
 
+        if (db.isUserLoggedIn()) {
+            navigationRowText = new String[]{
+                    "Tutorials", "Settings",
+                    "Help", "About", "Logout"};
+
+            navigationRowImage = new Integer[]{
+                    R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_setting,
+                    R.mipmap.ic_nav_help, R.mipmap.ic_nav_about, R.mipmap.ic_nav_about};
+        }
+
         navigationAdapter = new NavigationView(getActivity(), navigationRowText, navigationRowImage);
         mLayoutManager = new LinearLayoutManager(getActivity());
 
@@ -121,6 +133,14 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
                 Intent about = new Intent(getActivity(), OtherActivity.class);
                 about.putExtra("fragment", "About");
                 startActivity(about);
+                break;
+            case "Logout":
+                if (db.isUserLoggedIn()) {
+                    db.logoutUser();
+                    Intent intent = new Intent(getActivity(), SplashActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
                 break;
         }
     }

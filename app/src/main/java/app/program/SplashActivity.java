@@ -13,6 +13,8 @@ import android.util.DisplayMetrics;
 import java.util.Locale;
 
 import app.fragments.Base.LanguageSelector;
+import app.fragments.Base.Login;
+import app.library.DatabaseHandler;
 
 /**
  * Not for public use
@@ -23,6 +25,8 @@ public class SplashActivity extends FragmentActivity {
     Locale mLocale;
     public static final String PREFERENCES = "ProGramPrefs";
     SharedPreferences sharedpreferences;
+
+    DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +58,23 @@ public class SplashActivity extends FragmentActivity {
             Configuration configuration = res.getConfiguration();
             configuration.locale = mLocale;
             res.updateConfiguration(configuration, dm);
-
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            db = new DatabaseHandler(this);
+            if (db.isUserLoggedIn()) {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                if (savedInstanceState != null) {
+                    Login login = (Login) getSupportFragmentManager().findFragmentByTag("FRAGMENT_LOGIN");
+                } else {
+                    Login login = new Login();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.FullScreenFrame, login, "FRAGMENT_LOGIN")
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            }
         }
     }
 }

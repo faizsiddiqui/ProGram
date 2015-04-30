@@ -25,9 +25,9 @@ public class CalendarActivity extends BaseActivity {
             }
 
             /*if (savedInstanceState != null) {
-                SelectCrop crop = (SelectCrop) getSupportFragmentManager().findFragmentByTag("FRAGMENT_SELECT_CROP");
+                SelectCrop1 crop = (SelectCrop1) getSupportFragmentManager().findFragmentByTag("FRAGMENT_SELECT_CROP");
             } else {
-                SelectCrop crop = new SelectCrop();
+                SelectCrop1 crop = new SelectCrop1();
                 getSupportFragmentManager().beginTransaction()
                         .add(R.id.calendarFrame, crop, "FRAGMENT_SELECT_CROP")
                         .commit();

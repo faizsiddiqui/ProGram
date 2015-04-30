@@ -4,27 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/colorFlatRed"
-        android:gravity="center"
-        android:padding="@dimen/keyLine1">
-
-        <TextView
-            android:id="@+id/calendar_soil_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter soil details for precise results."
-            android:textSize="@dimen/keyLine1"
-            android:textColor="@color/colorWhite"
-            android:drawablePadding="@dimen/keyLine1"
-            android:drawableLeft="@mipmap/ic_base_error"
-            android:drawableStart="@mipmap/ic_base_error"/>
-
-    </LinearLayout>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/calendar_select_crop"
         android:layout_width="match_parent"

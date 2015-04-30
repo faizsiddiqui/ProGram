@@ -28,7 +28,7 @@ public class CalendarSelectCropCardView extends RecyclerView.Adapter<CalendarSel
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.s_calendar_select_crop_card_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.s_calendar_select_crop_card_view_unused, parent, false);
         mImageLoader = VolleySingleton.getInstance().getImageLoader();
         return new ViewHolder(view);
     }
