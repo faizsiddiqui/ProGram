@@ -5,7 +5,7 @@
         android:title="Basic">
 
         <app.widgets.MaterialListPreference
-            android:key="pref_language"
+            android:key="language"
             android:title="@string/language_lang"
             android:summary="@string/language_description"
             android:entries="@array/app_language"

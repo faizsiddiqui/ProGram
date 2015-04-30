@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -30,14 +31,12 @@ public class LanguageSelector extends Fragment {
     Locale mLocale;
     Button mLanguageSelector;
 
-    public static final String PREFERENCES = "ProGramPrefs";
-    SharedPreferences sharedpreferences;
+    SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.base_language_selector_fragment, container, false);
-        sharedpreferences = getActivity().getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
-
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mLanguageSelector = (Button) view.findViewById(R.id.language_button);
         mLanguageSelector.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +55,7 @@ public class LanguageSelector extends Fragment {
                 .itemsCallbackSingleChoice(1, new MaterialDialog.ListCallback() {
                     @Override
                     public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
                         if (which == 0) {
                             setLocale("hi");
                             editor.putString("language", "hi");

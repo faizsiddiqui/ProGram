@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
@@ -50,7 +51,8 @@ public class SplashActivity extends FragmentActivity {
                 }
             }
         } else {
-            String lang = sharedpreferences.getString("language", "en");
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            String lang = sharedPreferences.getString("language", "en");
 
             mLocale = new Locale(lang);
             Resources res = getResources();

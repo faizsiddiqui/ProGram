@@ -1,9 +1,16 @@
 package app.program;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.util.DisplayMetrics;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 /**
  * Not for public use
@@ -29,7 +36,7 @@ public class SettingsActivity extends BaseActivity {
 
     public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-        public static final String KEY_PREF_LANGUAGE = "pref_language";
+        public static final String KEY_PREF_LANGUAGE = "language";
 
         public SettingsFragment() {
         }
@@ -55,8 +62,22 @@ public class SettingsActivity extends BaseActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             if (key.equals(KEY_PREF_LANGUAGE)) {
-                Toast.makeText(getActivity(), sharedPreferences.toString(), Toast.LENGTH_SHORT).show();
+                String lang = sharedPreferences.getString(key, "en");
+
+                Locale mLocale = new Locale(lang);
+                Resources res = getResources();
+                DisplayMetrics dm = res.getDisplayMetrics();
+                Configuration configuration = res.getConfiguration();
+                configuration.locale = mLocale;
+                res.updateConfiguration(configuration, dm);
             }
+            restartActivity();
+        }
+
+        private void restartActivity() {
+            Intent intent = getActivity().getIntent();
+            getActivity().finish();
+            startActivity(intent);
         }
     }
 }
