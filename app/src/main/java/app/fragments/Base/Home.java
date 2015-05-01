@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import app.adapters.HomeView;
 import app.program.BaseActivity;
@@ -26,15 +27,28 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
     private RecyclerView.LayoutManager mLayoutManager;
     private HomeView mAdapter;
 
-    String[] home_text = {
-            "Calendar",
-            "Forum"
-    };
+    String calendar, forum, weather, market;
+    String[] home_text;
+    int[] image;
 
-    int[] image = {
-            R.mipmap.ic_home_calendar,
-            R.mipmap.ic_home_forum
-    };
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        calendar = getString(R.string.home_calendar);
+        forum = getString(R.string.home_forum);
+        weather = getString(R.string.home_weather);
+        market = getString(R.string.home_market);
+
+        home_text = new String[]{
+                calendar, forum,
+                weather, market
+        };
+
+        image = new int[]{
+                R.mipmap.ic_home_calendar, R.mipmap.ic_home_forum,
+                R.mipmap.ic_home_forum, R.mipmap.ic_home_forum
+        };
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,15 +66,14 @@ public class Home extends Fragment implements HomeView.OnItemClickListener {
 
     @Override
     public void onItemClick(View view, int position) {
-        switch (home_text[position]) {
-            case "Calendar":
-                Intent calendar = new Intent(getActivity(), CalendarActivity.class);
-                startActivity(calendar);
-                break;
-            case "Forum":
-                Intent forum = new Intent(getActivity(), ForumActivity.class);
-                startActivity(forum);
-                break;
+        if (home_text[position].equals(calendar)) {
+            Intent calendar = new Intent(getActivity(), CalendarActivity.class);
+            startActivity(calendar);
+        } else if(home_text[position].equals(forum)) {
+            Intent forum = new Intent(getActivity(), ForumActivity.class);
+            startActivity(forum);
+        } else {
+            Toast.makeText(getActivity(), "Module under construction", Toast.LENGTH_SHORT).show();
         }
     }
 }

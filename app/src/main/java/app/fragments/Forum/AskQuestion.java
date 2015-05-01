@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.internal.widget.TintEditText;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +15,6 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +33,7 @@ import app.program.R;
  * Created by FAIZ on 06-03-2015.
  */
 public class AskQuestion extends Fragment {
-    private TintEditText questionTitle, questionDescription;
+    private AppCompatEditText questionTitle, questionDescription;
     private Button post;
     private String Title, Description;
     private ProgressDialog pDialog;
@@ -48,8 +47,8 @@ public class AskQuestion extends Fragment {
         View layout = inflater.inflate(R.layout.forum_ask_question_fragment, container, false);
         ((ForumActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_ask_question);
         db = new DatabaseHandler(getActivity());
-        questionTitle = (TintEditText) layout.findViewById(R.id.questionTitle);
-        questionDescription = (TintEditText) layout.findViewById(R.id.questionDescription);
+        questionTitle = (AppCompatEditText) layout.findViewById(R.id.questionTitle);
+        questionDescription = (AppCompatEditText) layout.findViewById(R.id.questionDescription);
         post = (Button) layout.findViewById(R.id.questionPost);
 
         pDialog = new ProgressDialog(getActivity());
@@ -91,7 +90,7 @@ public class AskQuestion extends Fragment {
                 if (pDialog.isShowing())
                     pDialog.dismiss();
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();

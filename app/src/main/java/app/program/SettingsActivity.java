@@ -22,7 +22,7 @@ public class SettingsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
-            setActionBarTitle("Settings");
+            setActionBarTitle(R.string.toolbar_settings);
             getFragmentManager().beginTransaction()
                     .add(R.id.settings_container, new SettingsFragment())
                     .commit();

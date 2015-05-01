@@ -43,7 +43,7 @@ public class SoilTestParameters extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_soil_parameter1, container, false);
-        ((CalendarActivity) getActivity()).setActionBarTitle("Enter Soil Report Details");
+        ((CalendarActivity) getActivity()).setActionBarTitle(R.string.toolbar_soil_test_detail);
 
         search = (Button) view.findViewById(R.id.jumpbtn4);
         PH = (EditText) view.findViewById(R.id.ph);

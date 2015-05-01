@@ -53,6 +53,8 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
     RecyclerView.LayoutManager mLayoutManager;
     NavigationView navigationAdapter;
 
+    String tutorials, help, about, settings, logout;
+
     public NavigationDrawer() {
 
     }
@@ -65,6 +67,13 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
         if (savedInstanceState != null) {
             mFromSavedInstanceState = true;
         }
+
+        tutorials = getString(R.string.nav_tutorials);
+        help = getString(R.string.nav_help);
+        about = getString(R.string.nav_about);
+        settings = getString(R.string.nav_settings);
+        logout = getString(R.string.nav_logout);
+
     }
 
     @Override
@@ -88,8 +97,8 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
         }
 
         navigationRowText = new String[]{
-                "Tutorials", "Help",
-                "About", "Settings"};
+                tutorials, help,
+                about, settings};
 
         navigationRowImage = new Integer[]{
                 R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_help,
@@ -97,8 +106,8 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
 
         if (db.isUserLoggedIn()) {
             navigationRowText = new String[]{
-                    "Tutorials", "Help",
-                    "About", "Settings", "Logout"};
+                    tutorials, help,
+                    about, settings, logout};
 
             navigationRowImage = new Integer[]{
                     R.mipmap.ic_nav_tutorials, R.mipmap.ic_nav_help,
@@ -119,34 +128,28 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
 
     @Override
     public void onItemClick(View view, int position) {
-        switch (navigationRowText[position]) {
-            case "Tutorials":
-                Intent tutorial = new Intent(getActivity(), TutorialActivity.class);
-                tutorial.putExtra("caller", "MainActivity");
-                startActivity(tutorial);
-                break;
-            case "Settings":
-                Intent settings = new Intent(getActivity(), SettingsActivity.class);
-                startActivity(settings);
-                break;
-            case "About":
-                Intent about = new Intent(getActivity(), OtherActivity.class);
-                about.putExtra("fragment", "About");
-                startActivity(about);
-                break;
-            case "Help":
-                Intent help = new Intent(getActivity(), OtherActivity.class);
-                help.putExtra("fragment","Help");
-                startActivity(help);
-                break;
-            case "Logout":
-                if (db.isUserLoggedIn()) {
-                    db.logoutUser();
-                    Intent intent = new Intent(getActivity(), SplashActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                }
-                break;
+        if(navigationRowText[position].equals(tutorials)) {
+            Intent tutorial = new Intent(getActivity(), TutorialActivity.class);
+            tutorial.putExtra("caller", "MainActivity");
+            startActivity(tutorial);
+        } else if (navigationRowText[position].equals(help)) {
+            Intent help = new Intent(getActivity(), OtherActivity.class);
+            help.putExtra("fragment","Help");
+            startActivity(help);
+        } else if (navigationRowText[position].equals(about)) {
+            Intent about = new Intent(getActivity(), OtherActivity.class);
+            about.putExtra("fragment", "About");
+            startActivity(about);
+        } else if (navigationRowText[position].equals(settings)) {
+            Intent settings = new Intent(getActivity(), SettingsActivity.class);
+            startActivity(settings);
+        } else if (navigationRowText[position].equals(logout)) {
+            if (db.isUserLoggedIn()) {
+                db.logoutUser();
+                Intent intent = new Intent(getActivity(), SplashActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
         }
     }
 

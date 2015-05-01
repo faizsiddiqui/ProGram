@@ -28,7 +28,7 @@
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryText" />
 
-        <android.support.v7.internal.widget.TintEditText
+        <android.support.v7.widget.AppCompatEditText
             android:id="@+id/sign_up_name"
             android:inputType="textPersonName"
             android:hint="@string/sign_up_name"
@@ -37,7 +37,7 @@
             android:layout_marginTop="@dimen/keyLine2"
             android:textColorHint="@color/colorCardText" />
 
-        <android.support.v7.internal.widget.TintEditText
+        <android.support.v7.widget.AppCompatEditText
             android:id="@+id/sign_up_mobile"
             android:inputType="phone"
             android:maxLength="10"
@@ -47,7 +47,7 @@
             android:layout_marginTop="@dimen/keyLine1"
             android:textColorHint="@color/colorCardText" />
 
-        <android.support.v7.internal.widget.TintEditText
+        <android.support.v7.widget.AppCompatEditText
             android:id="@+id/sign_up_password"
             android:inputType="textPassword"
             android:hint="@string/sign_up_password"
@@ -56,7 +56,7 @@
             android:layout_marginTop="@dimen/keyLine1"
             android:textColorHint="@color/colorCardText" />
 
-        <android.support.v7.internal.widget.TintEditText
+        <android.support.v7.widget.AppCompatEditText
             android:id="@+id/sign_up_email"
             android:inputType="textEmailAddress"
             android:hint="@string/sign_up_email"
@@ -65,7 +65,7 @@
             android:layout_marginTop="@dimen/keyLine1"
             android:textColorHint="@color/colorCardText" />
 
-        <android.support.v7.internal.widget.TintButton
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/sign_up_state"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
             android:paddingLeft="8dp"
             android:gravity="start|center_vertical" />
 
-        <android.support.v7.internal.widget.TintButton
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/sign_up_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
             android:paddingLeft="16dp"
             android:gravity="start|center_vertical" />
 
-        <android.support.v7.internal.widget.TintButton
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/sign_up_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
             android:paddingLeft="16dp"
             android:gravity="start|center_vertical" />
 
-        <android.support.v7.internal.widget.TintEditText
+        <android.support.v7.widget.AppCompatEditText
             android:id="@+id/sign_up_age"
             android:inputType="number"
             android:hint="@string/sign_up_age"
@@ -113,7 +113,7 @@
             android:layout_marginTop="@dimen/keyLine1"
             android:textColorHint="@color/colorCardText" />
 
-        <android.support.v7.internal.widget.TintButton
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/sign_up_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

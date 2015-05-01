@@ -26,23 +26,37 @@ public class Forum extends Fragment implements HomeView.OnItemClickListener {
     private RecyclerView.LayoutManager mLayoutManager;
     private HomeView mAdapter;
 
-    String[] forumTitle = {
-            "Learn",
-            "Q&A",
-            "Schemes",
-            "Jobs",
-            "Spotlight",
-            "Awards"
-    };
+    String learn, questionAnswer, schemes, jobs, spotlight, awards;
 
-    int[] forumImage = {
-            R.mipmap.ic_forum_learn,
-            R.mipmap.ic_forum_q_a,
-            R.mipmap.ic_forum_scheme,
-            R.mipmap.ic_forum_job,
-            R.mipmap.ic_forum_spotlight,
-            R.mipmap.ic_forum_award
-    };
+    String[] forumTitle;
+
+    int[] forumImage;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        learn = getString(R.string.forum_learn);
+        questionAnswer = getString(R.string.forum_questionAnswer);
+        schemes = getString(R.string.forum_schemes);
+        jobs = getString(R.string.forum_jobs);
+        spotlight = getString(R.string.forum_spotlight);
+        awards = getString(R.string.forum_awards);
+
+        forumTitle = new String[] {
+                learn, questionAnswer,
+                schemes, jobs,
+                spotlight, awards
+        };
+
+        forumImage = new int[] {
+                R.mipmap.ic_forum_learn,
+                R.mipmap.ic_forum_q_a,
+                R.mipmap.ic_forum_scheme,
+                R.mipmap.ic_forum_job,
+                R.mipmap.ic_forum_spotlight,
+                R.mipmap.ic_forum_award
+        };
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,55 +76,48 @@ public class Forum extends Fragment implements HomeView.OnItemClickListener {
 
     @Override
     public void onItemClick(View view, int position) {
-        switch (forumTitle[position]) {
-            case "Learn":
-                Learn learn = new Learn();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.forumFrame, learn)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
-                break;
-            case "Q&A":
-                QuestionAnswer questionAnswer = new QuestionAnswer();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.forumFrame, questionAnswer)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
-                break;
-            case "Schemes":
-                Schemes schemes = new Schemes();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.forumFrame, schemes)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
-                break;
-            case "Jobs":
-                Jobs jobs = new Jobs();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.forumFrame, jobs)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
-                break;
-            case "Spotlight":
-                Spotlight spotlight = new Spotlight();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.forumFrame, spotlight)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
-                break;
-            case "Awards":
-                Awards awards = new Awards();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.forumFrame, awards)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit();
-                break;
+        if(forumTitle[position].equals(learn)) {
+            Learn learn = new Learn();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.forumFrame, learn)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
+        } else if (forumTitle[position].equals(questionAnswer)) {
+            QuestionAnswer questionAnswer = new QuestionAnswer();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.forumFrame, questionAnswer)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
+        } else if (forumTitle[position].equals(schemes)) {
+            Schemes schemes = new Schemes();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.forumFrame, schemes)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
+        } else if (forumTitle[position].equals(jobs)) {
+            Jobs jobs = new Jobs();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.forumFrame, jobs)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
+        } else if (forumTitle[position].equals(spotlight)) {
+            Spotlight spotlight = new Spotlight();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.forumFrame, spotlight)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
+        } else if (forumTitle[position].equals(awards)) {
+            Awards awards = new Awards();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.forumFrame, awards)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
         }
     } //onItemClick
 

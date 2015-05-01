@@ -26,6 +26,7 @@ import java.io.UnsupportedEncodingException;
 
 import app.fragments.Base.Home;
 import app.library.VolleySingleton;
+import app.program.ForumActivity;
 import app.program.R;
 
 /**
@@ -54,6 +55,7 @@ public class LearnOF extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.forum_learn_of, container, false);
+
         learnOFImage = (NetworkImageView) view.findViewById(R.id.learn_of_image);
         learnOFDescription = (TextView) view.findViewById(R.id.learn_of_description);
 

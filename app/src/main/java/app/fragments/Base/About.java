@@ -63,7 +63,7 @@ public class About extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.base_about, container, false);
-        ((OtherActivity) getActivity()).setActionBarTitle("About");
+        ((OtherActivity) getActivity()).setActionBarTitle(R.string.toolbar_about);
 
         versionApp = (TextView) view.findViewById(R.id.about_version);
 

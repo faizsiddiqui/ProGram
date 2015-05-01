@@ -23,16 +23,6 @@ public class CalendarActivity extends BaseActivity {
                         .add(R.id.calendarFrame, location, "FRAGMENT_LOCATION")
                         .commit();
             }
-
-            /*if (savedInstanceState != null) {
-                SelectCrop1 crop = (SelectCrop1) getSupportFragmentManager().findFragmentByTag("FRAGMENT_SELECT_CROP");
-            } else {
-                SelectCrop1 crop = new SelectCrop1();
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.calendarFrame, crop, "FRAGMENT_SELECT_CROP")
-                        .commit();
-            } */
-
         }
     }
 
@@ -54,6 +44,4 @@ public class CalendarActivity extends BaseActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 }

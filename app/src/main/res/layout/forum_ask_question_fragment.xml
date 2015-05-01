@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/keyLine1">
 
-    <android.support.v7.internal.widget.TintEditText
+    <android.support.v7.widget.AppCompatEditText
         android:id="@+id/questionTitle"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:hint="@string/question_title"
         android:textColorHint="@color/colorCardText" />
 
-    <android.support.v7.internal.widget.TintEditText
+    <android.support.v7.widget.AppCompatEditText
         android:id="@+id/questionDescription"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"

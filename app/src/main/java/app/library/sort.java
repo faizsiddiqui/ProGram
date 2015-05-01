@@ -3,7 +3,7 @@ package app.library;
 /**
  * Created by Chaitanya on 4/19/2015.
  */
-public class sort {
+public class Sort {
 
     private double marks[];
     private String crop[]; // crop names from db

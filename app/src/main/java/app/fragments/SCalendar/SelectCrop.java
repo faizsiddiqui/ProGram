@@ -125,7 +125,7 @@ public class SelectCrop extends Fragment implements ForumPostsCardView.OnItemCli
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.s_calendar_select_crop, container, false);
-        ((CalendarActivity) getActivity()).setActionBarTitle("Choose a crop");
+        ((CalendarActivity) getActivity()).setActionBarTitle(R.string.toolbar_choose_crop);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView = (RecyclerView) view.findViewById(R.id.calendar_select_crop);

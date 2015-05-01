@@ -14,12 +14,6 @@ import app.fragments.Base.NavigationDrawer;
 public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        //overridePendingTransition(R.anim.buttom_to_up, R.anim.top_to_buttom);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (findViewById(R.id.MainFrame) != null) {
@@ -34,7 +28,6 @@ public class MainActivity extends BaseActivity {
             }
         }
 
-        //drawer settings
         NavigationDrawer drawerFragment = (NavigationDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer_fragment);
         DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);

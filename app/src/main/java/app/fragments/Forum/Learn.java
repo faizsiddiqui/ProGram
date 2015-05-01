@@ -34,7 +34,7 @@ public class Learn extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.forum_learn, container, false);
-        ((ForumActivity) getActivity()).setActionBarTitle("Learn");
+        ((ForumActivity) getActivity()).setActionBarTitle(R.string.toolbar_learn);
         initialize();
         return view;
     }
