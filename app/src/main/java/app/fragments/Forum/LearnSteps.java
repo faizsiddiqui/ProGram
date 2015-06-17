@@ -1,12 +1,9 @@
 package app.fragments.Forum;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -167,7 +164,7 @@ public class LearnSteps extends Fragment implements ForumPostsCardView.OnItemCli
 
         String name, image, detail;
 
-        public static LearnStepPost newInstance(String image, String name, String detail){
+        public static LearnStepPost newInstance(String image, String name, String detail) {
             LearnStepPost post = new LearnStepPost();
             Bundle bundle = new Bundle();
             bundle.putString(KEY_STEP_IMAGE, image);

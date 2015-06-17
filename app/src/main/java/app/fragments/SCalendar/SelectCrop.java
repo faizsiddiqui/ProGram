@@ -1,6 +1,7 @@
 package app.fragments.SCalendar;
 
 import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-import app.adapters.ForumPostsCardView;
+import app.adapters.CalendarCropView;
 import app.library.CropHandler;
 import app.library.CustomJsonObjectRequest;
 import app.library.VolleySingleton;
@@ -37,18 +37,22 @@ import app.program.R;
  * Not for public use
  * Created by FAIZ on 17-04-2015.
  */
-public class SelectCrop extends Fragment implements ForumPostsCardView.OnItemClickListener {
-
-    TextView calendarSoilTest;
+public class SelectCrop extends Fragment {
 
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
-    ForumPostsCardView mAdapter;
+    CalendarCropView mAdapter;
     private ProgressDialog pDialog;
 
     CropHandler ch;
 
-    String selectedState, ph, ec, oc, n, p, k, z, c, i, m, s;
+    String selectedState;
+    String[] parameters = new String[]{"pH", "electrical_conductivity", "organic_carbon", "nitrogen", "phosphorus",
+            "potassium", "zinc", "copper", "iron", "manganese", "sulphur"};
+    double parameterMarks[] = new double[]{10, 9.2, 9, 5, 4.7, 4.5, 2, 1.9, 1.8, 1.7, 1.6};
+    double[] userValues, marks;
+    int length;
+    double y, k;
 
     String[] id, image, name;
 
@@ -79,21 +83,11 @@ public class SelectCrop extends Fragment implements ForumPostsCardView.OnItemCli
     private static final String KEY_S = "sulphur";
     private static final String KEY_CROP_TYPE = "crop_type";
 
-    public static SelectCrop newInstance(String selectedState ,String ph, String ec, String oc, String n, String p, String k,String z,String c, String i, String m, String s) {
+    public static SelectCrop newInstance(String selectedState, double userValues[]) {
         SelectCrop selectCrop = new SelectCrop();
         Bundle bundle = new Bundle();
         bundle.putString("state", selectedState);
-        bundle.putString("pH",ph);
-        bundle.putString("electrical_conductivity",ec);
-        bundle.putString("organic_carbon",oc);
-        bundle.putString("nitrogen",n);
-        bundle.putString("phosphorus",p);
-        bundle.putString("potassium",k);
-        bundle.putString("zinc",z);
-        bundle.putString("copper",c);
-        bundle.putString("iron",i);
-        bundle.putString("manganese",m);
-        bundle.putString("sulphur",s);
+        bundle.putDoubleArray("userValues", userValues);
         selectCrop.setArguments(bundle);
         return selectCrop;
     }
@@ -103,19 +97,8 @@ public class SelectCrop extends Fragment implements ForumPostsCardView.OnItemCli
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             selectedState = getArguments().getString("state");
-            ph = getArguments().getString("pH");
-            ec = getArguments().getString("electrical_conductivity");
-            oc = getArguments().getString("organic_carbon");
-            n = getArguments().getString("nitrogen");
-            p = getArguments().getString("phosphorus");
-            k = getArguments().getString("potassium");
-            z = getArguments().getString("zinc");
-            c = getArguments().getString("copper");
-            i = getArguments().getString("iron");
-            m = getArguments().getString("manganese");
-            s = getArguments().getString("sulphur");
+            userValues = getArguments().getDoubleArray("userValues");
         }
-
         ch = new CropHandler(getActivity());
         pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading crops...");
@@ -125,7 +108,7 @@ public class SelectCrop extends Fragment implements ForumPostsCardView.OnItemCli
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.s_calendar_select_crop, container, false);
-        ((CalendarActivity) getActivity()).setActionBarTitle("Choose a crop");
+        ((CalendarActivity) getActivity()).setActionBarTitle(R.string.toolbar_choose_crop);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView = (RecyclerView) view.findViewById(R.id.calendar_select_crop);
@@ -143,7 +126,7 @@ public class SelectCrop extends Fragment implements ForumPostsCardView.OnItemCli
             @Override
             public void onResponse(JSONObject response) {
                 if (response != null) {
-                    parseJsonFeed(response);
+                    new Sort(response).execute();
                 }
             }
         }, new Response.ErrorListener() {
@@ -164,119 +147,234 @@ public class SelectCrop extends Fragment implements ForumPostsCardView.OnItemCli
         VolleySingleton.getInstance().addToRequestQueue(request);
     }
 
-    private void parseJsonFeed(JSONObject response) {
-        try {
-            String KEY_SUCCESS = "success";
-            String KEY_MSG = "message";
-            if (response.getString(KEY_SUCCESS) != null) {
-                Boolean res = response.getBoolean(KEY_SUCCESS);
-                if (res) {
-                    final ArrayList<String> ids = new ArrayList<String>();
-                    final ArrayList<String> images = new ArrayList<String>();
-                    final ArrayList<String> names = new ArrayList<String>();
+    class Sort extends AsyncTask<Void, Void, Wrapper> {
 
-                    JSONArray crops = response.getJSONArray("crops");
+        JSONObject response;
 
-                    for (Integer i = 0; i <= crops.length() - 1; i++) {
-                        JSONObject crop = crops.getJSONObject(i);
-                        String id = crop.getString(KEY_ID);
-                        String image = crop.getString(KEY_CROP_IMAGE);
-                        String name = crop.getString(KEY_CROP_NAME);
-
-                        ids.add(id);
-                        images.add(image);
-                        names.add(name);
-                    }
-
-                    id = ids.toArray(new String[ids.size()]);
-                    image = images.toArray(new String[images.size()]);
-                    name = names.toArray(new String[names.size()]);
-
-                    mAdapter = new ForumPostsCardView(getActivity(), name, image, name, false);
-                    mRecyclerView.setAdapter(mAdapter);
-                    mAdapter.SetOnItemClickListener(this);
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        public Sort(JSONObject response) {
+            this.response = response;
         }
-        if (pDialog.isShowing())
-            pDialog.dismiss();
-    }
 
-    @Override
-    public void onItemClick(View view, int position) {
-        pDialog.setMessage("Creating calendar...");
-        if (!pDialog.isShowing())
-            pDialog.show();
+        @Override
+        protected Wrapper doInBackground(Void... voids) {
+            return parseJsonFeed(response);
+        }
 
-        String SELECTED_CROP_URL = "http://buykerz.com/program/v1/api/selectCrop";
-        String SELECTED_CROP_NAME = "crop_name";
-        String SELECTED_CROP_VARIETY_ID = "variety_id";
-        String SELECTED_CROP_VARIETY_NAME = "variety_name";
-        String SELECTED_CROP_DURATION = "time_duration";
-        String SELECTED_CROP_DURATION_SOWING = "sowing";
-        String SELECTED_CROP_DURATION_IRRIGATION = "irrigation";
-        String SELECTED_CROP_DURATION_FERTILIZATION = "fertilization";
-        String SELECTED_CROP_DURATION_PESTICIDE = "pesticide";
-        String SELECTED_CROP_DURATION_HARVESTING = "harvesting";
+        @Override
+        protected void onPostExecute(Wrapper data) {
+            super.onPostExecute(data);
+            if (pDialog.isShowing())
+                pDialog.dismiss();
+            mAdapter = new CalendarCropView(getActivity(), data.name, data.image, data.marks);
+            mRecyclerView.setAdapter(mAdapter);
+            mAdapter.SetOnItemClickListener(new GoToMainCalendar());
+        }
 
-        final String selectCropId = id[position];
+        private Wrapper parseJsonFeed(JSONObject response) {
+            Wrapper data = new Wrapper();
+            try {
+                String KEY_SUCCESS = "success";
+                String KEY_MSG = "message";
+                if (response.getString(KEY_SUCCESS) != null) {
+                    Boolean res = response.getBoolean(KEY_SUCCESS);
+                    if (res) {
+                        final ArrayList<String> ids = new ArrayList<>();
+                        final ArrayList<String> images = new ArrayList<>();
+                        final ArrayList<String> names = new ArrayList<>();
 
-        CustomJsonObjectRequest request = new CustomJsonObjectRequest(Method.POST, SELECTED_CROP_URL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                if (response != null) {
-                    try {
-                        String KEY_SUCCESS = "success";
-                        String KEY_MSG = "message";
-                        if (response.getString(KEY_SUCCESS) != null) {
-                            Boolean res = response.getBoolean(KEY_SUCCESS);
-                            if (res) {
-                                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-                                String sday, smonth, syear , eday, emonth, eyear, evname, evdesc;
-                                sday= String.valueOf(calendar.get(Calendar.DATE));
-                                smonth = String.valueOf(calendar.get(Calendar.MONTH));
-                                syear = String.valueOf(calendar.get(Calendar.YEAR));
-                                eday = "5";
-                                emonth = "5";
-                                eyear = "2014";
-                                evname = "Sowing";
-                                evdesc = "Today is sowing day";
-                                //ch.addCrop(sday, smonth, syear, eday, emonth, eyear, evname, evdesc);
-                                //HashMap<String, String> cropDetails = ch.getCropDetails();
-                                //String calendarId = cropDetails.get("id");
-                                if (pDialog.isShowing())
-                                    pDialog.dismiss();
-                                MainCalendar cal = new MainCalendar();
-                                getFragmentManager().beginTransaction()
-                                        .replace(R.id.calendarFrame, cal)
-                                        .addToBackStack(null)
-                                        .commit();
+                        JSONArray crops = response.getJSONArray("crops");
+                        marks = new double[crops.length()];
+
+                        for (Integer i = 0; i <= crops.length() - 1; i++) {
+
+                            marks[i] = 0;
+                            JSONObject crop = crops.getJSONObject(i);
+                            String id = crop.getString(KEY_ID);
+                            String image = crop.getString(KEY_CROP_IMAGE);
+                            String name = crop.getString(KEY_CROP_NAME);
+
+                            ids.add(id);
+                            images.add(image);
+                            names.add(name);
+
+                            for (int j = 0; j < 11; j++) {
+
+                                JSONArray paramData = crop.getJSONArray(parameters[j]);
+                                Double lowestRange = paramData.getDouble(0);
+                                Double lowRange = paramData.getDouble(1);
+                                Double mid = paramData.getDouble(2);
+                                Double highRange = paramData.getDouble(3);
+                                Double highestRange = paramData.getDouble(4);
+                                Double multiplierMin = paramData.getDouble(5);
+                                Double multiplierMax = paramData.getDouble(6);
+
+                                if (userValues[j] != 999) {
+                                    if (userValues[j] < lowRange && userValues[j] > highRange) {
+                                        if (userValues[j] < mid) {
+                                            k = 1 / ((lowestRange - mid) * (lowestRange - mid));
+                                        } else {
+                                            k = 1 / ((highestRange - mid) * (highestRange - mid));
+                                        }
+                                    } else {
+                                        if (userValues[i] < mid) {
+                                            k = (multiplierMin - 1) / ((lowRange - mid) * (lowRange - mid));
+                                        } else {
+                                            k = (multiplierMax - 1) / ((highRange - mid) * (highRange - mid));
+                                        }
+                                    }
+                                    y = 1 - (((userValues[j] - mid) * (userValues[j] - mid)) / k);
+                                    marks[i] += parameterMarks[j] * y;
+                                }
                             }
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+
+                        id = ids.toArray(new String[ids.size()]);
+                        image = images.toArray(new String[images.size()]);
+                        name = names.toArray(new String[names.size()]);
+
+                        quickSort(0, id.length - 1);
+
+                        data.name = name;
+                        data.image = image;
+                        data.marks = marks;
+
                     }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return data;
+        }
+
+        private void quickSort(int lowerIndex, int higherIndex) {
+            int i = lowerIndex + 1;
+            int j = higherIndex;
+            double pivot = marks[0];
+            while (i <= j) {
+                while (marks[i] < pivot) {
+                    i++;
+                }
+                while (marks[j] > pivot) {
+                    j--;
+                }
+                if (i <= j) {
+                    exchangeNumbers(i, j);
+                    i++;
+                    j--;
+                }
+            }
+
+            exchangeNumbers(lowerIndex, j);
+
+            if (lowerIndex < j) {
+                quickSort(lowerIndex, j - 1);
+            }
+            if (i < higherIndex) {
+                quickSort(i, higherIndex);
+            }
+        }
+
+        private void exchangeNumbers(int i, int j) {
+            String tempData;
+            double tempMarks = marks[i];
+            marks[i] = marks[j];
+            marks[j] = tempMarks;
+
+            tempData = id[i];
+            id[i] = id[j];
+            id[j] = tempData;
+
+            tempData = image[i];
+            image[i] = image[j];
+            image[j] = tempData;
+
+            tempData = name[i];
+            name[i] = name[j];
+            name[j] = tempData;
+        }
+    }
+
+    public class GoToMainCalendar implements CalendarCropView.OnItemClickListener {
+        @Override
+        public void onItemClick(View view, int position) {
+            pDialog.setMessage("Creating calendar...");
+            if (!pDialog.isShowing())
+                pDialog.show();
+
+            String SELECTED_CROP_URL = "http://buykerz.com/program/v1/api/selectCrop";
+            String SELECTED_CROP_NAME = "crop_name";
+            String SELECTED_CROP_VARIETY_ID = "variety_id";
+            String SELECTED_CROP_VARIETY_NAME = "variety_name";
+            String SELECTED_CROP_DURATION = "time_duration";
+            String SELECTED_CROP_DURATION_SOWING = "sowing";
+            String SELECTED_CROP_DURATION_IRRIGATION = "irrigation";
+            String SELECTED_CROP_DURATION_FERTILIZATION = "fertilization";
+            String SELECTED_CROP_DURATION_PESTICIDE = "pesticide";
+            String SELECTED_CROP_DURATION_HARVESTING = "harvesting";
+
+            final String selectCropId = id[position];
+
+            CustomJsonObjectRequest request = new CustomJsonObjectRequest(Method.POST, SELECTED_CROP_URL, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    if (response != null) {
+                        try {
+                            String KEY_SUCCESS = "success";
+                            String KEY_MSG = "message";
+                            if (response.getString(KEY_SUCCESS) != null) {
+                                Boolean res = response.getBoolean(KEY_SUCCESS);
+                                if (res) {
+                                    Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                                    String sday, smonth, syear, eday, emonth, eyear, evname, evdesc;
+                                    sday = String.valueOf(calendar.get(Calendar.DATE));
+                                    smonth = String.valueOf(calendar.get(Calendar.MONTH));
+                                    syear = String.valueOf(calendar.get(Calendar.YEAR));
+                                    eday = "5";
+                                    emonth = "5";
+                                    eyear = "2014";
+                                    evname = "Sowing";
+                                    evdesc = "Today is sowing day";
+                                    //ch.addCrop(sday, smonth, syear, eday, emonth, eyear, evname, evdesc);
+                                    //HashMap<String, String> cropDetails = ch.getCropDetails();
+                                    //String calendarId = cropDetails.get("id");
+                                    if (pDialog.isShowing())
+                                        pDialog.dismiss();
+                                    MainCalendar cal = new MainCalendar();
+                                    getFragmentManager().beginTransaction()
+                                            .replace(R.id.calendarFrame, cal)
+                                            .addToBackStack(null)
+                                            .commit();
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        if (pDialog.isShowing())
+                            pDialog.dismiss();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getActivity(), "Error fetching crop details.", Toast.LENGTH_SHORT).show();
                     if (pDialog.isShowing())
                         pDialog.dismiss();
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "Error fetching crop details.", Toast.LENGTH_SHORT).show();
-                if (pDialog.isShowing())
-                    pDialog.dismiss();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("crop_id", "1");
-                return params;
-            }
-        };
-        VolleySingleton.getInstance().addToRequestQueue(request);
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("crop_id", selectCropId);
+                    return params;
+                }
+            };
+            VolleySingleton.getInstance().addToRequestQueue(request);
+        }
     }
+
+    private class Wrapper {
+        double[] marks;
+        String[] image, name;
+    }
+
 }

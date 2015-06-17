@@ -33,7 +33,8 @@ public class Location extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.s_calendar_location_fragment, container, false);
-        ((CalendarActivity) getActivity()).setActionBarTitle("Choose a State");
+        ((CalendarActivity) getActivity()).setActionBarTitle(R.string.toolbar_choose_state);
+
         db = new DatabaseHandler(getActivity());
         locationPresent = (TextView) view.findViewById(R.id.location_present);
         locationChange = (Button) view.findViewById(R.id.calendar_location_change);

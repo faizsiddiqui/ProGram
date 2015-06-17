@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.internal.widget.TintButton;
-import android.support.v7.internal.widget.TintEditText;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +37,9 @@ import app.program.TutorialActivity;
  */
 public class Login extends Fragment {
 
-    TintEditText loginId, loginPassword;
+    AppCompatEditText loginId, loginPassword;
     TextView loginSignUp;
-    TintButton loginButton;
+    AppCompatButton loginButton;
     private ProgressDialog pDialog;
 
     String id, password;
@@ -63,14 +63,14 @@ public class Login extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.base_login_fragment, container, false);
-        loginId = (TintEditText) view.findViewById(R.id.login_id);
-        loginPassword = (TintEditText) view.findViewById(R.id.login_password);
+        loginId = (AppCompatEditText) view.findViewById(R.id.login_id);
+        loginPassword = (AppCompatEditText) view.findViewById(R.id.login_password);
 
-        loginButton = (TintButton) view.findViewById(R.id.login_button);
+        loginButton = (AppCompatButton) view.findViewById(R.id.login_button);
         loginSignUp = (TextView) view.findViewById(R.id.login_sign_up);
 
         pDialog = new ProgressDialog(getActivity());
-        pDialog.setMessage("Please wait...");
+        pDialog.setMessage(getString(R.string.dialog_please_wait));
         pDialog.setCancelable(false);
 
         loginButton.setOnClickListener(new View.OnClickListener() {

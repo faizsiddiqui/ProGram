@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.internal.widget.TintButton;
-import android.support.v7.internal.widget.TintEditText;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +38,8 @@ import app.program.TutorialActivity;
  */
 public class SignUp extends Fragment {
 
-    TintEditText signUpName, signUpMobile, signUpPassword, signUpEmail, signUpAge;
-    TintButton signUpState, signUpCategory, signUpGender, signUp;
+    AppCompatEditText signUpName, signUpMobile, signUpPassword, signUpEmail, signUpAge;
+    AppCompatButton signUpState, signUpCategory, signUpGender, signUp;
     TextView signUpLogin;
 
     private ProgressDialog pDialog;
@@ -64,20 +64,20 @@ public class SignUp extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.base_sign_up_fragment, container, false);
-        signUpName = (TintEditText) view.findViewById(R.id.sign_up_name);
-        signUpMobile = (TintEditText) view.findViewById(R.id.sign_up_mobile);
-        signUpPassword = (TintEditText) view.findViewById(R.id.sign_up_password);
-        signUpEmail = (TintEditText) view.findViewById(R.id.sign_up_email);
-        signUpAge = (TintEditText) view.findViewById(R.id.sign_up_age);
-        signUpState = (TintButton) view.findViewById(R.id.sign_up_state);
-        signUpCategory = (TintButton) view.findViewById(R.id.sign_up_category);
-        signUpGender = (TintButton) view.findViewById(R.id.sign_up_gender);
+        signUpName = (AppCompatEditText) view.findViewById(R.id.sign_up_name);
+        signUpMobile = (AppCompatEditText) view.findViewById(R.id.sign_up_mobile);
+        signUpPassword = (AppCompatEditText) view.findViewById(R.id.sign_up_password);
+        signUpEmail = (AppCompatEditText) view.findViewById(R.id.sign_up_email);
+        signUpAge = (AppCompatEditText) view.findViewById(R.id.sign_up_age);
+        signUpState = (AppCompatButton) view.findViewById(R.id.sign_up_state);
+        signUpCategory = (AppCompatButton) view.findViewById(R.id.sign_up_category);
+        signUpGender = (AppCompatButton) view.findViewById(R.id.sign_up_gender);
 
-        signUp = (TintButton) view.findViewById(R.id.sign_up_button);
+        signUp = (AppCompatButton) view.findViewById(R.id.sign_up_button);
         signUpLogin = (TextView) view.findViewById(R.id.sign_up_login);
 
         pDialog = new ProgressDialog(getActivity());
-        pDialog.setMessage("Please wait...");
+        pDialog.setMessage(getString(R.string.dialog_please_wait));
         pDialog.setCancelable(false);
 
         signUpState.setOnClickListener(new SetState());

@@ -3,20 +3,54 @@
     <!-- App settings -->
     <string name="app_name">Proग्राम</string>
 
+    <!-- Splash settings -->
+    <string name="splash_app_description">Proग्राम में स्वागत,\nहर पहलू में एक किसान का दोस्त!</string>
+    <string name="next">अगली</string>
+    <string name="splash_continue">जारी रखें</string>
+    <string name="base_about_title">प्रोग्राम एक किसान का दोस्त हर पहलु में </string>
+
+    <!-- Navigation drawer settings -->
+    <string name="nav_tutorials">ट्यूटोरियल</string>
+    <string name="nav_help">मदद</string>
+    <string name="nav_about">एप्लिकेशन के बारे म</string>
+    <string name="nav_settings">सेटिंग्स</string>
+    <string name="nav_logout">लॉग आउट</string>
 
     <!-- Toolbar settings -->
     <string name="toolbar_text_home">होम</string>
+    <string name="toolbar_text_forum">मंच</string>
+    <string name="toolbar_text_calendar">कैलेंडर</string>
+    <string name="toolbar_about">एप्लिकेशन के बारे में</string>
+    <string name="toolbar_help">मदद</string>
+    <string name="toolbar_settings">सेटिंग्स</string>
     <string name="toolbar_text_schemes">योजनाएं</string>
     <string name="toolbar_text_ask_question">प्रश्न पूछो</string>
     <string name="toolbar_text_question">सवाल</string>
-    <string name="toolbar_text_forum">मंच</string>
-    <string name="toolbar_text_calendar">कैलेंडर</string>
     <string name="toolbar_text_awards">पुरस्कार</string>
+    <string name="toolbar_text_spotlight">स्पॉटलाइट</string>
     <string name="toolbar_login">लॉग इन करें</string>
     <string name="toolbar_jobs">नौकरी</string>
+    <string name="toolbar_learn">जानें</string>
+    <string name="toolbar_choose_state">एक राज्य चुनें</string>
+    <string name="toolbar_choose_crop">एक फसल चुनें</string>
+    <string name="toolbar_soil_test_detail">मिट्टी परीक्षण रिपोर्ट विवरण दर्ज करें</string>
 
-    <!-- Action settings -->
-    <string name="action_settings">सेटिंग्स</string>
+    <!-- Home -->
+    <string name="home_calendar">कैलेंडर</string>
+    <string name="home_forum">मंच</string>
+    <string name="home_weather">मौसम</string>
+    <string name="home_market">मंडी</string>
+
+    <!-- Forum -->
+    <string name="forum_learn">जानें</string>
+    <string name="forum_questionAnswer">सवाल और जवाब</string>
+    <string name="forum_schemes">योजनाएं</string>
+    <string name="forum_jobs">नौकरी</string>
+    <string name="forum_spotlight">स्पॉटलाइट</string>
+    <string name="forum_awards">पुरस्कार</string>
+
+    <!-- Dialog settings -->
+    <string name="dialog_please_wait">कृपया प्रतीक्षा करें…</string>
 
     <!-- Useless -->
     <string name="exampleString">उदाहरण</string>
@@ -58,12 +92,22 @@
     <string name="scalendar_change_state">राज्य बदले </string>
     <string name="scalendar_continue">जारी रखने के लिए</string>
 
+    <!-- Tutorial Settings -->
+    <string name="tutorial_title_learn">जानें</string>
+    <string name="tutorial_title_SelectCrop">सबसे अच्छी फसल प्राप्त करें</string>
+    <string name="tutorial_title_Calender">कैलेंडर</string>
+    <string name="tutorial_title_QuestionAndAnswers">सवाल और जवाब</string>
+    <string name="tutorial_title_SchemesAndAwards">योजनाओं और पुरस्कार</string>
+    <string name="tutorial_title_employment">रोज़गार</string>
 
-    <!-- Splash settings -->
-    <string name="splash_app_description">Proग्राम में स्वागत,\nहर पहलू में एक किसान का दोस्त.</string>
-    <string name="next">अगली</string>
-    <string name="splash_continue">जारी रखें</string>
-    <string name="base_about_title">प्रोग्राम एक किसान का दोस्त हर पहलु में </string>
+    <string name="tutorial_description_learn">यहाँ आप जैविक खेती के बारे में और आदर्श खेती के तरीकों को खोज कर सकते हैं!</string>
+    <string name="tutorial_description_SelectCrop">Select a crops based on your soil, every soil favours a different crop, go check out what you should grow. Enter your soil parameters and you will get your answer.</string>
+    <string name="tutorial_description_Calender">Calendar provides timely notifications prior to the time of performing the next farming step according to the farming cycle of the crop selected.</string>
+    <string name="tutorial_description_QuestionAndAnswers">Read what problems are being faced by other farmers, if you have enough knowledge help them out, if you have problems ask your own questions and someone else might help you.</string>
+    <string name="tutorial_description_SchemesAndAwards">Here you can get all the information related to schemes and awards issued by government for farmers</string>
+    <string name="tutorial_description_employment">Don\'t know what to do in off season, check out the jobs section and you might find some work to do</string>
+
+    <string name="tutorial_next">अगला</string>
 
     <!-- Calendar Events -->
     <string name="calendar_event_dateString">कार्यक्रम की तिथि</string>
@@ -121,9 +165,5 @@
         <item>उत्तराखंड</item>
         <item>पश्चिम बंगाल</item>
     </string-array>
-
-    <!-- Home -->
-    <string name="home_calendar">होम</string>
-
 
 </resources>

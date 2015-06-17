@@ -28,18 +28,18 @@ public class Learn extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        initialize();
+        initialize(view);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.forum_learn, container, false);
-        ((ForumActivity) getActivity()).setActionBarTitle("Learn");
-        initialize();
+        ((ForumActivity) getActivity()).setActionBarTitle(R.string.toolbar_learn);
+        initialize(view);
         return view;
     }
 
-    private void initialize(){
+    private void initialize(View view) {
         mViewPageAdapter = new LearnViewPagerAdapter(getActivity().getSupportFragmentManager(), Titles, numberOfTabs);
         mViewPager = (ViewPager) view.findViewById(R.id.pager);
         mViewPager.setAdapter(mViewPageAdapter);

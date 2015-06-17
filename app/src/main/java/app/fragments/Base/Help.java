@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import app.program.OtherActivity;
 import app.program.R;
 
 /**
@@ -23,11 +24,13 @@ public class Help extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_help, container, false);
-         tv = (TextView)view.findViewById(R.id.Kisaancallcentre);
-         tv1 = (TextView)view.findViewById(R.id.iiss);
+        ((OtherActivity) getActivity()).setActionBarTitle(R.string.toolbar_help);
+
+        tv = (TextView)view.findViewById(R.id.Kisaancallcentre);
+        tv1 = (TextView)view.findViewById(R.id.iiss);
         tv2 = (TextView)view.findViewById(R.id.ciae);
-         et = (EditText)view.findViewById(R.id.editText);
-         et1 = (EditText)view.findViewById(R.id.editText2);
+        et = (EditText)view.findViewById(R.id.editText);
+        et1 = (EditText)view.findViewById(R.id.editText2);
         et2 = (EditText)view.findViewById(R.id.editText3);
         return view;
     }

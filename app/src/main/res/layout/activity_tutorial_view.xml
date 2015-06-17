@@ -2,32 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/keyLine2">
 
     <ImageView
         android:id="@+id/tutorial_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/keyLine2"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"/>
 
     <TextView
         android:id="@+id/tutorial_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/keyLine2"
+        android:layout_marginBottom="@dimen/keyLine2"
         android:gravity="center"
+        android:text="Hello"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
-        android:textColor="@color/colorPrimaryText" />
+        android:textColor="@color/colorPrimaryText"/>
 
     <TextView
         android:id="@+id/tutorial_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/keyLine1"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/colorSecondaryText" />
+        android:textColor="@color/colorSecondaryText"
+        android:gravity="center"/>
 
 </LinearLayout>

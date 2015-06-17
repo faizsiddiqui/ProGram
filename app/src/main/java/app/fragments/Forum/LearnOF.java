@@ -1,10 +1,8 @@
 package app.fragments.Forum;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +22,6 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-import app.fragments.Base.Home;
 import app.library.VolleySingleton;
 import app.program.R;
 
@@ -54,6 +51,7 @@ public class LearnOF extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.forum_learn_of, container, false);
+
         learnOFImage = (NetworkImageView) view.findViewById(R.id.learn_of_image);
         learnOFDescription = (TextView) view.findViewById(R.id.learn_of_description);
 
