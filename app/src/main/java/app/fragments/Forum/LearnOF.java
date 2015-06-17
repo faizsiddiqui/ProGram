@@ -1,10 +1,8 @@
 package app.fragments.Forum;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +22,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-import app.fragments.Base.Home;
 import app.library.VolleySingleton;
-import app.program.ForumActivity;
 import app.program.R;
 
 /**

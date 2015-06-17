@@ -19,6 +19,7 @@ import app.program.R;
 public class SoilTestParameters extends Fragment {
 
     private Button search;
+    double userValues[] = new double[999];
     String selectedState, ph,ec,oc,n,p,k,z,c,i,m,b,s;
 
     EditText PH,EC,OC,N,P,K,ZN,CU,FE,MN,S;
@@ -61,6 +62,7 @@ public class SoilTestParameters extends Fragment {
 
         return view;
     }
+
     private class GoToSelectCrop implements View.OnClickListener {
 
         @Override
@@ -78,11 +80,23 @@ public class SoilTestParameters extends Fragment {
             m = MN.getText().toString();
             s = S.getText().toString();
 
-            SelectCrop crop = SelectCrop.newInstance(selectedState, ph,ec,oc,n,p,k,z,c,i,m,s);
+            userValues[0] = (!ph.isEmpty()) ? Double.parseDouble(ph) : 999;
+            userValues[1] = (!ec.isEmpty()) ? Double.parseDouble(ec) : 999;
+            userValues[2] = (!oc.isEmpty()) ? Double.parseDouble(oc) : 999;
+            userValues[3] = (!n.isEmpty()) ? Double.parseDouble(n) : 999;
+            userValues[4] = (!p.isEmpty()) ? Double.parseDouble(p) : 999;
+            userValues[5] = (!k.isEmpty()) ? Double.parseDouble(k) : 999;
+            userValues[6] = (!z.isEmpty()) ? Double.parseDouble(z) : 999;
+            userValues[7] = (!c.isEmpty()) ? Double.parseDouble(c) : 999;
+            userValues[8] = (!i.isEmpty()) ? Double.parseDouble(i) : 999;
+            userValues[9] = (!m.isEmpty()) ? Double.parseDouble(m) : 999;
+            userValues[10] = (!s.isEmpty()) ? Double.parseDouble(s) : 999;
+
+            SelectCrop crop = SelectCrop.newInstance(selectedState, userValues);
             getFragmentManager().beginTransaction()
                     .replace(R.id.calendarFrame, crop)
                     .addToBackStack(null)
-                     .commit();
+                    .commit();
         }
     }
 

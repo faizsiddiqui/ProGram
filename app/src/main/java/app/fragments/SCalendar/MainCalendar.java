@@ -1,18 +1,9 @@
 package app.fragments.SCalendar;
 
-import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
-import android.app.usage.UsageEvents;
 import android.content.Context;
-import android.content.Intent;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
@@ -22,28 +13,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
-import java.util.HashMap;
-
-import app.adapters.CardView;
 import app.library.CropHandler;
-import app.library.DatabaseHandler;
 import app.program.CalendarActivity;
 import app.program.R;
-import app.program.TutorialActivity;
 
 
 /**
  * Created by apple on 4/2/2015./
  */
-@SuppressWarnings("unused")
 public class MainCalendar extends Fragment {
 
     CalendarView calendar;
@@ -57,7 +40,7 @@ public class MainCalendar extends Fragment {
     TextView EventDescription;
     CropHandler cp;
     private static String URL = "http://buykerz.com/program/v1/api/crops";
-    private static final String KEY_STARTDAY= "sday";
+    private static final String KEY_STARTDAY = "sday";
     private static final String KEY_STARTMONTH = "smonth";
     private static final String KEY_STARTYEAR = "syear";
     private static final String KEY_ENDDAY = "eday";
@@ -68,7 +51,6 @@ public class MainCalendar extends Fragment {
 
     // This is the date picker used to select the date for our notification
     //private DatePicker picker;
-
     //public String[] color;
 
 
@@ -79,9 +61,6 @@ public class MainCalendar extends Fragment {
         calendar = (CalendarView) view.findViewById(R.id.maincalendar);
         ((CalendarActivity) getActivity()).setActionBarTitle(R.string.toolbar_text_calendar);
         cp = new CropHandler(getActivity());
-
-       
-
 
         //get a reference to our date picker
         //picker = (DatePicker) view.findViewById(R.id.scheduleTimePicker);
@@ -96,7 +75,7 @@ public class MainCalendar extends Fragment {
             }
         });
 
-        Button button = (Button)view.findViewById(R.id.new_event);
+        Button button = (Button) view.findViewById(R.id.new_event);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,7 +91,6 @@ public class MainCalendar extends Fragment {
     }
 
     public void initializeCalendar() {
-
 
         calendar.setShowWeekNumber(false);
         calendar.setFirstDayOfWeek(2);
@@ -132,8 +110,7 @@ public class MainCalendar extends Fragment {
 
     }
 
-   public void newEvent()
-    {
+    public void newEvent() {
 
     }
 
@@ -141,16 +118,13 @@ public class MainCalendar extends Fragment {
     }
 
 
+    protected void displayNotification() {
 
-
-
-    protected void displayNotification(){
-
-       Log.i("Start", "Notification");
-       NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity());
-       mBuilder.setContentTitle("Notification Alert, Click Me!");
-       mBuilder.setContentText("Hi.. Notification Details");
-       mBuilder.setTicker("New Message Alert");
+        Log.i("Start", "Notification");
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity());
+        mBuilder.setContentTitle("Notification Alert, Click Me!");
+        mBuilder.setContentText("Hi.. Notification Details");
+        mBuilder.setTicker("New Message Alert");
 
         mBuilder.setSmallIcon(R.mipmap.ic_launcher);
 
@@ -163,12 +137,11 @@ public class MainCalendar extends Fragment {
         mBuilder.setContentIntent(resultPendingIntent); */
 
 
+        mBuilder.setDefaults(Notification.DEFAULT_SOUND);
+        NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(notificationID, mBuilder.build());
 
-       mBuilder.setDefaults(Notification.DEFAULT_SOUND);
-       NotificationManager mNotificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-       mNotificationManager.notify(notificationID, mBuilder.build());
-
-  }
+    }
 
     // this is the onclick called from XML to set a new notification
         /*public void onDateSelectedButtonClick(View v) {
@@ -188,26 +161,27 @@ public class MainCalendar extends Fragment {
    */
 
 
- private void parseJsonFeed(JSONObject response) {
-     try {
-         String KEY_SUCCESS = "success";
-         String KEY_MSG = "message";
-         if (response.getString(KEY_SUCCESS) != null) {
-             Boolean res = response.getBoolean(KEY_SUCCESS);
-             if (res) {
-                 cp = new CropHandler(getActivity());
-                 JSONObject json_crop = response.getJSONObject("crop");
-                 cp.addCrop(json_crop.getString(KEY_STARTDAY), json_crop.getString(KEY_STARTMONTH), json_crop.getString(KEY_STARTYEAR),
-                         json_crop.getString(KEY_ENDDAY), json_crop.getString(KEY_ENDMONTH), json_crop.getString(KEY_ENDYEAR)
-                         , json_crop.getString(KEY_EVENTDESC),
-                         json_crop.getString(KEY_EVENTNAME));
-             }  Toast.makeText(getActivity(), response.getString(KEY_MSG), Toast.LENGTH_SHORT).show();
-             }
-         }catch(JSONException e){
-             e.printStackTrace();
-         }
-     }
- }
+    private void parseJsonFeed(JSONObject response) {
+        try {
+            String KEY_SUCCESS = "success";
+            String KEY_MSG = "message";
+            if (response.getString(KEY_SUCCESS) != null) {
+                Boolean res = response.getBoolean(KEY_SUCCESS);
+                if (res) {
+                    cp = new CropHandler(getActivity());
+                    JSONObject json_crop = response.getJSONObject("crop");
+                    cp.addCrop(json_crop.getString(KEY_STARTDAY), json_crop.getString(KEY_STARTMONTH), json_crop.getString(KEY_STARTYEAR),
+                            json_crop.getString(KEY_ENDDAY), json_crop.getString(KEY_ENDMONTH), json_crop.getString(KEY_ENDYEAR)
+                            , json_crop.getString(KEY_EVENTDESC),
+                            json_crop.getString(KEY_EVENTNAME));
+                }
+                Toast.makeText(getActivity(), response.getString(KEY_MSG), Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
 
 
