@@ -181,5 +181,4 @@ public class NavigationDrawer extends Fragment implements NavigationView.OnItemC
                 mDrawerToggle.syncState();
             }
         });
-    }
-}
+    }}

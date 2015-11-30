@@ -32,6 +32,7 @@ public class EnterLocation extends Fragment {
         spinner = (Spinner) view.findViewById(R.id.location_spinner);
         btn2 = (Button) view.findViewById(R.id.jumpbtn2);
         btn2.setOnClickListener(new ButtonEvent());
+
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(view.getContext(),
                 android.R.layout.simple_spinner_item, location_list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

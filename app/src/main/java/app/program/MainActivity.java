@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity {
             }
         }
 
+
         NavigationDrawer drawerFragment = (NavigationDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer_fragment);
         DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
